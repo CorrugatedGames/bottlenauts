@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://du4v5tcx5bltt"]
+
+[ext_resource type="Script" path="res://src/scenes/GameScene.cs" id="1_gtlnx"]
+
+[node name="GameScene" type="Node"]
+script = ExtResource("1_gtlnx")
+
+[node name="ViewportContainer" type="SubViewportContainer" parent="."]
+clip_contents = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="Viewport" type="SubViewport" parent="ViewportContainer"]
+size = Vector2i(1920, 1080)
+
+[node name="GodCamera" type="Camera3D" parent="ViewportContainer/Viewport"]
+
+[node name="Audio" type="Node" parent="ViewportContainer/Viewport"]
+
+[node name="BGM" type="AudioStreamPlayer" parent="ViewportContainer/Viewport/Audio"]
+
+[node name="SFX" type="AudioStreamPlayer" parent="ViewportContainer/Viewport/Audio"]
