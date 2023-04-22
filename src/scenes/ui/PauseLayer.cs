@@ -32,6 +32,6 @@ public partial class PauseLayer : CanvasLayer
 
   void OnExitButtonPressed ()
   {
-    GetNode("/root/SignalBus").EmitSignal(SignalBus.SignalName.GameExit);
+    SignalBus.EmitSignal(SignalBus.SignalName.GameExit);
   }
 }

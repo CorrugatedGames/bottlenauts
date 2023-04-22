@@ -1,4 +1,4 @@
-public partial class SignalBus : Node
+public partial class SignalBus : SingletonNode
 {
   #region Game client signals
 
