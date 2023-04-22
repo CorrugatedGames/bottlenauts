@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://du4v5tcx5bltt"]
+[gd_scene load_steps=3 format=3 uid="uid://du4v5tcx5bltt"]
 
 [ext_resource type="Script" path="res://src/scenes/GameScene.cs" id="1_gtlnx"]
+[ext_resource type="PackedScene" uid="uid://cembimxaefdar" path="res://scenes/ui/PauseLayer.tscn" id="2_fvifq"]
 
 [node name="GameScene" type="Node"]
 script = ExtResource("1_gtlnx")
 
 [node name="ViewportContainer" type="SubViewportContainer" parent="."]
+process_mode = 1
 clip_contents = true
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,7 +17,9 @@ grow_vertical = 2
 stretch = true
 
 [node name="Viewport" type="SubViewport" parent="ViewportContainer"]
+handle_input_locally = false
 size = Vector2i(1920, 1080)
+render_target_update_mode = 4
 
 [node name="GodCamera" type="Camera3D" parent="ViewportContainer/Viewport"]
 
@@ -24,3 +28,8 @@ size = Vector2i(1920, 1080)
 [node name="BGM" type="AudioStreamPlayer" parent="ViewportContainer/Viewport/Audio"]
 
 [node name="SFX" type="AudioStreamPlayer" parent="ViewportContainer/Viewport/Audio"]
+
+[node name="Unpausable" type="Node" parent="ViewportContainer"]
+
+[node name="PauseLayer" parent="ViewportContainer/Unpausable" instance=ExtResource("2_fvifq")]
+visible = false
