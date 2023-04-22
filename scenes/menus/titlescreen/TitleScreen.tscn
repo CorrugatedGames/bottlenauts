@@ -1,0 +1,93 @@
+[gd_scene load_steps=3 format=3 uid="uid://ligxtqfx5yww"]
+
+[ext_resource type="Script" path="res://scenes/menus/titlescreen/QuitButton.cs" id="1_cel4w"]
+[ext_resource type="Script" path="res://scenes/menus/titlescreen/GoToOptions.cs" id="2_1bjf8"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 835.0
+offset_top = 32.0
+offset_right = 943.0
+offset_bottom = 65.0
+scale = Vector2(4, 4)
+bbcode_enabled = true
+text = "[i]Bottle[/i][b]nauts[/b]"
+shortcut_keys_enabled = false
+
+[node name="quit loser" type="Button" parent="."]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 815.0
+offset_right = 1230.0
+offset_bottom = 1002.0
+text = "quit the game"
+script = ExtResource("1_cel4w")
+
+[node name="options" type="Button" parent="."]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 413.0
+offset_right = 1230.0
+offset_bottom = 600.0
+text = "like, change your game options"
+script = ExtResource("2_1bjf8")
+
+[node name="play2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 462.0
+offset_top = 695.0
+offset_right = 861.0
+offset_bottom = 733.0
+disabled = true
+text = "this button is small and disabled because lol suffer"
+
+[node name="play" type="Button" parent="."]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 188.0
+offset_right = 1230.0
+offset_bottom = 375.0
+text = "play the game. nerd."
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 1368.0
+offset_top = 190.0
+offset_right = 1823.0
+offset_bottom = 1019.0
+text = "this game is under active development
+
+none of this is real
+
+it can't hurt you
+
+there is no update news at this time
+
+this is just here to fill space
+
+are you really still reading this
+
+why are you still reading this
+
+hi
+
+anyway, here's wonderwall
+
+this is probably going to be a cool game
+
+the cooliest
+
+the coolieoliest
+
+this will just keep going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going"
+
+[connection signal="pressed" from="quit loser" to="quit loser" method="_on_pressed"]
+[connection signal="pressed" from="options" to="options" method="_on_pressed"]

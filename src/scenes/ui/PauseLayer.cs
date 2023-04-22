@@ -8,17 +8,17 @@ public partial class PauseLayer : CanvasLayer
 
   public override void _Ready ()
   {
-    BackButton = GetNode("OptionsContainer/BackButton") as Button;
-    SettingsButton = GetNode("OptionsContainer/SettingsButton") as Button;
-    MainMenuButton = GetNode("OptionsContainer/MainMenuButton") as Button;
-    ExitButton = GetNode("OptionsContainer/ExitButton") as Button;
+	BackButton = GetNode("OptionsContainer/BackButton") as Button;
+	SettingsButton = GetNode("OptionsContainer/SettingsButton") as Button;
+	MainMenuButton = GetNode("OptionsContainer/MainMenuButton") as Button;
+	ExitButton = GetNode("OptionsContainer/ExitButton") as Button;
 
-    BackButton.Pressed += OnBackButtonPressed;
-    SettingsButton.Pressed += OnSettingsButtonPressed;
-    MainMenuButton.Pressed += OnMainMenuButtonPressed;
-    ExitButton.Pressed += OnExitButtonPressed;
+	BackButton.Pressed += OnBackButtonPressed;
+	SettingsButton.Pressed += OnSettingsButtonPressed;
+	MainMenuButton.Pressed += OnMainMenuButtonPressed;
+	ExitButton.Pressed += OnExitButtonPressed;
 
-    BackButton.GrabFocus();
+	BackButton.GrabFocus();
   }
 
   void OnBackButtonPressed ()
@@ -32,6 +32,6 @@ public partial class PauseLayer : CanvasLayer
 
   void OnExitButtonPressed ()
   {
-    SignalBus.EmitSignal(SignalBus.SignalName.GameExit);
+	SignalBus.EmitSignal(SignalBus.SignalName.GameExit);
   }
 }
