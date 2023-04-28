@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://dfguiqgpa7dkc"]
+
+[node name="MatchSettings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ChangeGameType" type="Button" parent="."]
+layout_mode = 0
+offset_left = 766.0
+offset_top = 215.0
+offset_right = 1075.0
+offset_bottom = 292.0
+disabled = true
+text = "all we support is last man standing
+for now"
+
+[node name="ChooseVariants" type="Button" parent="."]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 469.0
+offset_right = 1124.0
+offset_bottom = 546.0
+text = "choose variants. this button does something."
+
+[node name="ChangeWins" type="Button" parent="."]
+layout_mode = 0
+offset_left = 754.0
+offset_top = 353.0
+offset_right = 1076.0
+offset_bottom = 433.0
+disabled = true
+text = "5 wins isn't that much I promise"
+
+[node name="GoBackToChooseCharacters" type="Button" parent="."]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 957.0
+offset_right = 456.0
+offset_bottom = 1029.0
+text = "choose characters again"
+
+[node name="ChooseMaps" type="Button" parent="."]
+layout_mode = 0
+offset_left = 772.0
+offset_top = 596.0
+offset_right = 1098.0
+offset_bottom = 669.0
+text = "choose maps/playlist"
+
+[node name="PlayGame" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1360.0
+offset_top = 959.0
+offset_right = 1648.0
+offset_bottom = 1029.0
+text = "play the game!!!!!one!!11!!"

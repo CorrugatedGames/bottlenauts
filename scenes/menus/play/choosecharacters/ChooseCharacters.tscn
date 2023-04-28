@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://deyuayagojytv"]
+
+[ext_resource type="Script" path="res://scenes/menus/play/choosecharacters/ChooseCharacters.cs" id="1_v3qi3"]
+
+[node name="ChooseCharacters" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackToMainMenu" type="Button" parent="."]
+layout_mode = 0
+offset_left = 93.0
+offset_top = 950.0
+offset_right = 647.0
+offset_bottom = 1049.0
+text = "go back, nerd"
+script = ExtResource("1_v3qi3")
+
+[node name="CharactersChosen" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1322.0
+offset_top = 937.0
+offset_right = 1843.0
+offset_bottom = 1037.0
+text = "these characters are good"
+script = ExtResource("1_v3qi3")
+
+[connection signal="pressed" from="BackToMainMenu" to="BackToMainMenu" method="_on_pressed_goback"]
+[connection signal="pressed" from="CharactersChosen" to="BackToMainMenu" method="_on_pressed_goforward"]

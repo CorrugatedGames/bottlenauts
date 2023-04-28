@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bghsyhbmxf174"]
+
+[node name="PlayGame" type="Node2D"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 345.0
+offset_top = 380.0
+offset_right = 1009.0
+offset_bottom = 575.0
+text = "lol, nerd. alt f4"

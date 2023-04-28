@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhfvk4st1wcqr"]
+
+[ext_resource type="Script" path="res://scenes/menus/play/choosevariants/ChooseVariants.cs" id="1_8pf1t"]
+
+[node name="ChooseVariants" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 324.0
+offset_top = 188.0
+offset_right = 1011.0
+offset_bottom = 410.0
+text = "nope
+
+you can't choose anything here
+
+that sucks. really."
+
+[node name="GoBackToMatchSettings" type="Button" parent="."]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 920.0
+offset_right = 417.0
+offset_bottom = 1038.0
+text = "go back to match settings"
+script = ExtResource("1_8pf1t")
+
+[connection signal="pressed" from="GoBackToMatchSettings" to="GoBackToMatchSettings" method="_on_pressed_goback"]
