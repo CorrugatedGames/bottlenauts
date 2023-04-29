@@ -66,5 +66,6 @@ text = "play the game!!!!!one!!11!!"
 script = ExtResource("1_cpuj1")
 
 [connection signal="pressed" from="ChooseVariants" to="ChooseVariants" method="_on_pressed_choosevariants"]
+[connection signal="pressed" from="GoBackToChooseCharacters" to="ChooseVariants" method="_on_pressed_goback"]
 [connection signal="pressed" from="ChooseMaps" to="ChooseVariants" method="_on_pressed_choosemap"]
 [connection signal="pressed" from="PlayGame" to="GoBackToChooseCharacters" method="_on_pressed_goforward"]

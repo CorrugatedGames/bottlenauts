@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqk7glu528biu"]
+[gd_scene load_steps=2 format=3 uid="uid://c7chwldog56o"]
 
-[ext_resource type="Script" path="res://scenes/menus/options/MainMenuButton.cs" id="1_52bxm"]
+[ext_resource type="Script" path="res://scenes/menus/options/Options.cs" id="1_52bxm"]
 
 [node name="Options" type="Control"]
 layout_mode = 3
@@ -11,6 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MainMenu" type="Button" parent="."]
+layout_mode = 0
 offset_left = 108.0
 offset_top = 833.0
 offset_right = 1280.0

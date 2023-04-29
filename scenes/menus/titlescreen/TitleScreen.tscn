@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://ligxtqfx5yww"]
+[gd_scene load_steps=2 format=3 uid="uid://ligxtqfx5yww"]
 
-[ext_resource type="Script" path="res://scenes/menus/titlescreen/QuitButton.cs" id="1_cel4w"]
-[ext_resource type="Script" path="res://scenes/menus/titlescreen/GoToOptions.cs" id="2_1bjf8"]
+[ext_resource type="Script" path="res://scenes/menus/titlescreen/TitleScreen.cs" id="3_vbtna"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -29,7 +28,7 @@ offset_top = 815.0
 offset_right = 1230.0
 offset_bottom = 1002.0
 text = "quit the game"
-script = ExtResource("1_cel4w")
+script = ExtResource("3_vbtna")
 
 [node name="options" type="Button" parent="."]
 layout_mode = 0
@@ -38,7 +37,7 @@ offset_top = 413.0
 offset_right = 1230.0
 offset_bottom = 600.0
 text = "like, change your game options"
-script = ExtResource("2_1bjf8")
+script = ExtResource("3_vbtna")
 
 [node name="play2" type="Button" parent="."]
 layout_mode = 0
@@ -56,6 +55,7 @@ offset_top = 188.0
 offset_right = 1230.0
 offset_bottom = 375.0
 text = "play the game. nerd."
+script = ExtResource("3_vbtna")
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="."]
 layout_mode = 0
@@ -89,5 +89,7 @@ the coolieoliest
 
 this will just keep going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going"
 
-[connection signal="pressed" from="quit loser" to="quit loser" method="_on_pressed"]
+[connection signal="pressed" from="quit loser" to="quit loser" method="_on_pressed_quit"]
+[connection signal="pressed" from="options" to="quit loser" method="_on_pressed_options"]
 [connection signal="pressed" from="options" to="options" method="_on_pressed"]
+[connection signal="pressed" from="play" to="play" method="_on_pressed_play"]

@@ -1,9 +1,8 @@
-public partial class GoToOptions : Button
+public partial class TitleScreen : Button
 {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -11,7 +10,16 @@ public partial class GoToOptions : Button
 	{
 	}
 
-	public void _on_pressed() {
+	public void _on_pressed_quit() 
+	{
+		GetTree().Quit();
+	}
+
+	public void _on_pressed_play() {
+		GetTree().ChangeSceneToFile("res://scenes/menus/play/choosecharacters/ChooseCharacters.tscn");
+	}
+
+	public void _on_pressed_options() {
 		GetTree().ChangeSceneToFile("res://scenes/menus/options/Options.tscn");
 	}
 }
