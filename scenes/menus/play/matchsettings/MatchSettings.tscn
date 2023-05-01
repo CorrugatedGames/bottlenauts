@@ -16,15 +16,16 @@ script = ExtResource("1_cpuj1")
 
 [node name="ChangeGameType" type="Button" parent="."]
 layout_mode = 0
-offset_left = 766.0
-offset_top = 215.0
-offset_right = 1075.0
-offset_bottom = 292.0
+offset_left = 761.0
+offset_top = 228.0
+offset_right = 1070.0
+offset_bottom = 305.0
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../GoBackToChooseCharacters")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../ChangeWins")
-text = "Last Man Standing"
+text = "Game Mode
+Last Man Standing"
 script = ExtResource("2_x1o8g")
 
 [node name="ChangeWins" type="Button" parent="."]
@@ -37,7 +38,8 @@ focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath("../ChangeGameType")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../ChooseVariants")
-text = "5 Points"
+text = "Normal Match
+5 Points"
 script = ExtResource("3_g8u4l")
 
 [node name="ChooseVariants" type="Button" parent="."]
@@ -63,11 +65,15 @@ text = "choose maps/playlist"
 script = ExtResource("1_hig1v")
 
 [node name="GoBackToChooseCharacters" type="Button" parent="."]
-layout_mode = 0
-offset_left = 98.0
-offset_top = 957.0
-offset_right = 456.0
-offset_bottom = 1029.0
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 82.0
+offset_top = -136.0
+offset_right = 440.0
+offset_bottom = -64.0
+grow_vertical = 0
 focus_neighbor_top = NodePath("../ChooseMaps")
 focus_neighbor_right = NodePath("../PlayGame")
 text = "choose characters again"

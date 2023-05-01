@@ -3,7 +3,6 @@ public partial class ButtonChangeWins : Button
 
   private GameRounds[] gameModes = new GameRounds[] {
     GameRounds.One,
-    GameRounds.Two,
     GameRounds.Three,
     GameRounds.Five,
     GameRounds.Seven,
@@ -65,22 +64,19 @@ public partial class ButtonChangeWins : Button
     switch (settings.GameRounds)
     {
       case GameRounds.One:
-        Text = "1 Point";
-        break;
-      case GameRounds.Two:
-        Text = "2 Points";
+        Text = "Instant Match\n1 Point";
         break;
       case GameRounds.Three:
-        Text = "3 Points";
+        Text = "Quick Match\n3 Points";
         break;
       case GameRounds.Five:
-        Text = "5 Points";
+        Text = "Normal Match\n5 Points";
         break;
       case GameRounds.Seven:
-        Text = "7 Points";
+        Text = "Long Match\n7 Points";
         break;
       case GameRounds.Ten:
-        Text = "10 Points";
+        Text = "Epic Match\n10 Points";
         break;
     }
   }

@@ -55,20 +55,19 @@ public partial class ButtonGameMode : Button
 
   public void ChangeName()
   {
-    Print("Change Name");
     MatchSettingsState settings = GetNode<MatchSettingsState>("/root/MatchSettingsState");
     switch (settings.GameMode)
     {
       case GameMode.LastManStanding:
-        Text = "Last Man Standing";
+        Text = "Game Mode\nLast Man Standing";
         break;
 
       case GameMode.Deathmatch:
-        Text = "Deathmatch";
+        Text = "Game Mode\nDeathmatch";
         break;
 
       default:
-        Text = "Unknown";
+        Text = "Game Mode\nUnknown";
         break;
     }
   }
