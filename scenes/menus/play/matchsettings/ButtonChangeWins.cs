@@ -58,7 +58,6 @@ public partial class ButtonChangeWins : Button
 
   public void ChangeName()
   {
-    Print("Change Name");
     MatchSettingsState settings = GetNode<MatchSettingsState>("/root/MatchSettingsState");
 
     switch (settings.GameRounds)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://deyuayagojytv"]
+[gd_scene load_steps=3 format=3 uid="uid://deyuayagojytv"]
 
 [ext_resource type="Script" path="res://scenes/menus/play/choosecharacters/ChooseCharacters.cs" id="1_v3qi3"]
+[ext_resource type="Script" path="res://scenes/menus/play/choosecharacters/CharacterChooseButton.cs" id="2_gmcxh"]
 
 [node name="ChooseCharacters" type="Control"]
 layout_mode = 3
@@ -28,5 +29,151 @@ offset_bottom = 1037.0
 text = "these characters are good"
 script = ExtResource("1_v3qi3")
 
+[node name="Player1" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 76.0
+offset_right = 470.0
+offset_bottom = 726.0
+metadata/Position = 0
+
+[node name="Prev" type="Button" parent="Player1"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 595.0
+offset_right = 64.0
+offset_bottom = 650.0
+text = "<"
+script = ExtResource("2_gmcxh")
+metadata/Direction = -1
+
+[node name="Next" type="Button" parent="Player1"]
+offset_left = 360.0
+offset_top = 593.0
+offset_right = 423.0
+offset_bottom = 648.0
+text = ">"
+script = ExtResource("2_gmcxh")
+metadata/Direction = 1
+
+[node name="CharName" type="RichTextLabel" parent="Player1"]
+layout_mode = 0
+offset_left = 90.0
+offset_top = 49.0
+offset_right = 334.0
+offset_bottom = 89.0
+bbcode_enabled = true
+text = "[center]Blue Alchemist[/center]"
+
+[node name="Player2" type="Panel" parent="."]
+offset_left = 497.0
+offset_top = 75.0
+offset_right = 922.0
+offset_bottom = 725.0
+metadata/Position = 1
+
+[node name="Prev" type="Button" parent="Player2"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 595.0
+offset_right = 64.0
+offset_bottom = 650.0
+text = "<"
+script = ExtResource("2_gmcxh")
+metadata/Direction = -1
+
+[node name="Next" type="Button" parent="Player2"]
+offset_left = 360.0
+offset_top = 593.0
+offset_right = 423.0
+offset_bottom = 648.0
+text = ">"
+script = ExtResource("2_gmcxh")
+metadata/Direction = 1
+
+[node name="CharName" type="RichTextLabel" parent="Player2"]
+offset_left = 90.0
+offset_top = 49.0
+offset_right = 334.0
+offset_bottom = 89.0
+bbcode_enabled = true
+text = "[center]Red Alchemist[/center]"
+
+[node name="Player3" type="Panel" parent="."]
+offset_left = 954.0
+offset_top = 74.0
+offset_right = 1379.0
+offset_bottom = 724.0
+metadata/Position = 2
+
+[node name="Prev" type="Button" parent="Player3"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 595.0
+offset_right = 64.0
+offset_bottom = 650.0
+text = "<"
+script = ExtResource("2_gmcxh")
+metadata/Direction = -1
+
+[node name="Next" type="Button" parent="Player3"]
+offset_left = 360.0
+offset_top = 593.0
+offset_right = 423.0
+offset_bottom = 648.0
+text = ">"
+script = ExtResource("2_gmcxh")
+metadata/Direction = 1
+
+[node name="CharName" type="RichTextLabel" parent="Player3"]
+offset_left = 90.0
+offset_top = 49.0
+offset_right = 334.0
+offset_bottom = 89.0
+bbcode_enabled = true
+text = "[center]Green Alchemist[/center]"
+
+[node name="Player4" type="Panel" parent="."]
+offset_left = 1416.0
+offset_top = 73.0
+offset_right = 1841.0
+offset_bottom = 723.0
+metadata/Position = 3
+
+[node name="Prev" type="Button" parent="Player4"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 595.0
+offset_right = 64.0
+offset_bottom = 650.0
+text = "<"
+script = ExtResource("2_gmcxh")
+metadata/Direction = -1
+
+[node name="Next" type="Button" parent="Player4"]
+offset_left = 360.0
+offset_top = 593.0
+offset_right = 423.0
+offset_bottom = 648.0
+text = ">"
+script = ExtResource("2_gmcxh")
+metadata/Direction = 1
+
+[node name="CharName" type="RichTextLabel" parent="Player4"]
+offset_left = 90.0
+offset_top = 49.0
+offset_right = 334.0
+offset_bottom = 89.0
+bbcode_enabled = true
+text = "[center]Yellow Alchemist[/center]"
+
 [connection signal="pressed" from="BackToMainMenu" to="BackToMainMenu" method="_on_pressed_goback"]
 [connection signal="pressed" from="CharactersChosen" to="BackToMainMenu" method="_on_pressed_goforward"]
+[connection signal="pressed" from="Player1/Prev" to="Player1/Prev" method="_on_pressed"]
+[connection signal="pressed" from="Player1/Next" to="Player1/Next" method="_on_pressed"]
+[connection signal="pressed" from="Player2/Prev" to="Player2/Prev" method="_on_pressed"]
+[connection signal="pressed" from="Player2/Next" to="Player2/Next" method="_on_pressed"]
+[connection signal="pressed" from="Player3/Prev" to="Player3/Prev" method="_on_pressed"]
+[connection signal="pressed" from="Player3/Next" to="Player3/Next" method="_on_pressed"]
+[connection signal="pressed" from="Player4/Prev" to="Player4/Prev" method="_on_pressed"]
+[connection signal="pressed" from="Player4/Next" to="Player4/Next" method="_on_pressed"]
