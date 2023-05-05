@@ -25,6 +25,6 @@ public partial class JoinButton : Button
     GetParent<CanvasItem>().Hide();
     GetParent().GetParent().GetNode<CanvasItem>("ChoiceVisible").Show();
     GetParent().GetParent().GetNode<CanvasItem>("ChoiceVisible").GetNode<RichTextLabel>("CharName").Text =
-      "[center]" + newColor.ToString() + " Alchemst" + "[/center]";
+      "[center]" + newColor.ToString() + " Alchemist" + "[/center]";
   }
 }

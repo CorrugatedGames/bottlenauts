@@ -46,6 +46,6 @@ public partial class CharacterChooseButton : Button
     settings.ChangePlayerColor(position, nextColor);
 
     GetParent().GetNode<RichTextLabel>("CharName").Text =
-      "[center]" + nextColor.ToString() + " Alchemst" + "[/center]";
+      "[center]" + nextColor.ToString() + " Alchemist" + "[/center]";
   }
 }
