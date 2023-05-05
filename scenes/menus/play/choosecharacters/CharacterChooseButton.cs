@@ -16,10 +16,9 @@ public partial class CharacterChooseButton : Button
   {
     MatchSettingsState settings = GetNode<MatchSettingsState>("/root/MatchSettingsState");
 
-    int position = (int)GetParent().GetMeta("Position");
+    int position = (int)GetParent().GetParent().GetMeta("Position");
     int direction = (int)GetMeta("Direction");
 
-    AlchemistColor[] takenColors = settings.AlchemistColors;
     AlchemistColor[] allColors = settings.AllColors;
     List<AlchemistColor> validColors = new List<AlchemistColor>(allColors);
     List<AlchemistColor> mutableValidColors = new List<AlchemistColor>(allColors);
@@ -28,7 +27,7 @@ public partial class CharacterChooseButton : Button
     int currentIndex = Array.IndexOf(allColors, currentColor);
     mutableValidColors.Remove(currentColor);
 
-    foreach (AlchemistColor color in takenColors)
+    foreach (AlchemistColor color in settings.AlchemistColors)
     {
       if (color == currentColor) continue;
 
@@ -43,7 +42,8 @@ public partial class CharacterChooseButton : Button
 
     int currentBigIndex = Array.IndexOf(colorsInOrder.ToArray(), currentColor);
     AlchemistColor nextColor = colorsInOrder[currentBigIndex + direction];
-    settings.AlchemistColors[position] = nextColor;
+
+    settings.ChangePlayerColor(position, nextColor);
 
     GetParent().GetNode<RichTextLabel>("CharName").Text =
       "[center]" + nextColor.ToString() + " Alchemst" + "[/center]";

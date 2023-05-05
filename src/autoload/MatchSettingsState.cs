@@ -1,3 +1,7 @@
+
+using System.Collections.Generic;
+using System.Linq;
+
 public enum GameMode
 {
   LastManStanding,
@@ -19,6 +23,8 @@ public enum GameRounds
 
 public enum AlchemistColor
 {
+  Empty,
+
   Red,
   Blue,
   Green,
@@ -35,12 +41,20 @@ public partial class MatchSettingsState : Node
   public GameMode GameMode { get; set; } = GameMode.LastManStanding;
   public GameRounds GameRounds { get; set; } = GameRounds.Five;
 
-  public AlchemistColor[] AlchemistColors { get; set; } = new AlchemistColor[] {
-    AlchemistColor.Blue,
-    AlchemistColor.Red,
-    AlchemistColor.Green,
-    AlchemistColor.Yellow
+  public List<AlchemistColor> AlchemistColors { get; } = new List<AlchemistColor> {
+    AlchemistColor.Empty,
+    AlchemistColor.Empty,
+    AlchemistColor.Empty,
+    AlchemistColor.Empty
   };
+
+  public List<AlchemistColor> AlchemistColorsNotEmpty
+  {
+    get
+    {
+      return AlchemistColors.Where(color => color != AlchemistColor.Empty).ToList();
+    }
+  }
 
   public readonly int MaxPlayers = 4;
 
@@ -54,6 +68,11 @@ public partial class MatchSettingsState : Node
     AlchemistColor.Black,
     AlchemistColor.Pink
   };
+
+  public void ChangePlayerColor(int position, AlchemistColor newColor)
+  {
+    AlchemistColors[position] = newColor;
+  }
 
   // Called when the node enters the scene tree for the first time.
   public override void _Ready()
