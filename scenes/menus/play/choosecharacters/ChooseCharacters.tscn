@@ -94,6 +94,7 @@ bbcode_enabled = true
 text = "[center]Blue Alchemist[/center]"
 
 [node name="Leave" type="Button" parent="Player1Container/ChoiceVisible"]
+layout_mode = 0
 offset_left = 212.0
 offset_top = 665.0
 offset_right = 301.0
@@ -114,6 +115,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Join" type="Button" parent="Player2Container/ChoiceJoin"]
+layout_mode = 0
 offset_left = 658.0
 offset_top = 341.0
 offset_right = 769.0
@@ -164,6 +166,7 @@ bbcode_enabled = true
 text = "[center]Red Alchemist[/center]"
 
 [node name="Leave" type="Button" parent="Player2Container/ChoiceVisible"]
+layout_mode = 0
 offset_left = 666.0
 offset_top = 663.0
 offset_right = 755.0
@@ -186,6 +189,7 @@ offset_right = 994.0
 offset_bottom = 114.0
 
 [node name="Join" type="Button" parent="Player3Container/ChoiceJoin"]
+layout_mode = 0
 offset_left = 170.0
 offset_top = 264.0
 offset_right = 281.0
@@ -258,6 +262,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Join" type="Button" parent="Player4Container/ChoiceJoin"]
+layout_mode = 0
 offset_left = 1568.0
 offset_top = 344.0
 offset_right = 1679.0
@@ -310,6 +315,7 @@ bbcode_enabled = true
 text = "[center]Yellow Alchemist[/center]"
 
 [node name="Leave" type="Button" parent="Player4Container/ChoiceVisible"]
+layout_mode = 0
 offset_left = 1581.0
 offset_top = 653.0
 offset_right = 1670.0

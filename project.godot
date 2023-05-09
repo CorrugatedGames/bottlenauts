@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 SignalBus="*res://src/autoload/SignalBus.cs"
 MatchSettingsState="*res://src/autoload/MatchSettingsState.cs"
+TextHelper="*res://src/autoload/TextHelper.cs"
 
 [display]
 

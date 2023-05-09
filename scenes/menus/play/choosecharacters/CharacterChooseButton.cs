@@ -14,6 +14,7 @@ public partial class CharacterChooseButton : Button
 
   public void _on_pressed()
   {
+    TextHelper textHelper = GetNode<TextHelper>("/root/TextHelper");
     MatchSettingsState settings = GetNode<MatchSettingsState>("/root/MatchSettingsState");
 
     int position = (int)GetParent().GetParent().GetMeta("Position");
@@ -45,7 +46,6 @@ public partial class CharacterChooseButton : Button
 
     settings.ChangePlayerColor(position, nextColor);
 
-    GetParent().GetNode<RichTextLabel>("CharName").Text =
-      "[center]" + nextColor.ToString() + " Alchemist" + "[/center]";
+    GetParent().GetNode<RichTextLabel>("CharName").Text = textHelper.CenterText(textHelper.AsAlchemist(nextColor));
   }
 }
