@@ -10,11 +10,11 @@ public partial class GameScene : Node
 
   public override void _Ready ()
   {
-	Viewport = GetNode("ViewportContainer/Viewport") as SubViewport;
+    Viewport = GetNode("ViewportContainer/Viewport") as SubViewport;
 
-	GodCamera = Viewport.GetNode("GodCamera") as Camera3D;
+    GodCamera = Viewport.GetNode("GodCamera") as Camera3D;
 
-	PlayerBGM = Viewport.GetNode("Audio/BGM") as AudioStreamPlayer;
-	PlayerSFX = Viewport.GetNode("Audio/SFX") as AudioStreamPlayer;
+    PlayerBGM = Viewport.GetNode("Audio/BGM") as AudioStreamPlayer;
+    PlayerSFX = Viewport.GetNode("Audio/SFX") as AudioStreamPlayer;
   }
 }

@@ -1,10 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://cembimxaefdar"]
+[gd_scene load_steps=3 format=3 uid="uid://cembimxaefdar"]
 
 [ext_resource type="Script" path="res://src/scenes/ui/PauseLayer.cs" id="1_13rnk"]
+[ext_resource type="PackedScene" uid="uid://b8oxsatdw55re" path="res://scenes/ui/SettingsLayer.tscn" id="2_fckaa"]
 
 [node name="PauseLayer" type="CanvasLayer"]
 layer = 9
 script = ExtResource("1_13rnk")
+
+[node name="SettingsLayer" parent="." instance=ExtResource("2_fckaa")]
+visible = false
+_ParentLayer = NodePath("..")
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 5
