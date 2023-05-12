@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8oxsatdw55re"]
+
+[ext_resource type="Script" path="res://src/scenes/ui/SettingsLayer.cs" id="1_yrbc7"]
+[ext_resource type="PackedScene" uid="uid://5tu1tkdbh6hg" path="res://scenes/ui/settings/GraphicsSettingsContainer.tscn" id="2_t5cau"]
+[ext_resource type="PackedScene" uid="uid://3yb4ybsyuopv" path="res://scenes/ui/settings/DisplaySettingsContainer.tscn" id="3_5y8f4"]
+[ext_resource type="PackedScene" uid="uid://lres2o2jb8t0" path="res://scenes/ui/settings/AudioSettingsContainer.tscn" id="4_dy8nr"]
+[ext_resource type="PackedScene" uid="uid://dj2vouousr6u6" path="res://scenes/ui/settings/GameSettingsContainer.tscn" id="5_yxtvq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6jcv6"]
+bg_color = Color(0.364706, 0.364706, 0.364706, 1)
+
+[node name="SettingsLayer" type="CanvasLayer"]
+layer = 20
+script = ExtResource("1_yrbc7")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6jcv6")
+
+[node name="BackButton" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -89.0
+offset_top = 30.0
+offset_right = 89.0
+offset_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "< Back"
+
+[node name="TabContainer" type="TabContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+all_tabs_in_front = true
+
+[node name="Graphics" parent="Panel/TabContainer" instance=ExtResource("2_t5cau")]
+layout_mode = 2
+
+[node name="Display" parent="Panel/TabContainer" instance=ExtResource("3_5y8f4")]
+visible = false
+layout_mode = 2
+
+[node name="Audio" parent="Panel/TabContainer" instance=ExtResource("4_dy8nr")]
+visible = false
+layout_mode = 2
+
+[node name="Game" parent="Panel/TabContainer" instance=ExtResource("5_yxtvq")]
+visible = false
+layout_mode = 2
