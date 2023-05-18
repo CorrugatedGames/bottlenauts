@@ -10,59 +10,108 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = 835.0
-offset_top = 32.0
-offset_right = 943.0
-offset_bottom = 65.0
-scale = Vector2(4, 4)
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+clip_contents = false
+layout_direction = 1
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "hi kyle lol"
+mouse_filter = 1
+mouse_default_cursor_shape = 8
+theme_override_font_sizes/normal_font_size = 50
+theme_override_font_sizes/bold_font_size = 50
+theme_override_font_sizes/italics_font_size = 50
+theme_override_font_sizes/bold_italics_font_size = 50
+theme_override_font_sizes/mono_font_size = 50
 bbcode_enabled = true
-text = "[i]Bottle[/i][b]nauts[/b]"
+text = "[center][i]Bottle[/i][b]nauts[/b][/center]"
+fit_content = true
 shortcut_keys_enabled = false
 
-[node name="quit loser" type="Button" parent="."]
-layout_mode = 0
-offset_left = 58.0
-offset_top = 815.0
-offset_right = 1230.0
-offset_bottom = 1002.0
-text = "quit the game"
-script = ExtResource("3_vbtna")
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 8.0
 
-[node name="options" type="Button" parent="."]
-layout_mode = 0
-offset_left = 58.0
-offset_top = 413.0
-offset_right = 1230.0
-offset_bottom = 600.0
-text = "like, change your game options"
-script = ExtResource("3_vbtna")
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
 
-[node name="play2" type="Button" parent="."]
-layout_mode = 0
-offset_left = 462.0
-offset_top = 695.0
-offset_right = 861.0
-offset_bottom = 733.0
-disabled = true
-text = "this button is small and disabled because lol suffer"
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="play" type="Button" parent="."]
-layout_mode = 0
-offset_left = 58.0
-offset_top = 188.0
-offset_right = 1230.0
-offset_bottom = 375.0
+[node name="play" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 text = "play the game. nerd."
 script = ExtResource("3_vbtna")
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = 1368.0
-offset_top = 190.0
-offset_right = 1823.0
-offset_bottom = 1019.0
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="options" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "like, change your game options"
+script = ExtResource("3_vbtna")
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="play2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+disabled = true
+text = "this button is small and disabled because lol suffer"
+
+[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="quit loser" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer4"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "quit the game"
+script = ExtResource("3_vbtna")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.1
+theme_override_constants/margin_left = 20
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "this game is under active development
 
 none of this is real
@@ -89,7 +138,7 @@ the coolieoliest
 
 this will just keep going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going"
 
-[connection signal="pressed" from="quit loser" to="quit loser" method="_on_pressed_quit"]
-[connection signal="pressed" from="options" to="quit loser" method="_on_pressed_options"]
-[connection signal="pressed" from="options" to="options" method="_on_pressed"]
-[connection signal="pressed" from="play" to="play" method="_on_pressed_play"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/play" to="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/play" method="_on_pressed_play"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/options" to="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer4/quit loser" method="_on_pressed_options"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/options" to="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/options" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer4/quit loser" to="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer4/quit loser" method="_on_pressed_quit"]
