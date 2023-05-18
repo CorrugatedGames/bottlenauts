@@ -8,11 +8,11 @@ public partial class Settings : SingletonNode
   #region Audio signals
 
   [Signal]
-  public delegate void VolumeChangedEventHandler (string bus_name, int volume);
+  public delegate void VolumeChangedEventHandler (int bus, int volume);
 
   #endregion
 
-  public AudioSettings Audio { get; private set; }
+  public static AudioSettings Audio { get; private set; }
 
   public override void _EnterTree()
   {
@@ -20,46 +20,72 @@ public partial class Settings : SingletonNode
 
     Audio = new AudioSettings();
 
-    SetDefaultSettings();
     LoadData();
-  }
-
-  void SetDefaultSettings ()
-  {
-    Audio.SetVolumeMaster(10);
-    Audio.SetVolumeBGM(10);
-    Audio.SetVolumeSFX(10);
   }
 
   void LoadData ()
   {
     ConfigFile cfg = new ConfigFile();
     if (cfg.Load(SETTINGS_FILE) != Error.Ok)
+    {
+      SaveData();
       return;
+    }
 
-    foreach (string section in cfg.GetSections())
-      foreach (string key in cfg.GetSectionKeys(section))
-        GetType().GetProperty(key)?.SetValue(this, cfg.GetValue(section, key));
+    foreach (PropertyInfo prop in Audio.GetType().GetProperties())
+    {
+      int volume = (int)cfg.GetValue("Audio", prop.Name);
+      int bus = AudioServer.GetBusIndex(prop.Name.Replace("Volume", ""));
+
+      EmitSignal(SignalName.VolumeChanged, bus, volume);
+
+      switch (prop.Name)
+      {
+        case "VolumeMaster":
+        {
+          Audio.SetVolumeMaster((int)cfg.GetValue("Audio", prop.Name));
+        } break;
+        
+        case "VolumeBGM":
+        {
+          Audio.SetVolumeBGM((int)cfg.GetValue("Audio", prop.Name));
+        } break;
+        
+        case "VolumeSFX":
+        {
+          Audio.SetVolumeSFX((int)cfg.GetValue("Audio", prop.Name));
+        } break;
+
+        default: break;
+      }
+    }
   }
 
-  void SaveData ()
+  public static void SaveData ()
   {
     ConfigFile cfg = new ConfigFile();
 
     foreach (PropertyInfo prop in Audio.GetType().GetProperties())
-      cfg.SetValue("Audio", prop.Name, (Variant)prop.GetValue(Audio));
+      cfg.SetValue("Audio", prop.Name, Variant.From<int>((int)prop.GetValue(Audio)));
 
-      cfg.Save(SETTINGS_FILE);
+    cfg.Save(SETTINGS_FILE);
   }
 }
 
-public struct AudioSettings
+public class AudioSettings
 {
-  public int VolumeMaster { get; private set; }
-  public int VolumeBGM { get; private set; }
-  public int VolumeSFX { get; private set; }
+  public int VolumeMaster { get; set; }
+  public int VolumeBGM { get; set; }
+  public int VolumeSFX { get; set; }
 
-  internal void SetVolumeMaster (int volume) => VolumeMaster = volume;
-  internal void SetVolumeBGM (int volume) => VolumeBGM = volume;
-  internal void SetVolumeSFX (int volume) => VolumeSFX = volume;
+  public void SetVolumeMaster (int volume) => VolumeMaster = volume;
+  public void SetVolumeBGM (int volume) => VolumeBGM = volume;
+  public void SetVolumeSFX (int volume) => VolumeSFX = volume;
+
+  public AudioSettings ()
+  {
+    VolumeMaster = 100;
+    VolumeBGM = 100;
+    VolumeSFX = 100;
+  }
 }
