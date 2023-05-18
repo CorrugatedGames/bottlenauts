@@ -12,12 +12,15 @@ config_version=5
 
 config/name="Bottlenauts"
 run/main_scene="res://scenes/menus/titlescreen/TitleScreen.tscn"
+config/use_custom_user_dir=true
 config/features=PackedStringArray("4.0", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 SignalBus="*res://src/autoload/SignalBus.cs"
+Audio="*res://src/autoload/Audio.cs"
+Settings="*res://src/autoload/Settings.cs"
 MatchSettingsState="*res://src/autoload/MatchSettingsState.cs"
 TextHelper="*res://src/autoload/TextHelper.cs"
 
