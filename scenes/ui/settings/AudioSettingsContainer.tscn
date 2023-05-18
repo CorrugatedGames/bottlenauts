@@ -1,3 +1,117 @@
-[gd_scene format=3 uid="uid://lres2o2jb8t0"]
+[gd_scene load_steps=3 format=3 uid="uid://lres2o2jb8t0"]
 
-[node name="AudioSettingsContainer" type="Container"]
+[ext_resource type="Script" path="res://src/scenes/ui/SliderContainer.cs" id="1_fx781"]
+[ext_resource type="Script" path="res://src/scenes/ui/AudioSettingsContainer.cs" id="1_rd1qy"]
+
+[node name="AudioSettingsContainer" type="ScrollContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+script = ExtResource("1_rd1qy")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VolumeLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "VOLUME"
+
+[node name="VolumeContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MasterVolumeContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VolumeContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("1_fx781")
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/VolumeContainer/MasterVolumeContainer"]
+custom_minimum_size = Vector2(210, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Master: "
+
+[node name="Count" type="Label" parent="MarginContainer/VBoxContainer/VolumeContainer/MasterVolumeContainer"]
+custom_minimum_size = Vector2(72, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "100"
+
+[node name="Slider" type="HSlider" parent="MarginContainer/VBoxContainer/VolumeContainer/MasterVolumeContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+value = 100.0
+rounded = true
+tick_count = 10
+ticks_on_borders = true
+
+[node name="MusicVolumeContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VolumeContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("1_fx781")
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/VolumeContainer/MusicVolumeContainer"]
+custom_minimum_size = Vector2(210, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Music: "
+
+[node name="Count" type="Label" parent="MarginContainer/VBoxContainer/VolumeContainer/MusicVolumeContainer"]
+custom_minimum_size = Vector2(72, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "100"
+
+[node name="Slider" type="HSlider" parent="MarginContainer/VBoxContainer/VolumeContainer/MusicVolumeContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+value = 100.0
+rounded = true
+tick_count = 10
+ticks_on_borders = true
+
+[node name="SFXVolumeContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VolumeContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("1_fx781")
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/VolumeContainer/SFXVolumeContainer"]
+custom_minimum_size = Vector2(210, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "SFX: "
+
+[node name="Count" type="Label" parent="MarginContainer/VBoxContainer/VolumeContainer/SFXVolumeContainer"]
+custom_minimum_size = Vector2(72, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "100"
+
+[node name="Slider" type="HSlider" parent="MarginContainer/VBoxContainer/VolumeContainer/SFXVolumeContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+value = 100.0
+rounded = true
+tick_count = 10
+ticks_on_borders = true
