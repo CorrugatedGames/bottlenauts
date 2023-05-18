@@ -26,8 +26,12 @@ render_target_update_mode = 4
 [node name="Audio" type="Node" parent="ViewportContainer/Viewport"]
 
 [node name="BGM" type="AudioStreamPlayer" parent="ViewportContainer/Viewport/Audio"]
+autoplay = true
+bus = &"BGM"
 
 [node name="SFX" type="AudioStreamPlayer" parent="ViewportContainer/Viewport/Audio"]
+autoplay = true
+bus = &"SFX"
 
 [node name="Unpausable" type="Node" parent="ViewportContainer"]
 
