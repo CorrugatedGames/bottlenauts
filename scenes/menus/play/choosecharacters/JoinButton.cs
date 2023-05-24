@@ -16,16 +16,16 @@ public partial class JoinButton : Button
   {
     TextHelper textHelper = GetNode<TextHelper>("/root/TextHelper");
     MatchSettingsState settings = GetNode<MatchSettingsState>("/root/MatchSettingsState");
-    int position = (int)GetParent().GetParent().GetMeta("Position");
+    int position = (int)GetMeta("Position");
 
     var availableColors = settings.AllColors.Except(settings.AlchemistColorsNotEmpty).ToArray();
     var newColor = availableColors.First();
 
     settings.ChangePlayerColor(position, newColor);
 
-    GetParent<CanvasItem>().Hide();
-    GetParent().GetParent().GetNode<CanvasItem>("ChoiceVisible").Show();
-    GetParent().GetParent().GetNode<CanvasItem>("ChoiceVisible").GetNode<RichTextLabel>("CharName").Text =
+    GetNode("%Player" + position).GetNode<CanvasItem>("ChoiceJoin").Hide();
+    GetNode("%Player" + position).GetNode<CanvasItem>("ChoiceVisible").Show();
+    GetNode<RichTextLabel>("%CharName" + position).Text =
       textHelper.CenterText(textHelper.AsAlchemist(newColor));
   }
 }

@@ -13,11 +13,11 @@ public partial class LeaveButton : Button
   public void _on_pressed()
   {
     MatchSettingsState settings = GetNode<MatchSettingsState>("/root/MatchSettingsState");
-    int position = (int)GetParent().GetParent().GetMeta("Position");
+    int position = (int)GetMeta("Position");
 
     settings.ChangePlayerColor(position, AlchemistColor.Empty);
 
-    GetParent<CanvasItem>().Hide();
-    GetParent().GetParent().GetNode<CanvasItem>("ChoiceJoin").Show();
+    GetNode("%Player" + position).GetNode<CanvasItem>("ChoiceVisible").Hide();
+    GetNode("%Player" + position).GetNode<CanvasItem>("ChoiceJoin").Show();
   }
 }

@@ -13,331 +13,310 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BackToMainMenu" type="Button" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_left = 93.0
-offset_top = 950.0
-offset_right = 647.0
-offset_bottom = 1049.0
-text = "go back, nerd"
-script = ExtResource("1_v3qi3")
+offset_right = 1920.0
+offset_bottom = 1080.0
 
-[node name="CharactersChosen" type="Button" parent="."]
-layout_mode = 0
-offset_left = 1322.0
-offset_top = 937.0
-offset_right = 1843.0
-offset_bottom = 1037.0
-text = "these characters are good"
-script = ExtResource("1_v3qi3")
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
 
-[node name="Player1Container" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Player0" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
 metadata/Position = 0
 
-[node name="ChoiceJoin" type="Control" parent="Player1Container"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ChoiceJoin" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Player0"]
+layout_mode = 2
 
-[node name="Join" type="Button" parent="Player1Container/ChoiceJoin"]
-layout_mode = 0
-offset_left = 202.0
-offset_top = 346.0
-offset_right = 313.0
-offset_bottom = 411.0
+[node name="Join" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Player0/ChoiceJoin"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
 text = "Join"
 script = ExtResource("2_5hyqn")
+metadata/Position = 0
 
-[node name="ChoiceVisible" type="Control" parent="Player1Container"]
+[node name="ChoiceVisible" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Player0"]
 visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 2
 
-[node name="Player1" type="Panel" parent="Player1Container/ChoiceVisible"]
-layout_mode = 0
-offset_left = 45.0
-offset_top = 76.0
-offset_right = 470.0
-offset_bottom = 726.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Player0/ChoiceVisible"]
+layout_mode = 2
+theme_override_constants/separation = 600
 
-[node name="Prev" type="Button" parent="Player1Container/ChoiceVisible"]
-layout_mode = 0
-offset_left = 46.0
-offset_top = 671.0
-offset_right = 109.0
-offset_bottom = 726.0
-text = "<"
-script = ExtResource("2_gmcxh")
-metadata/Direction = -1
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Player0/ChoiceVisible/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
 
-[node name="Next" type="Button" parent="Player1Container/ChoiceVisible"]
-layout_mode = 0
-offset_left = 405.0
-offset_top = 669.0
-offset_right = 468.0
-offset_bottom = 724.0
-text = ">"
-script = ExtResource("2_gmcxh")
-metadata/Direction = 1
-
-[node name="CharName" type="RichTextLabel" parent="Player1Container/ChoiceVisible"]
-layout_mode = 0
-offset_left = 135.0
-offset_top = 125.0
-offset_right = 379.0
-offset_bottom = 165.0
+[node name="CharName0" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/Player0/ChoiceVisible/VBoxContainer/CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 2
 bbcode_enabled = true
 text = "[center]Blue Alchemist[/center]"
 
-[node name="Leave" type="Button" parent="Player1Container/ChoiceVisible"]
-layout_mode = 0
-offset_left = 212.0
-offset_top = 665.0
-offset_right = 301.0
-offset_bottom = 727.0
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Player0/ChoiceVisible/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Prev" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Player0/ChoiceVisible/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "<"
+script = ExtResource("2_gmcxh")
+metadata/Direction = -1
+metadata/Position = 0
+
+[node name="Leave" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Player0/ChoiceVisible/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
 text = "Leave"
 script = ExtResource("3_gdilq")
+metadata/Position = 0
 
-[node name="Player2Container" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Next" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Player0/ChoiceVisible/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = ">"
+script = ExtResource("2_gmcxh")
+metadata/Direction = 1
+metadata/Position = 0
+
+[node name="Player1" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
 metadata/Position = 1
 
-[node name="ChoiceJoin" type="Control" parent="Player2Container"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ChoiceJoin" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Player1"]
+layout_mode = 2
 
-[node name="Join" type="Button" parent="Player2Container/ChoiceJoin"]
-layout_mode = 0
-offset_left = 658.0
-offset_top = 341.0
-offset_right = 769.0
-offset_bottom = 406.0
+[node name="Join" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Player1/ChoiceJoin"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
 text = "Join"
 script = ExtResource("2_5hyqn")
+metadata/Position = 1
 
-[node name="ChoiceVisible" type="Control" parent="Player2Container"]
+[node name="ChoiceVisible" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Player1"]
 visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 2
 
-[node name="Player2" type="Panel" parent="Player2Container/ChoiceVisible"]
-layout_mode = 0
-offset_left = 497.0
-offset_top = 75.0
-offset_right = 922.0
-offset_bottom = 725.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Player1/ChoiceVisible"]
+layout_mode = 2
+theme_override_constants/separation = 600
 
-[node name="Prev" type="Button" parent="Player2Container/ChoiceVisible"]
-layout_mode = 0
-offset_left = 498.0
-offset_top = 670.0
-offset_right = 561.0
-offset_bottom = 725.0
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Player1/ChoiceVisible/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="CharName1" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/Player1/ChoiceVisible/VBoxContainer/CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Blue Alchemist[/center]"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Player1/ChoiceVisible/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Prev" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Player1/ChoiceVisible/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
 text = "<"
 script = ExtResource("2_gmcxh")
 metadata/Direction = -1
+metadata/Position = 1
 
-[node name="Next" type="Button" parent="Player2Container/ChoiceVisible"]
-layout_mode = 0
-offset_left = 857.0
-offset_top = 668.0
-offset_right = 920.0
-offset_bottom = 723.0
+[node name="Leave" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Player1/ChoiceVisible/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Leave"
+script = ExtResource("3_gdilq")
+metadata/Position = 1
+
+[node name="Next" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Player1/ChoiceVisible/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
 text = ">"
 script = ExtResource("2_gmcxh")
 metadata/Direction = 1
+metadata/Position = 1
 
-[node name="CharName" type="RichTextLabel" parent="Player2Container/ChoiceVisible"]
-layout_mode = 0
-offset_left = 587.0
-offset_top = 124.0
-offset_right = 831.0
-offset_bottom = 164.0
-bbcode_enabled = true
-text = "[center]Red Alchemist[/center]"
-
-[node name="Leave" type="Button" parent="Player2Container/ChoiceVisible"]
-layout_mode = 0
-offset_left = 666.0
-offset_top = 663.0
-offset_right = 755.0
-offset_bottom = 725.0
-text = "Leave"
-script = ExtResource("3_gdilq")
-
-[node name="Player3Container" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Player2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
 metadata/Position = 2
 
-[node name="ChoiceJoin" type="Control" parent="Player3Container"]
-anchors_preset = 0
-offset_left = 954.0
-offset_top = 74.0
-offset_right = 994.0
-offset_bottom = 114.0
+[node name="ChoiceJoin" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Player2"]
+layout_mode = 2
 
-[node name="Join" type="Button" parent="Player3Container/ChoiceJoin"]
-layout_mode = 0
-offset_left = 170.0
-offset_top = 264.0
-offset_right = 281.0
-offset_bottom = 329.0
+[node name="Join" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Player2/ChoiceJoin"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
 text = "Join"
 script = ExtResource("2_5hyqn")
-
-[node name="ChoiceVisible" type="Control" parent="Player3Container"]
-visible = false
-anchors_preset = 0
-offset_left = 954.0
-offset_top = 74.0
-offset_right = 994.0
-offset_bottom = 114.0
 metadata/Position = 2
 
-[node name="Player3" type="Panel" parent="Player3Container/ChoiceVisible"]
-layout_mode = 0
-offset_right = 425.0
-offset_bottom = 650.0
+[node name="ChoiceVisible" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Player2"]
+visible = false
+layout_mode = 2
 
-[node name="Prev" type="Button" parent="Player3Container/ChoiceVisible"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 595.0
-offset_right = 64.0
-offset_bottom = 650.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Player2/ChoiceVisible"]
+layout_mode = 2
+theme_override_constants/separation = 600
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Player2/ChoiceVisible/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="CharName2" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/Player2/ChoiceVisible/VBoxContainer/CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Blue Alchemist[/center]"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Player2/ChoiceVisible/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Prev" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Player2/ChoiceVisible/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
 text = "<"
 script = ExtResource("2_gmcxh")
 metadata/Direction = -1
+metadata/Position = 2
 
-[node name="Next" type="Button" parent="Player3Container/ChoiceVisible"]
-layout_mode = 0
-offset_left = 360.0
-offset_top = 593.0
-offset_right = 423.0
-offset_bottom = 648.0
+[node name="Leave" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Player2/ChoiceVisible/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Leave"
+script = ExtResource("3_gdilq")
+metadata/Position = 2
+
+[node name="Next" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Player2/ChoiceVisible/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
 text = ">"
 script = ExtResource("2_gmcxh")
 metadata/Direction = 1
+metadata/Position = 2
 
-[node name="CharName" type="RichTextLabel" parent="Player3Container/ChoiceVisible"]
-layout_mode = 0
-offset_left = 90.0
-offset_top = 49.0
-offset_right = 334.0
-offset_bottom = 89.0
-bbcode_enabled = true
-text = "[center]Green Alchemist[/center]"
+[node name="Player3" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="Leave" type="Button" parent="Player3Container/ChoiceVisible"]
-layout_mode = 0
-offset_left = 168.0
-offset_top = 589.0
-offset_right = 257.0
-offset_bottom = 651.0
-text = "Leave"
-script = ExtResource("3_gdilq")
+[node name="ChoiceJoin" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Player3"]
+layout_mode = 2
 
-[node name="Player4Container" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-metadata/Position = 3
-
-[node name="ChoiceJoin" type="Control" parent="Player4Container"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Join" type="Button" parent="Player4Container/ChoiceJoin"]
-layout_mode = 0
-offset_left = 1568.0
-offset_top = 344.0
-offset_right = 1679.0
-offset_bottom = 409.0
+[node name="Join" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Player3/ChoiceJoin"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
 text = "Join"
 script = ExtResource("2_5hyqn")
-
-[node name="ChoiceVisible" type="Control" parent="Player4Container"]
-visible = false
-anchors_preset = 0
-offset_top = 3.0
-offset_right = 40.0
-offset_bottom = 43.0
-
-[node name="Player4" type="Panel" parent="Player4Container/ChoiceVisible"]
-layout_mode = 0
-offset_left = 1416.0
-offset_top = 70.0
-offset_right = 1841.0
-offset_bottom = 720.0
 metadata/Position = 3
 
-[node name="Prev" type="Button" parent="Player4Container/ChoiceVisible"]
-layout_mode = 0
-offset_left = 1417.0
-offset_top = 665.0
-offset_right = 1480.0
-offset_bottom = 720.0
+[node name="ChoiceVisible" type="PanelContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Player3"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Player3/ChoiceVisible"]
+layout_mode = 2
+theme_override_constants/separation = 600
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Player3/ChoiceVisible/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="CharName3" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/Player3/ChoiceVisible/VBoxContainer/CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 60)
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Blue Alchemist[/center]"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/Player3/ChoiceVisible/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Prev" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Player3/ChoiceVisible/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
 text = "<"
 script = ExtResource("2_gmcxh")
 metadata/Direction = -1
+metadata/Position = 3
 
-[node name="Next" type="Button" parent="Player4Container/ChoiceVisible"]
-layout_mode = 0
-offset_left = 1776.0
-offset_top = 663.0
-offset_right = 1839.0
-offset_bottom = 718.0
+[node name="Leave" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Player3/ChoiceVisible/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Leave"
+script = ExtResource("3_gdilq")
+metadata/Position = 3
+
+[node name="Next" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Player3/ChoiceVisible/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
 text = ">"
 script = ExtResource("2_gmcxh")
 metadata/Direction = 1
+metadata/Position = 3
 
-[node name="CharName" type="RichTextLabel" parent="Player4Container/ChoiceVisible"]
-layout_mode = 0
-offset_left = 1506.0
-offset_top = 119.0
-offset_right = 1750.0
-offset_bottom = 159.0
-bbcode_enabled = true
-text = "[center]Yellow Alchemist[/center]"
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
 
-[node name="Leave" type="Button" parent="Player4Container/ChoiceVisible"]
-layout_mode = 0
-offset_left = 1581.0
-offset_top = 653.0
-offset_right = 1670.0
-offset_bottom = 715.0
-text = "Leave"
-script = ExtResource("3_gdilq")
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(0, 75)
+layout_mode = 2
+size_flags_horizontal = 3
 
-[connection signal="pressed" from="BackToMainMenu" to="BackToMainMenu" method="_on_pressed_goback"]
-[connection signal="pressed" from="CharactersChosen" to="BackToMainMenu" method="_on_pressed_goforward"]
-[connection signal="pressed" from="Player1Container/ChoiceJoin/Join" to="Player1Container/ChoiceJoin/Join" method="_on_pressed"]
-[connection signal="pressed" from="Player1Container/ChoiceVisible/Prev" to="Player1Container/ChoiceVisible/Prev" method="_on_pressed"]
-[connection signal="pressed" from="Player1Container/ChoiceVisible/Next" to="Player1Container/ChoiceVisible/Next" method="_on_pressed"]
-[connection signal="pressed" from="Player1Container/ChoiceVisible/Leave" to="Player1Container/ChoiceVisible/Leave" method="_on_pressed"]
-[connection signal="pressed" from="Player2Container/ChoiceJoin/Join" to="Player2Container/ChoiceJoin/Join" method="_on_pressed"]
-[connection signal="pressed" from="Player2Container/ChoiceVisible/Prev" to="Player2Container/ChoiceVisible/Prev" method="_on_pressed"]
-[connection signal="pressed" from="Player2Container/ChoiceVisible/Next" to="Player2Container/ChoiceVisible/Next" method="_on_pressed"]
-[connection signal="pressed" from="Player2Container/ChoiceVisible/Leave" to="Player2Container/ChoiceVisible/Leave" method="_on_pressed"]
-[connection signal="pressed" from="Player3Container/ChoiceJoin/Join" to="Player3Container/ChoiceJoin/Join" method="_on_pressed"]
-[connection signal="pressed" from="Player3Container/ChoiceVisible/Prev" to="Player3Container/ChoiceVisible/Prev" method="_on_pressed"]
-[connection signal="pressed" from="Player3Container/ChoiceVisible/Next" to="Player3Container/ChoiceVisible/Next" method="_on_pressed"]
-[connection signal="pressed" from="Player3Container/ChoiceVisible/Leave" to="Player3Container/ChoiceVisible/Leave" method="_on_pressed"]
-[connection signal="pressed" from="Player4Container/ChoiceJoin/Join" to="Player4Container/ChoiceJoin/Join" method="_on_pressed"]
-[connection signal="pressed" from="Player4Container/ChoiceVisible/Prev" to="Player4Container/ChoiceVisible/Prev" method="_on_pressed"]
-[connection signal="pressed" from="Player4Container/ChoiceVisible/Next" to="Player4Container/ChoiceVisible/Next" method="_on_pressed"]
-[connection signal="pressed" from="Player4Container/ChoiceVisible/Leave" to="Player4Container/ChoiceVisible/Leave" method="_on_pressed"]
+[node name="BackToMainMenu" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer"]
+layout_mode = 2
+text = "go back, nerd"
+script = ExtResource("1_v3qi3")
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CharactersChosen" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer2"]
+layout_mode = 2
+text = "these characters are good"
+script = ExtResource("1_v3qi3")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Player0/ChoiceJoin/Join" to="MarginContainer/VBoxContainer/HBoxContainer/Player0/ChoiceJoin/Join" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Player0/ChoiceVisible/VBoxContainer/HBoxContainer/Prev" to="MarginContainer/VBoxContainer/HBoxContainer/Player0/ChoiceVisible/VBoxContainer/HBoxContainer/Prev" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Player0/ChoiceVisible/VBoxContainer/HBoxContainer/Leave" to="MarginContainer/VBoxContainer/HBoxContainer/Player0/ChoiceVisible/VBoxContainer/HBoxContainer/Leave" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Player0/ChoiceVisible/VBoxContainer/HBoxContainer/Next" to="MarginContainer/VBoxContainer/HBoxContainer/Player0/ChoiceVisible/VBoxContainer/HBoxContainer/Next" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Player1/ChoiceJoin/Join" to="MarginContainer/VBoxContainer/HBoxContainer/Player1/ChoiceJoin/Join" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Player1/ChoiceVisible/VBoxContainer/HBoxContainer/Prev" to="MarginContainer/VBoxContainer/HBoxContainer/Player1/ChoiceVisible/VBoxContainer/HBoxContainer/Prev" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Player1/ChoiceVisible/VBoxContainer/HBoxContainer/Leave" to="MarginContainer/VBoxContainer/HBoxContainer/Player1/ChoiceVisible/VBoxContainer/HBoxContainer/Leave" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Player1/ChoiceVisible/VBoxContainer/HBoxContainer/Next" to="MarginContainer/VBoxContainer/HBoxContainer/Player1/ChoiceVisible/VBoxContainer/HBoxContainer/Next" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Player2/ChoiceJoin/Join" to="MarginContainer/VBoxContainer/HBoxContainer/Player2/ChoiceJoin/Join" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Player2/ChoiceVisible/VBoxContainer/HBoxContainer/Prev" to="MarginContainer/VBoxContainer/HBoxContainer/Player2/ChoiceVisible/VBoxContainer/HBoxContainer/Prev" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Player2/ChoiceVisible/VBoxContainer/HBoxContainer/Leave" to="MarginContainer/VBoxContainer/HBoxContainer/Player2/ChoiceVisible/VBoxContainer/HBoxContainer/Leave" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Player2/ChoiceVisible/VBoxContainer/HBoxContainer/Next" to="MarginContainer/VBoxContainer/HBoxContainer/Player2/ChoiceVisible/VBoxContainer/HBoxContainer/Next" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Player3/ChoiceJoin/Join" to="MarginContainer/VBoxContainer/HBoxContainer/Player3/ChoiceJoin/Join" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Player3/ChoiceVisible/VBoxContainer/HBoxContainer/Prev" to="MarginContainer/VBoxContainer/HBoxContainer/Player3/ChoiceVisible/VBoxContainer/HBoxContainer/Prev" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Player3/ChoiceVisible/VBoxContainer/HBoxContainer/Leave" to="MarginContainer/VBoxContainer/HBoxContainer/Player3/ChoiceVisible/VBoxContainer/HBoxContainer/Leave" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Player3/ChoiceVisible/VBoxContainer/HBoxContainer/Next" to="MarginContainer/VBoxContainer/HBoxContainer/Player3/ChoiceVisible/VBoxContainer/HBoxContainer/Next" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer/BackToMainMenu" to="MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer/BackToMainMenu" method="_on_pressed_goback"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer2/CharactersChosen" to="MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer/BackToMainMenu" method="_on_pressed_goforward"]
