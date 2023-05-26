@@ -23,6 +23,7 @@ Audio="*res://src/autoload/Audio.cs"
 Settings="*res://src/autoload/Settings.cs"
 MatchSettingsState="*res://src/autoload/MatchSettingsState.cs"
 TextHelper="*res://src/autoload/TextHelper.cs"
+Graphics="*res://src/autoload/Graphics.cs"
 
 [display]
 
