@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3i7qa42pab0h"]
+
+[ext_resource type="PackedScene" uid="uid://45ypqem1wsil" path="res://assets/models/TestMeshLib.glb" id="1_nbjov"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bqnx2"]
+height = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xyjl7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vcf26"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_p0xha"]
+points = PackedVector3Array(0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 0, -0.5, -0.5, 0, 0.5, -0.5, 1, 0.5, -0.5, 1, -0.5)
+
+[node name="TestMeshLib" instance=ExtResource("1_nbjov")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="pillar" index="0"]
+collision_layer = 65536
+collision_mask = 458751
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pillar/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_bqnx2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block_wall" index="0"]
+collision_layer = 65536
+collision_mask = 458751
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block_wall/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_xyjl7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block_floor" index="0"]
+collision_layer = 65536
+collision_mask = 458751
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block_floor/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_vcf26")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="stairs" index="0"]
+collision_layer = 65536
+collision_mask = 458751
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="stairs/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_p0xha")

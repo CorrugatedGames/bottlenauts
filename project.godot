@@ -43,3 +43,25 @@ pause={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":6,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
+
+[layer_names]
+
+3d_physics/layer_1="Team 1"
+3d_physics/layer_2="Team 2"
+3d_physics/layer_3="Team 3"
+3d_physics/layer_4="Team 4"
+3d_physics/layer_5="Team 5"
+3d_physics/layer_6="Team 6"
+3d_physics/layer_7="Team 7"
+3d_physics/layer_8="Team 8"
+3d_physics/layer_9="Team 1 Bomb"
+3d_physics/layer_10="Team 2 Bomb"
+3d_physics/layer_11="Team 3 Bomb"
+3d_physics/layer_12="Team 4 Bomb"
+3d_physics/layer_13="Team 5 Bomb"
+3d_physics/layer_14="Team 6 Bomb"
+3d_physics/layer_15="Team 7 Bomb"
+3d_physics/layer_16="Team 8 Bomb"
+3d_physics/layer_17="Terrain"
+3d_physics/layer_18="Bombs"
+3d_physics/layer_19="Explosion"
