@@ -2,16 +2,19 @@ public partial class Graphics : Node
 {
   public override void _Ready()
   {
+    Logger.Info("Graphics signals initializing...");
     Settings.Connect<int, int>(Settings.SignalName.ResolutionChanged, (width, height) => OnResolutionChanged(width, height));
-
     Settings.Connect<int>(Settings.SignalName.DisplayChanged, (display) => OnDisplayChanged(display));
 
     OnResolutionChanged(Settings.Graphics.ResolutionWidth, Settings.Graphics.ResolutionHeight);
     OnDisplayChanged((int)Settings.Graphics.Display);
+    Logger.Info("Graphics signals initialized!");
   }
 
   void OnResolutionChanged(int width, int height)
   {
+
+    Logger.Info($"Resolution changing to {width}x{height}...");
     Settings.Graphics.SetResolutionWidth(width);
     Settings.Graphics.SetResolutionHeight(height);
 
@@ -22,6 +25,8 @@ public partial class Graphics : Node
 
   void OnDisplayChanged(int displayIndex)
   {
+    Logger.Info($"Display type changing to {displayIndex}...");
+
     GraphicsDisplay display = Settings.Graphics.Displays[displayIndex];
     Settings.Graphics.SetDisplay(display);
 

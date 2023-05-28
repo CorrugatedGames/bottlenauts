@@ -30,6 +30,8 @@ public partial class Settings : SingletonNode
   {
     base._EnterTree();
 
+    Logger.Info("Settings load");
+
     Audio = new AudioSettings();
     Graphics = new GraphicsSettings();
 
@@ -51,6 +53,7 @@ public partial class Settings : SingletonNode
     if (cfg.HasSection("Graphics"))
       Graphics.LoadedConfig = true;
 
+    Logger.Info("Loading audio config...");
     foreach (PropertyInfo prop in Audio.GetType().GetProperties())
     {
       if (prop.Name == "LoadedConfig") continue;
@@ -84,6 +87,7 @@ public partial class Settings : SingletonNode
       }
     }
 
+    Logger.Info("Loading graphics config...");
     Graphics.SetResolutionWidth((int)cfg.GetValue("Graphics", "ResolutionWidth"));
     Graphics.SetResolutionHeight((int)cfg.GetValue("Graphics", "ResolutionHeight"));
     Graphics.SetDisplay((GraphicsDisplay)(int)cfg.GetValue("Graphics", "DisplayMode"));
@@ -91,6 +95,7 @@ public partial class Settings : SingletonNode
 
   public static void SaveData()
   {
+    Logger.Info("Starting config file save...");
     ConfigFile cfg = new ConfigFile();
 
     foreach (PropertyInfo prop in Audio.GetType().GetProperties())
@@ -104,6 +109,7 @@ public partial class Settings : SingletonNode
     cfg.SetValue("Graphics", "DisplayMode", Variant.From<int>((int)Graphics.Display));
 
     cfg.Save(SETTINGS_FILE);
+    Logger.Info("Saved config file!");
   }
 }
 
@@ -149,19 +155,19 @@ public class GraphicsSettings
   public GraphicsDisplay Display { get; set; }
 
   public GraphicsDisplay[] Displays { get; } = {
-    GraphicsDisplay.Borderless,
-    GraphicsDisplay.Windowed,
-    GraphicsDisplay.Fullscreen
+  GraphicsDisplay.Borderless,
+  GraphicsDisplay.Windowed,
+  GraphicsDisplay.Fullscreen
   };
 
   public Resolution[] Resolutions { get; } = {
-    new Resolution { Width = 1366, Height = 768 },
-    new Resolution { Width = 1440, Height = 900 },
-    new Resolution { Width = 1600, Height = 900 },
-    new Resolution { Width = 1920, Height = 1080 },
-    new Resolution { Width = 2560, Height = 1440 },
-    new Resolution { Width = 2560, Height = 1600 },
-    new Resolution { Width = 3840, Height = 2160 }
+  new Resolution { Width = 1366, Height = 768 },
+  new Resolution { Width = 1440, Height = 900 },
+  new Resolution { Width = 1600, Height = 900 },
+  new Resolution { Width = 1920, Height = 1080 },
+  new Resolution { Width = 2560, Height = 1440 },
+  new Resolution { Width = 2560, Height = 1600 },
+  new Resolution { Width = 3840, Height = 2160 }
   };
 
   public void SetResolutionWidth(int width) => ResolutionWidth = width;
@@ -176,6 +182,7 @@ public class GraphicsSettings
   private void SetDefaultSettings()
   {
     if (LoadedConfig) return;
+    Logger.Info("Loading default graphics config...");
 
     Vector2I resolution = DisplayServer.ScreenGetSize();
     Resolution resolutionFound = FindResolution(resolution.X, resolution.Y);
@@ -187,6 +194,8 @@ public class GraphicsSettings
       Display = GraphicsDisplay.Borderless;
     else
       Display = GraphicsDisplay.Windowed;
+
+    Logger.Info($"Default resolution: {ResolutionWidth}x{ResolutionHeight}");
   }
 
   public Resolution FindResolution(int width, int height)
