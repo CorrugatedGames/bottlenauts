@@ -1,7 +1,8 @@
 public partial class Audio : Node
 {
-  public override void _Ready ()
+  public override void _Ready()
   {
+    Logger.Info("Audio signals initializing...");
     for (int i = 0; i < AudioServer.BusCount; i++)
     {
       string bus = AudioServer.GetBusName(i);
@@ -10,52 +11,61 @@ public partial class Audio : Node
       switch (bus)
       {
         case "Master":
-        {
-          volume = Settings.Audio.VolumeMaster;
-        } break;
+          {
+            volume = Settings.Audio.VolumeMaster;
+          }
+          break;
 
         case "BGM":
-        {
-          volume = Settings.Audio.VolumeBGM;
-        } break;
+          {
+            volume = Settings.Audio.VolumeBGM;
+          }
+          break;
 
-        case "SFX": 
-        {
-          volume = Settings.Audio.VolumeSFX;
-        } break;
+        case "SFX":
+          {
+            volume = Settings.Audio.VolumeSFX;
+          }
+          break;
 
         default:
-        {
-          volume = 0;
-        } break;
+          {
+            volume = 0;
+          }
+          break;
       }
 
       OnVolumeChanged(i, volume);
     }
 
     Settings.Connect<int, int>(Settings.SignalName.VolumeChanged, (bus, volume) => OnVolumeChanged(bus, volume));
+    Logger.Info("Audio signals initialized!");
   }
 
-  void OnVolumeChanged (int bus, int volume)
+  void OnVolumeChanged(int bus, int volume)
   {
+    Logger.Info($"Volume bus {bus} changing volume to {volume}...");
     AudioServer.SetBusVolumeDb(bus, Mathf.LinearToDb(volume / 100.0f));
-    
+
     switch (AudioServer.GetBusName(bus))
     {
       case "Master":
-      {
-        Settings.Audio.SetVolumeMaster(volume);
-      } break;
+        {
+          Settings.Audio.SetVolumeMaster(volume);
+        }
+        break;
 
       case "BGM":
-      {
-        Settings.Audio.SetVolumeBGM(volume);
-      } break;
+        {
+          Settings.Audio.SetVolumeBGM(volume);
+        }
+        break;
 
       case "SFX":
-      {
-        Settings.Audio.SetVolumeSFX(volume);
-      } break;
+        {
+          Settings.Audio.SetVolumeSFX(volume);
+        }
+        break;
 
       default: break;
     }

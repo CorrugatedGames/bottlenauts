@@ -24,7 +24,6 @@ public enum GameRounds
 public enum AlchemistColor
 {
   Empty,
-
   Red,
   Blue,
   Green,
@@ -77,6 +76,7 @@ public partial class MatchSettingsState : Node
   // Called when the node enters the scene tree for the first time.
   public override void _Ready()
   {
+    Logger.Info($"Match settings singleton initialized!");
   }
 
   // Called every frame. 'delta' is the elapsed time since the previous frame.

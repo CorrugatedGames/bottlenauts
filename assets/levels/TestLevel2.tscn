@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://j7oaomx1ox7t"]
+[gd_scene load_steps=3 format=3 uid="uid://c7jc2fsmj6vxg"]
 
-[ext_resource type="MeshLibrary" uid="uid://cmosbry5m22kq" path="res://assets/test.meshlib.tres" id="1_inyq1"]
+[ext_resource type="MeshLibrary" uid="uid://c7suasab8hnmx" path="res://assets/test.meshlib.tres" id="1_inyq1"]
 [ext_resource type="PackedScene" uid="uid://dkrb7ysjs45yv" path="res://scenes/characters/TestCharacter.tscn" id="2_8bwk5"]
 
 [node name="TestLevel2" type="GridMap"]
