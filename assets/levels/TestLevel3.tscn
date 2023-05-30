@@ -67,26 +67,14 @@ transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10
 [node name="Explodable4" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
 transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, -2.5, -3.20946, -19.0512)
 
-[node name="Explodable5" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
-transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, -4.5, -2.26977, -19.3933)
-
 [node name="Explodable6" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
 transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, -6.5, -3.20946, -19.0512)
-
-[node name="Explodable7" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
-transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, -2.5, -4.14915, -18.7092)
 
 [node name="Explodable8" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
 transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, -1.5, -4.14915, -18.7092)
 
-[node name="Explodable9" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
-transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, -6.5, -4.14915, -18.7092)
-
 [node name="Explodable10" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
 transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, -2.5, -5.08885, -18.3672)
-
-[node name="Explodable11" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
-transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, -4.5, -6.02854, -18.0252)
 
 [node name="Explodable12" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
 transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, -0.5, -2.26977, -19.3933)
@@ -145,26 +133,14 @@ transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10
 [node name="Explodable30" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
 transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, 4.5, -6.02854, -18.0252)
 
-[node name="Explodable31" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
-transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, 5.5, -6.02854, -18.0252)
-
 [node name="Explodable32" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
 transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, 6.5, -6.02854, -18.0252)
 
 [node name="Explodable33" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
 transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, 7.5, -6.02854, -18.0252)
 
-[node name="Explodable34" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
-transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, 3.5, -4.14915, -18.7092)
-
 [node name="Explodable35" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
 transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, 3.5, -5.08885, -18.3672)
-
-[node name="Explodable36" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
-transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, 7.5, -4.14915, -18.7092)
-
-[node name="Explodable37" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
-transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, 5.5, -2.26977, -19.3933)
 
 [node name="Explodable38" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
 transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, 4.5, -2.26977, -19.3933)
@@ -186,30 +162,6 @@ transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10
 
 [node name="Explodable44" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
 transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, 7.5, -3.20946, -19.0512)
-
-[node name="Explodable45" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
-transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, 5.5, 7.12716, -22.8135)
-
-[node name="Explodable46" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
-transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, 5.5, 3.36839, -21.4454)
-
-[node name="Explodable47" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
-transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, 3.5, 5.24777, -22.1294)
-
-[node name="Explodable48" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
-transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, 7.5, 5.24777, -22.1294)
-
-[node name="Explodable49" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
-transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, -4.5, 7.12716, -22.8135)
-
-[node name="Explodable50" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
-transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, -2.5, 5.24777, -22.1294)
-
-[node name="Explodable51" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
-transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, -6.5, 5.24777, -22.1294)
-
-[node name="Explodable52" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
-transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, -4.5, 3.36839, -21.4454)
 
 [node name="Explodable53" parent="Stage/RandomDestructible" instance=ExtResource("4_vvxar")]
 transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, 2.5, -2.26977, -19.3933)
@@ -542,9 +494,6 @@ transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10
 [node name="LevelDecorativeOuter5" parent="Stage/RandomObstacle" instance=ExtResource("6_u205f")]
 transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, 2.5, 2.4287, -21.1034)
 
-[node name="LevelDecorativeOuter6" parent="Stage/RandomObstacle" instance=ExtResource("6_u205f")]
-transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, 0.5, 0.549312, -20.4193)
-
 [node name="LevelDecorativeOuter7" parent="Stage/RandomObstacle" instance=ExtResource("6_u205f")]
 transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, -1.5, 0.549312, -20.4193)
 
@@ -553,3 +502,59 @@ transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10
 
 [node name="LevelDecorativeOuter9" parent="Stage/RandomObstacle" instance=ExtResource("6_u205f")]
 transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, -1.5, 2.4287, -21.1034)
+
+[node name="AlwaysDestructible" type="Node3D" parent="Stage"]
+transform = Transform3D(1, 0, 0, 0, 1, -6.14083e-16, 0, -6.14082e-16, 1, 0, 0, 0)
+
+[node name="Explodable5" parent="Stage/AlwaysDestructible" instance=ExtResource("4_vvxar")]
+transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, -4.5, -2.26977, -19.3933)
+
+[node name="Explodable7" parent="Stage/AlwaysDestructible" instance=ExtResource("4_vvxar")]
+transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, -2.5, -4.14915, -18.7092)
+
+[node name="Explodable9" parent="Stage/AlwaysDestructible" instance=ExtResource("4_vvxar")]
+transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, -6.5, -4.14915, -18.7092)
+
+[node name="Explodable11" parent="Stage/AlwaysDestructible" instance=ExtResource("4_vvxar")]
+transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, -4.5, -6.02854, -18.0252)
+
+[node name="Explodable31" parent="Stage/AlwaysDestructible" instance=ExtResource("4_vvxar")]
+transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, 5.5, -6.02854, -18.0252)
+
+[node name="Explodable34" parent="Stage/AlwaysDestructible" instance=ExtResource("4_vvxar")]
+transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, 3.5, -4.14915, -18.7092)
+
+[node name="Explodable36" parent="Stage/AlwaysDestructible" instance=ExtResource("4_vvxar")]
+transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, 7.5, -4.14915, -18.7092)
+
+[node name="Explodable37" parent="Stage/AlwaysDestructible" instance=ExtResource("4_vvxar")]
+transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, 5.5, -2.26977, -19.3933)
+
+[node name="Explodable45" parent="Stage/AlwaysDestructible" instance=ExtResource("4_vvxar")]
+transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, 5.5, 7.12716, -22.8135)
+
+[node name="Explodable46" parent="Stage/AlwaysDestructible" instance=ExtResource("4_vvxar")]
+transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, 5.5, 3.36839, -21.4454)
+
+[node name="Explodable47" parent="Stage/AlwaysDestructible" instance=ExtResource("4_vvxar")]
+transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, 3.5, 5.24777, -22.1294)
+
+[node name="Explodable48" parent="Stage/AlwaysDestructible" instance=ExtResource("4_vvxar")]
+transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, 7.5, 5.24777, -22.1294)
+
+[node name="Explodable49" parent="Stage/AlwaysDestructible" instance=ExtResource("4_vvxar")]
+transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, -4.5, 7.12716, -22.8135)
+
+[node name="Explodable50" parent="Stage/AlwaysDestructible" instance=ExtResource("4_vvxar")]
+transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, -2.5, 5.24777, -22.1294)
+
+[node name="Explodable51" parent="Stage/AlwaysDestructible" instance=ExtResource("4_vvxar")]
+transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, -6.5, 5.24777, -22.1294)
+
+[node name="Explodable52" parent="Stage/AlwaysDestructible" instance=ExtResource("4_vvxar")]
+transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, -4.5, 3.36839, -21.4454)
+
+[node name="AlwaysObstacle" type="Node3D" parent="Stage"]
+
+[node name="LevelDecorativeOuter6" parent="Stage/AlwaysObstacle" instance=ExtResource("6_u205f")]
+transform = Transform3D(-4.37114e-08, -8.88178e-16, -1, -0.939693, 0.34202, 4.10753e-08, 0.34202, 0.939693, -1.49502e-08, 0.5, 0.549313, -20.4193)
