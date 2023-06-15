@@ -14,7 +14,6 @@ public partial class JoinButton : Button
 
   public void _on_pressed()
   {
-    TextHelper textHelper = GetNode<TextHelper>("/root/TextHelper");
     MatchSettingsState settings = GetNode<MatchSettingsState>("/root/MatchSettingsState");
     int position = (int)GetMeta("Position");
 
@@ -23,9 +22,8 @@ public partial class JoinButton : Button
 
     settings.ChangePlayerColor(position, newColor);
 
-    GetNode("%Player" + position).GetNode<CanvasItem>("ChoiceJoin").Hide();
-    GetNode("%Player" + position).GetNode<CanvasItem>("ChoiceVisible").Show();
-    GetNode<RichTextLabel>("%CharName" + position).Text =
-      textHelper.CenterText(textHelper.AsAlchemist(newColor));
+    GetNode($"%Player{position}").GetNode<CanvasItem>("ChoiceJoin").Hide();
+    GetNode($"%Player{position}").GetNode<CanvasItem>("ChoiceVisible").Show();
+    GetNode<RichTextLabel>($"%CharName{position}").Text = newColor.AsAlchemist().Centered();
   }
 }

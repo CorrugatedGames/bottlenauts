@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 public partial class CharacterChooseButton : Button
 {
   // Called when the node enters the scene tree for the first time.
@@ -14,7 +12,6 @@ public partial class CharacterChooseButton : Button
 
   public void _on_pressed()
   {
-    TextHelper textHelper = GetNode<TextHelper>("/root/TextHelper");
     MatchSettingsState settings = GetNode<MatchSettingsState>("/root/MatchSettingsState");
 
     int position = (int)GetMeta("Position");
@@ -46,6 +43,6 @@ public partial class CharacterChooseButton : Button
 
     settings.ChangePlayerColor(position, nextColor);
 
-    GetNode<RichTextLabel>("%CharName" + position).Text = textHelper.CenterText(textHelper.AsAlchemist(nextColor));
+    GetNode<RichTextLabel>("%CharName" + position).Text = nextColor.AsAlchemist().Centered();
   }
 }
