@@ -6,7 +6,7 @@ public partial class Graphics : Node
     Settings.Connect<int, int>(Settings.SignalName.ResolutionChanged, (width, height) => OnResolutionChanged(width, height));
     Settings.Connect<int>(Settings.SignalName.DisplayChanged, (display) => OnDisplayChanged(display));
 
-    OnResolutionChanged(Settings.Graphics.ResolutionWidth, Settings.Graphics.ResolutionHeight);
+    OnResolutionChanged(Settings.Graphics.Resolution.X, Settings.Graphics.Resolution.Y);
     OnDisplayChanged((int)Settings.Graphics.Display);
     Logger.Info("Graphics signals initialized!");
   }
@@ -15,8 +15,7 @@ public partial class Graphics : Node
   {
 
     Logger.Info($"Resolution changing to {width}x{height}...");
-    Settings.Graphics.SetResolutionWidth(width);
-    Settings.Graphics.SetResolutionHeight(height);
+    Settings.Graphics.SetResolution(new Vector2I(width, height));
 
     DisplayServer.WindowSetSize(new Vector2I(width, height));
 
@@ -43,7 +42,7 @@ public partial class Graphics : Node
       case GraphicsDisplay.Windowed:
         DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
 
-        OnResolutionChanged(Settings.Graphics.ResolutionWidth, Settings.Graphics.ResolutionHeight);
+        OnResolutionChanged(Settings.Graphics.Resolution.X, Settings.Graphics.Resolution.Y);
         break;
 
       case GraphicsDisplay.Fullscreen:

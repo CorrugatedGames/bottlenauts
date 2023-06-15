@@ -15,10 +15,7 @@ public partial class GraphicsSettingsContainer : ScrollContainer
     Display = GetNode("%DisplayType") as OptionButton;
     Resolution = GetNode("%DisplaySize") as OptionButton;
 
-    int resolutionIndex = Settings.Graphics.FindResolutionIndex(
-      Settings.Graphics.ResolutionWidth,
-      Settings.Graphics.ResolutionHeight
-    );
+    int resolutionIndex = Settings.Graphics.FindResolutionIndex(Settings.Graphics.Resolution);
 
     Resolution.Select(resolutionIndex);
     Display.Select((int)Settings.Graphics.Display);
@@ -28,8 +25,8 @@ public partial class GraphicsSettingsContainer : ScrollContainer
   {
     Settings.EmitSignal(
       Settings.SignalName.ResolutionChanged,
-      Settings.Graphics.Resolutions[index].Width,
-      Settings.Graphics.Resolutions[index].Height
+      Settings.Graphics.Resolutions[index].X,
+      Settings.Graphics.Resolutions[index].Y
     );
   }
 
