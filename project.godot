@@ -23,6 +23,7 @@ Settings="*res://src/autoload/Settings.cs"
 Audio="*res://src/autoload/Audio.cs"
 Graphics="*res://src/autoload/Graphics.cs"
 MatchSettingsState="*res://src/autoload/MatchSettingsState.cs"
+PlayerProfileManager="*res://src/autoload/PlayerProfileManager.cs"
 
 [display]
 
