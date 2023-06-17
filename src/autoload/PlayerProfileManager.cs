@@ -3,6 +3,8 @@ public partial class PlayerProfileManager : SingletonNode
   static string DIR_PATH = "user://player_profiles/";
   static string FILE_EXTENSION = "bpro";
 
+  static PlayerProfileManager Instance = new PlayerProfileManager();
+
   public Dictionary<string, PlayerProfile> Profiles { get; } = new Dictionary<string, PlayerProfile>();
 
   public override void _EnterTree ()
@@ -35,7 +37,7 @@ public partial class PlayerProfileManager : SingletonNode
     return true;
   }
 
-  public void CreateDefaultProfiles ()
+  public static void CreateDefaultProfiles ()
   {
     Dictionary<string, List<ControlBinding>> defaultBindings = new Dictionary<string, List<ControlBinding>> ();
     defaultBindings.Add("move_up", new List<ControlBinding> {
@@ -74,7 +76,7 @@ public partial class PlayerProfileManager : SingletonNode
     }
   }
 
-  public void SaveProfile (PlayerProfile profile)
+  public static void SaveProfile (PlayerProfile profile)
   {
     ConfigFile file = new ConfigFile();
 
@@ -94,10 +96,10 @@ public partial class PlayerProfileManager : SingletonNode
     Logger.Info($"Saved profile {profile.Name} to {DIR_PATH}{profile.Name}.{FILE_EXTENSION}");
     file.Save($"{DIR_PATH}{profile.Name}.{FILE_EXTENSION}");
 
-    Profiles.Add(profile.Name, profile);
+    Instance.Profiles.Add(profile.Name, profile);
   }
 
-  public void LoadProfile (string absolutePath)
+  public static void LoadProfile (string absolutePath)
   {
     ConfigFile file = new ConfigFile();
     if (file.Load(absolutePath) != Error.Ok)
@@ -130,6 +132,8 @@ public partial class PlayerProfileManager : SingletonNode
           break;
       }
 
-    Profiles.Add(profile.Name, profile);
+    Instance.Profiles.Add(profile.Name, profile);
   }
+
+  public static Dictionary<string, PlayerProfile> GetProfiles () => Instance.Profiles;
 }
