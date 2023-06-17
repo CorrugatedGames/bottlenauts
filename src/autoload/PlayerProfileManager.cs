@@ -118,7 +118,7 @@ public partial class PlayerProfileManager : SingletonNode
           break;
 
         case "RightStickDeadzone":
-          profile.LeftStickDeadzone = (float)file.GetValue("Controls", controlsKey);
+          profile.RightStickDeadzone = (float)file.GetValue("Controls", controlsKey);
           break;
 
         default:
