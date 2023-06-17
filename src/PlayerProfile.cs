@@ -1,8 +1,7 @@
 public struct PlayerProfile
 {
-  public string Name;
+  public string Name, Path;
 
-  public float LeftStickDeadzone;
-  public float RightStickDeadzone;
+  public float LeftStickDeadzone, RightStickDeadzone;
   public Dictionary<string, List<ControlBinding>> Bindings;
 }

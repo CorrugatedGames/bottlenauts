@@ -1,7 +1,7 @@
 public partial class PlayerProfileManager : SingletonNode
 {
-  static string DIR_PATH = "user://player_profiles/";
-  static string FILE_EXTENSION = "bpro";
+  public readonly static string DIR_PATH = "user://player_profiles/";
+  public readonly static string FILE_EXTENSION = "bpro";
 
   static PlayerProfileManager Instance = new PlayerProfileManager();
 
@@ -37,6 +37,33 @@ public partial class PlayerProfileManager : SingletonNode
     return true;
   }
 
+  static Dictionary<string, List<ControlBinding>> DEFAULT_BINDINGS ()
+  {
+    Dictionary<string, List<ControlBinding>> defaultBindings = new Dictionary<string, List<ControlBinding>> ();
+    defaultBindings.Add("move_up", new List<ControlBinding> {
+      new ControlBinding { ControlType = typeof(InputEventKey), ControlIndex = (int)Key.W },
+      new ControlBinding { ControlType = typeof(InputEventJoypadMotion), ControlIndex = (int)JoyAxis.LeftY, ControlDirection = -1 },
+      new ControlBinding { ControlType = typeof(InputEventJoypadButton), ControlIndex = (int)JoyButton.DpadUp },
+    });
+    defaultBindings.Add("move_down", new List<ControlBinding> {
+      new ControlBinding { ControlType = typeof(InputEventKey), ControlIndex = (int)Key.S },
+      new ControlBinding { ControlType = typeof(InputEventJoypadMotion), ControlIndex = (int)JoyAxis.LeftY, ControlDirection = 1 },
+      new ControlBinding { ControlType = typeof(InputEventJoypadButton), ControlIndex = (int)JoyButton.DpadDown },
+    });
+    defaultBindings.Add("move_left", new List<ControlBinding> {
+      new ControlBinding { ControlType = typeof(InputEventKey), ControlIndex = (int)Key.A },
+      new ControlBinding { ControlType = typeof(InputEventJoypadMotion), ControlIndex = (int)JoyAxis.LeftX, ControlDirection = -1 },
+      new ControlBinding { ControlType = typeof(InputEventJoypadButton), ControlIndex = (int)JoyButton.DpadLeft },
+    });
+    defaultBindings.Add("move_right", new List<ControlBinding> {
+      new ControlBinding { ControlType = typeof(InputEventKey), ControlIndex = (int)Key.D },
+      new ControlBinding { ControlType = typeof(InputEventJoypadMotion), ControlIndex = (int)JoyAxis.LeftX, ControlDirection = 1 },
+      new ControlBinding { ControlType = typeof(InputEventJoypadButton), ControlIndex = (int)JoyButton.DpadRight },
+    });
+
+    return defaultBindings;
+  }
+
   public static void CreateDefaultProfiles ()
   {
     Dictionary<string, List<ControlBinding>> defaultBindings = new Dictionary<string, List<ControlBinding>> ();
@@ -68,12 +95,19 @@ public partial class PlayerProfileManager : SingletonNode
 
       SaveProfile(new PlayerProfile {
         Name = $"P{id}",
+        Path = $"{DIR_PATH}P{id}.{FILE_EXTENSION}",
 
         LeftStickDeadzone = 0.3f,
         RightStickDeadzone = 0.3f,
-        Bindings = defaultBindings,
+        Bindings = DEFAULT_BINDINGS(),
       });
     }
+  }
+
+  public static void ResetToDefaultBindings (PlayerProfile profile)
+  {
+    profile.Bindings = DEFAULT_BINDINGS();
+    SaveProfile(profile);
   }
 
   public static void SaveProfile (PlayerProfile profile)
@@ -96,6 +130,8 @@ public partial class PlayerProfileManager : SingletonNode
     Logger.Info($"Saved profile {profile.Name} to {DIR_PATH}{profile.Name}.{FILE_EXTENSION}");
     file.Save($"{DIR_PATH}{profile.Name}.{FILE_EXTENSION}");
 
+    if (Instance.Profiles.ContainsKey(profile.Name))
+      Instance.Profiles.Remove(profile.Name);
     Instance.Profiles.Add(profile.Name, profile);
   }
 
@@ -108,6 +144,7 @@ public partial class PlayerProfileManager : SingletonNode
     PlayerProfile profile = new PlayerProfile();
 
     profile.Name = (string)file.GetValue("General", "Name");
+    profile.Path = absolutePath;
 
     profile.Bindings = new Dictionary<string, List<ControlBinding>>();
     foreach (string controlsKey in file.GetSectionKeys("Controls"))
@@ -132,6 +169,8 @@ public partial class PlayerProfileManager : SingletonNode
           break;
       }
 
+    if (Instance.Profiles.ContainsKey(profile.Name))
+      Instance.Profiles.Remove(profile.Name);
     Instance.Profiles.Add(profile.Name, profile);
   }
 
