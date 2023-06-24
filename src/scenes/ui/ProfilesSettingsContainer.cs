@@ -152,116 +152,38 @@ public partial class ProfilesSettingsContainer : ScrollContainer
 
   void PopulateInputButtons ()
   {
-    {
-      foreach (Node child in MoveUp.GetChildren())
-        if (child is Button)
-        {
-          (child as Button).Text = "";
-          (child as Button).Icon = null;
-        }
+    PopulateInputButtonRow(MoveUp, "move_up");
+    PopulateInputButtonRow(MoveDown, "move_down");
+    PopulateInputButtonRow(MoveLeft, "move_left");
+    PopulateInputButtonRow(MoveRight, "move_right");
+  }
 
-      List<ControlBinding> bindings = ProfileActive.Bindings["move_up"];
-      int kbAssigned = 0, gpAssigned = 0;
-      foreach (ControlBinding binding in bindings)
+  internal void PopulateInputButtonRow (HBoxContainer row, string name)
+  {
+    foreach (Node child in row.GetChildren())
+      if (child is Button)
       {
-        if (kbAssigned <= 2 && binding.ControlType == typeof(InputEventKey))
-        {
-          (MoveUp.GetNode($"KB{++kbAssigned}") as Button).Text = ((Key)binding.ControlIndex).ToString();
-          (MoveUp.GetNode($"KB{kbAssigned}") as Button).SetMeta("Binding", binding.AsText());
-        }
-        
-        if (gpAssigned <= 2 && binding.ControlType != typeof(InputEventKey))
-        {
-          bool isAxis = binding.ControlType == typeof(InputEventJoypadMotion);
-          string iconPath = $"{(isAxis ? "gpa" : "gpb")}{binding.ControlIndex}{(isAxis && binding.ControlIndex < 4 ? (binding.ControlDirection > 0 ? "+" : "-") : "")}";
-
-          (MoveUp.GetNode($"GP{++gpAssigned}") as Button).Icon = Icons[iconPath];
-          (MoveUp.GetNode($"GP{gpAssigned}") as Button).SetMeta("Binding", binding.AsText());
-        }
+        (child as Button).Text = "";
+        (child as Button).Icon = null;
       }
-    }
+
+    List<ControlBinding> bindings = ProfileActive.Bindings[name];
+    int kbAssigned = 0, gpAssigned = 0;
+    foreach (ControlBinding binding in bindings)
     {
-      foreach (Node child in MoveDown.GetChildren())
-        if (child is Button)
-        {
-          (child as Button).Text = "";
-          (child as Button).Icon = null;
-        }
-
-      List<ControlBinding> bindings = ProfileActive.Bindings["move_down"];
-      int kbAssigned = 0, gpAssigned = 0;
-      foreach (ControlBinding binding in bindings)
+      if (kbAssigned <= 2 && binding.ControlType == typeof(InputEventKey))
       {
-        if (kbAssigned <= 2 && binding.ControlType == typeof(InputEventKey))
-        {
-          (MoveDown.GetNode($"KB{++kbAssigned}") as Button).Text = ((Key)binding.ControlIndex).ToString();
-          (MoveDown.GetNode($"KB{kbAssigned}") as Button).SetMeta("Binding", binding.AsText());
-        }
-        
-        if (gpAssigned <= 2 && binding.ControlType != typeof(InputEventKey))
-        {
-          bool isAxis = binding.ControlType == typeof(InputEventJoypadMotion);
-          string iconPath = $"{(isAxis ? "gpa" : "gpb")}{binding.ControlIndex}{(isAxis && binding.ControlIndex < 4 ? (binding.ControlDirection > 0 ? "+" : "-") : "")}";
-
-          (MoveDown.GetNode($"GP{++gpAssigned}") as Button).Icon = Icons[iconPath];
-          (MoveDown.GetNode($"GP{gpAssigned}") as Button).SetMeta("Binding", binding.AsText());
-        }
+        (row.GetNode($"KB{++kbAssigned}") as Button).Text = ((Key)binding.ControlIndex).ToString();
+        (row.GetNode($"KB{kbAssigned}") as Button).SetMeta("Binding", binding.AsText());
       }
-    }
-    {
-      foreach (Node child in MoveLeft.GetChildren())
-        if (child is Button)
-        {
-          (child as Button).Text = "";
-          (child as Button).Icon = null;
-        }
-
-      List<ControlBinding> bindings = ProfileActive.Bindings["move_left"];
-      int kbAssigned = 0, gpAssigned = 0;
-      foreach (ControlBinding binding in bindings)
+      
+      if (gpAssigned <= 2 && binding.ControlType != typeof(InputEventKey))
       {
-        if (kbAssigned <= 2 && binding.ControlType == typeof(InputEventKey))
-        {
-          (MoveLeft.GetNode($"KB{++kbAssigned}") as Button).Text = ((Key)binding.ControlIndex).ToString();
-          (MoveLeft.GetNode($"KB{kbAssigned}") as Button).SetMeta("Binding", binding.AsText());
-        }
-        
-        if (gpAssigned <= 2 && binding.ControlType != typeof(InputEventKey))
-        {
-          bool isAxis = binding.ControlType == typeof(InputEventJoypadMotion);
-          string iconPath = $"{(isAxis ? "gpa" : "gpb")}{binding.ControlIndex}{(isAxis && binding.ControlIndex < 4 ? (binding.ControlDirection > 0 ? "+" : "-") : "")}";
+        bool isAxis = binding.ControlType == typeof(InputEventJoypadMotion);
+        string iconPath = $"{(isAxis ? "gpa" : "gpb")}{binding.ControlIndex}{(isAxis && binding.ControlIndex < 4 ? (binding.ControlDirection > 0 ? "+" : "-") : "")}";
 
-          (MoveLeft.GetNode($"GP{++gpAssigned}") as Button).Icon = Icons[iconPath];
-          (MoveLeft.GetNode($"GP{gpAssigned}") as Button).SetMeta("Binding", binding.AsText());
-        }
-      }
-    }
-    {
-      foreach (Node child in MoveRight.GetChildren())
-        if (child is Button)
-        {
-          (child as Button).Text = "";
-          (child as Button).Icon = null;
-        }
-
-      List<ControlBinding> bindings = ProfileActive.Bindings["move_right"];
-      int kbAssigned = 0, gpAssigned = 0;
-      foreach (ControlBinding binding in bindings)
-      {
-        if (kbAssigned <= 2 && binding.ControlType == typeof(InputEventKey))
-        {
-          (MoveRight.GetNode($"KB{++kbAssigned}") as Button).Text = ((Key)binding.ControlIndex).ToString();
-          (MoveRight.GetNode($"KB{kbAssigned}") as Button).SetMeta("Binding", binding.AsText());
-        }
-        
-        if (gpAssigned <= 2 && binding.ControlType != typeof(InputEventKey))
-        {
-          bool isAxis = binding.ControlType == typeof(InputEventJoypadMotion);
-          string iconPath = $"{(isAxis ? "gpa" : "gpb")}{binding.ControlIndex}{(isAxis && binding.ControlIndex < 4 ? (binding.ControlDirection > 0 ? "+" : "-") : "")}";
-
-          (MoveRight.GetNode($"GP{++gpAssigned}") as Button).Icon = Icons[iconPath];
-          (MoveRight.GetNode($"GP{gpAssigned}") as Button).SetMeta("Binding", binding.AsText());
-        }
+        (row.GetNode($"GP{++gpAssigned}") as Button).Icon = Icons[iconPath];
+        (row.GetNode($"GP{gpAssigned}") as Button).SetMeta("Binding", binding.AsText());
       }
     }
   }
@@ -307,7 +229,6 @@ public partial class ProfilesSettingsContainer : ScrollContainer
     AcceptEvent();
 
     ControlBinding newBind = ControlBinding.FromInputEvent(evt);
-      Logger.Error(newBind.AsText());
     if (PreviousBinding.Length == 0)
     {
       ProfileActive.Bindings[EditingInput].Add(newBind);
