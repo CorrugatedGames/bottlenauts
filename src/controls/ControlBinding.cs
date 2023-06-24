@@ -17,9 +17,12 @@ public struct ControlBinding
 {
   public Type ControlType;
   public int ControlIndex;
-  public int ControlDirection;
+  public float ControlDirection;
 
-  public string AsText () => $"{ControlType.Prefix()}:{ControlIndex}{(ControlDirection == 0 ? "" : ControlDirection > 0 ? "+" : "-")}";
+  public string AsText () 
+  {
+    return $"{ControlType.Prefix()}:{ControlIndex}{(ControlDirection == 0 ? "" : ControlDirection > 0 ? "+" : "-")}";
+  }
 
   public static ControlBinding FromText (string code)
   {
@@ -72,7 +75,7 @@ public struct ControlBinding
       case true when e.GetType() == typeof(InputEventJoypadMotion):
       {
         binding.ControlIndex = (int)((int?)(e as InputEventJoypadMotion)?.Axis ?? -1);
-        binding.ControlDirection = (int)((int?)(e as InputEventJoypadMotion)?.AxisValue ?? 0);
+        binding.ControlDirection = (float)((float?)(e as InputEventJoypadMotion)?.AxisValue ?? 0f);
       } break;
 
       case true when e.GetType() == typeof(InputEventJoypadButton):
