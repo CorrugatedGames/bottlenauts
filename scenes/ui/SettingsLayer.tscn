@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b8oxsatdw55re"]
+[gd_scene load_steps=8 format=3 uid="uid://b8oxsatdw55re"]
 
 [ext_resource type="Script" path="res://src/scenes/ui/SettingsLayer.cs" id="1_yrbc7"]
 [ext_resource type="PackedScene" uid="uid://5tu1tkdbh6hg" path="res://scenes/ui/settings/GraphicsSettingsContainer.tscn" id="2_t5cau"]
 [ext_resource type="PackedScene" uid="uid://3yb4ybsyuopv" path="res://scenes/ui/settings/DisplaySettingsContainer.tscn" id="3_5y8f4"]
 [ext_resource type="PackedScene" uid="uid://lres2o2jb8t0" path="res://scenes/ui/settings/AudioSettingsContainer.tscn" id="4_dy8nr"]
+[ext_resource type="PackedScene" uid="uid://biwgi1mmom622" path="res://scenes/ui/settings/ProfilesSettingsContainer.tscn" id="5_l0dwj"]
 [ext_resource type="PackedScene" uid="uid://dj2vouousr6u6" path="res://scenes/ui/settings/GameSettingsContainer.tscn" id="5_yxtvq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6jcv6"]
@@ -54,6 +55,10 @@ visible = false
 layout_mode = 2
 
 [node name="Audio" parent="Panel/TabContainer" instance=ExtResource("4_dy8nr")]
+visible = false
+layout_mode = 2
+
+[node name="Profiles" parent="Panel/TabContainer" instance=ExtResource("5_l0dwj")]
 visible = false
 layout_mode = 2
 
