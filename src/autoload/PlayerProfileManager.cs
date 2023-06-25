@@ -66,28 +66,6 @@ public partial class PlayerProfileManager : SingletonNode
 
   public static void CreateDefaultProfiles ()
   {
-    Dictionary<string, List<ControlBinding>> defaultBindings = new Dictionary<string, List<ControlBinding>> ();
-    defaultBindings.Add("move_up", new List<ControlBinding> {
-      new ControlBinding { ControlType = typeof(InputEventKey), ControlIndex = (int)Key.W },
-      new ControlBinding { ControlType = typeof(InputEventJoypadMotion), ControlIndex = (int)JoyAxis.LeftY, ControlDirection = -1 },
-      new ControlBinding { ControlType = typeof(InputEventJoypadButton), ControlIndex = (int)JoyButton.DpadUp },
-    });
-    defaultBindings.Add("move_down", new List<ControlBinding> {
-      new ControlBinding { ControlType = typeof(InputEventKey), ControlIndex = (int)Key.S },
-      new ControlBinding { ControlType = typeof(InputEventJoypadMotion), ControlIndex = (int)JoyAxis.LeftY, ControlDirection = 1 },
-      new ControlBinding { ControlType = typeof(InputEventJoypadButton), ControlIndex = (int)JoyButton.DpadDown },
-    });
-    defaultBindings.Add("move_left", new List<ControlBinding> {
-      new ControlBinding { ControlType = typeof(InputEventKey), ControlIndex = (int)Key.A },
-      new ControlBinding { ControlType = typeof(InputEventJoypadMotion), ControlIndex = (int)JoyAxis.LeftX, ControlDirection = -1 },
-      new ControlBinding { ControlType = typeof(InputEventJoypadButton), ControlIndex = (int)JoyButton.DpadLeft },
-    });
-    defaultBindings.Add("move_right", new List<ControlBinding> {
-      new ControlBinding { ControlType = typeof(InputEventKey), ControlIndex = (int)Key.D },
-      new ControlBinding { ControlType = typeof(InputEventJoypadMotion), ControlIndex = (int)JoyAxis.LeftX, ControlDirection = 1 },
-      new ControlBinding { ControlType = typeof(InputEventJoypadButton), ControlIndex = (int)JoyButton.DpadRight },
-    });
-    
     for (int id = 1; id <= 4; id++)
     {
       if (FileAccess.FileExists($"{DIR_PATH}P{id}.{FILE_EXTENSION}"))
