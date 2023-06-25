@@ -37,6 +37,13 @@ public partial class ProfilesSettingsContainer : ScrollContainer
 
     PopulateProfileButtons();
 
+    NewProfileButton.Pressed += () => {
+      if (!ReadingInputs)
+        InitLoadProfile(PlayerProfileManager.NEW_PROFILE());
+    };
+
+    ProfileEditContainer.Visible = false;
+
     NameField = GetNode("%NameField") as LineEdit;
     LeftStickDeadzone = GetNode("%LSDeadzoneSlider") as HSlider;
     LeftStickDeadzoneValue = GetNode("%LSDeadzoneValue") as Label;
@@ -85,7 +92,6 @@ public partial class ProfilesSettingsContainer : ScrollContainer
 
   public override void _Process (double dt)
   {
-    ProfileEditContainer.Visible = ProfileActive.Name?.Length > 0;
   }
 
   void InitLoadProfile (PlayerProfile profile)

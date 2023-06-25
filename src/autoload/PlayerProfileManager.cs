@@ -81,6 +81,8 @@ public partial class PlayerProfileManager : SingletonNode
     }
   }
 
+  public static PlayerProfile NEW_PROFILE () => new PlayerProfile { Name = "", Deadzone = 0.3f, Bindings = DEFAULT_BINDINGS(), };
+
   public static void ResetToDefaultBindings (PlayerProfile profile)
   {
     profile.Bindings = DEFAULT_BINDINGS();
