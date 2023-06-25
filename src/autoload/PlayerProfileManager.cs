@@ -97,8 +97,7 @@ public partial class PlayerProfileManager : SingletonNode
         Name = $"P{id}",
         Path = $"{DIR_PATH}P{id}.{FILE_EXTENSION}",
 
-        LeftStickDeadzone = 0.3f,
-        RightStickDeadzone = 0.3f,
+        Deadzone = 0.3f,
         Bindings = DEFAULT_BINDINGS(),
       });
     }
@@ -116,8 +115,7 @@ public partial class PlayerProfileManager : SingletonNode
 
     file.SetValue("General", "Name", profile.Name);
 
-    file.SetValue("Controls", "ls_deadzone", profile.LeftStickDeadzone);
-    file.SetValue("Controls", "rs_deadzone", profile.RightStickDeadzone);
+    file.SetValue("Controls", "deadzone", profile.Deadzone);
     foreach (string action in profile.Bindings.Keys)
     {
       List<string> codes = new List<string>();
@@ -150,12 +148,8 @@ public partial class PlayerProfileManager : SingletonNode
     foreach (string controlsKey in file.GetSectionKeys("Controls"))
       switch (controlsKey)
       {
-        case "ls_deadzone":
-          profile.LeftStickDeadzone = (float)file.GetValue("Controls", controlsKey);
-          break;
-
-        case "rs_deadzone":
-          profile.RightStickDeadzone = (float)file.GetValue("Controls", controlsKey);
+        case "deadzone":
+          profile.Deadzone = (float)file.GetValue("Controls", controlsKey);
           break;
 
         default:

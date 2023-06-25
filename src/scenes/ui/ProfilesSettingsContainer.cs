@@ -98,8 +98,7 @@ public partial class ProfilesSettingsContainer : ScrollContainer
     ProfileActive = profile;
     ProfileEditContainer.Visible = false;
 
-    LeftStickDeadzone.Value = profile.LeftStickDeadzone;
-    RightStickDeadzone.Value = profile.RightStickDeadzone;
+    LeftStickDeadzone.Value = profile.Deadzone;
     PopulateInputButtons();
 
     ProfileEditContainer.Visible = true;
@@ -110,8 +109,7 @@ public partial class ProfilesSettingsContainer : ScrollContainer
     string oldName = ProfileActive.Name;
 
     ProfileActive.Name = NameField.Text;
-    ProfileActive.LeftStickDeadzone = (float)LeftStickDeadzone.Value;
-    ProfileActive.RightStickDeadzone = (float)RightStickDeadzone.Value;
+    ProfileActive.Deadzone = (float)LeftStickDeadzone.Value;
 
     string testPath = $"{PlayerProfileManager.DIR_PATH}{ProfileActive.Name}.{PlayerProfileManager.FILE_EXTENSION}";
     if (ProfileActive.Path != $"{PlayerProfileManager.DIR_PATH}{ProfileActive.Name}.{PlayerProfileManager.FILE_EXTENSION}")
