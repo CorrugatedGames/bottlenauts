@@ -5,8 +5,8 @@ public partial class ProfilesSettingsContainer : ScrollContainer
   ButtonGroup ProfileButtonGroup = new ButtonGroup();
 
   LineEdit NameField;
-  HSlider LeftStickDeadzone, RightStickDeadzone;
-  Label LeftStickDeadzoneValue, RightStickDeadzoneValue;
+  HSlider LeftStickDeadzone;
+  Label LeftStickDeadzoneValue;
   HBoxContainer MoveUp, MoveDown, MoveLeft, MoveRight;
 
   PlayerProfile ProfileActive = new PlayerProfile {};
@@ -39,11 +39,8 @@ public partial class ProfilesSettingsContainer : ScrollContainer
 
     NameField = GetNode("%NameField") as LineEdit;
     LeftStickDeadzone = GetNode("%LSDeadzoneSlider") as HSlider;
-    RightStickDeadzone = GetNode("%RSDeadzoneSlider") as HSlider;
     LeftStickDeadzoneValue = GetNode("%LSDeadzoneValue") as Label;
-    RightStickDeadzoneValue = GetNode("%RSDeadzoneValue") as Label;
     LeftStickDeadzoneValue.Text = $"{Math.Round(LeftStickDeadzone.Value, 2)}";
-    RightStickDeadzoneValue.Text = $"{Math.Round(RightStickDeadzone.Value, 2)}";
 
     MoveUp = GetNode("%MoveUp") as HBoxContainer;
     MoveDown = GetNode("%MoveDown") as HBoxContainer;
@@ -57,7 +54,6 @@ public partial class ProfilesSettingsContainer : ScrollContainer
   void HookUpInputEvents ()
   {
     LeftStickDeadzone.ValueChanged += (double value) => LeftStickDeadzoneValue.Text = $"{Math.Round(value, 2)}";
-    RightStickDeadzone.ValueChanged += (double value) => RightStickDeadzoneValue.Text = $"{Math.Round(value, 2)}";
 
     ProfileEditContainer.VisibilityChanged += () => {
       if (ProfileEditContainer.Visible)
@@ -85,7 +81,6 @@ public partial class ProfilesSettingsContainer : ScrollContainer
   {
     NameField.TextSubmitted += (string s) => Save();
     LeftStickDeadzone.DragEnded += (bool changed) => { if (changed) Save(); };
-    RightStickDeadzone.DragEnded += (bool changed) => { if (changed) Save(); };
   }
 
   public override void _Process (double dt)
