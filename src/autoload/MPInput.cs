@@ -12,25 +12,25 @@ public partial class MPInput : Node
     Actions = new string [] {};
   }
 
-  public void ResetActions ()
+  public static void ResetActions ()
   {
     InputMap.LoadFromProjectSettings();
     int idx = 0;
     foreach (string action in InputMap.GetActions())
-      Actions.SetValue(action, idx++);
+      _Self.Actions.SetValue(action, idx++);
 
-    foreach (string action in Actions)
+    foreach (string action in _Self.Actions)
       foreach (InputEvent evt in InputMap.ActionGetEvents(action))
         if (evt is InputEventJoypadButton || evt is InputEventJoypadMotion)
           evt.Device = 9;
   }
 
-  public void AssignProfileToDevice (long device, PlayerProfile profile)
+  public static void AssignProfileToDevice (long device, PlayerProfile profile)
   {
-    DeviceActions[device] = new Dictionary <string, string> {};
+    _Self.DeviceActions[device] = new Dictionary <string, string> {};
 
     float deadzone = profile.Deadzone;
-    foreach (string action in Actions)
+    foreach (string action in _Self.Actions)
     {
       string deviceAction = $"device{device}__{action}";
       
@@ -38,7 +38,7 @@ public partial class MPInput : Node
       if (bindings.Count > 0)
       {
         InputMap.AddAction(deviceAction, deadzone);
-        DeviceActions[device][action] = deviceAction;
+        _Self.DeviceActions[device][action] = deviceAction;
 
         foreach (ControlBinding binding in bindings)
         {
@@ -51,9 +51,9 @@ public partial class MPInput : Node
     }
   }
 
-  public void DeleteActionsForDevice (int device)
+  public static void DeleteActionsForDevice (int device)
   {
-    DeviceActions[device] = null;
+    _Self.DeviceActions[device] = null;
     
     foreach (string action in InputMap.GetActions())
       if (action.Contains($"device{device}"))
