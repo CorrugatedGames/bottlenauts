@@ -85,7 +85,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.6
 theme_override_font_sizes/font_size = 20
-text = "Left Stick Deadzone:                                        "
+text = "Gamepad Stick Deadzone:                                        "
 clip_text = true
 
 [node name="LSDeadzoneSlider" type="HSlider" parent="MarginContainer/HSplitContainer/ScrollContainer/ProfileEdit/VBoxContainer/LSDeadzoneContainer"]
@@ -98,33 +98,6 @@ max_value = 1.0
 step = 0.01
 
 [node name="LSDeadzoneValue" type="Label" parent="MarginContainer/HSplitContainer/ScrollContainer/ProfileEdit/VBoxContainer/LSDeadzoneContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.5
-horizontal_alignment = 1
-
-[node name="RSDeadzoneContainer" type="HBoxContainer" parent="MarginContainer/HSplitContainer/ScrollContainer/ProfileEdit/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/HSplitContainer/ScrollContainer/ProfileEdit/VBoxContainer/RSDeadzoneContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 1.6
-theme_override_font_sizes/font_size = 20
-text = "Right Stick Deadzone:                                        "
-clip_text = true
-
-[node name="RSDeadzoneSlider" type="HSlider" parent="MarginContainer/HSplitContainer/ScrollContainer/ProfileEdit/VBoxContainer/RSDeadzoneContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-size_flags_stretch_ratio = 5.8
-max_value = 1.0
-step = 0.01
-
-[node name="RSDeadzoneValue" type="Label" parent="MarginContainer/HSplitContainer/ScrollContainer/ProfileEdit/VBoxContainer/RSDeadzoneContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
