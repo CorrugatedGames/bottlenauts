@@ -30,7 +30,9 @@ public partial class Graphics : Node
     Settings.Graphics.SetResolution(new Vector2I(width, height));
 
     DisplayServer.WindowSetSize(new Vector2I(width, height));
-    CenterWindow();
+
+    if (Settings.Graphics.Display == GraphicsDisplay.Windowed)
+      CenterWindow();
 
     Settings.SaveData();
   }
