@@ -164,6 +164,7 @@ public partial class ProfilesSettingsContainer : ScrollContainer
       {
         (child as Button).Text = "";
         (child as Button).Icon = null;
+        child.SetMeta("Binding", "");
       }
 
     List<ControlBinding> bindings = ProfileActive.Bindings[name];
@@ -173,7 +174,7 @@ public partial class ProfilesSettingsContainer : ScrollContainer
       if (kbAssigned <= 2 && binding.ControlType == typeof(InputEventKey))
       {
         (row.GetNode($"KB{++kbAssigned}") as Button).Text = ((Key)binding.ControlIndex).ToString();
-        (row.GetNode($"KB{kbAssigned}") as Button).SetMeta("Binding", binding.AsText());
+        row.GetNode($"KB{kbAssigned}").SetMeta("Binding", binding.AsText());
       }
       
       if (gpAssigned <= 2 && binding.ControlType != typeof(InputEventKey))
@@ -182,7 +183,7 @@ public partial class ProfilesSettingsContainer : ScrollContainer
         string iconPath = $"{(isAxis ? "gpa" : "gpb")}{binding.ControlIndex}{(isAxis && binding.ControlIndex < 4 ? (binding.ControlDirection > 0 ? "+" : "-") : "")}";
 
         (row.GetNode($"GP{++gpAssigned}") as Button).Icon = Icons[iconPath];
-        (row.GetNode($"GP{gpAssigned}") as Button).SetMeta("Binding", binding.AsText());
+        row.GetNode($"GP{gpAssigned}").SetMeta("Binding", binding.AsText());
       }
     }
   }
@@ -228,10 +229,21 @@ public partial class ProfilesSettingsContainer : ScrollContainer
     AcceptEvent();
 
     ControlBinding newBind = ControlBinding.FromInputEvent(evt);
+
+    string bindAlreadyUsed = ProfileActive.Bindings.GetActionWithBinding(newBind);
+    if (bindAlreadyUsed.Length > 0)
+    {
+      ProfileActive.Bindings[bindAlreadyUsed].Remove(newBind);
+      ProfileActive.Bindings[bindAlreadyUsed].EnsureCapacity(2);
+
+      Button btnAlreadyUsed = GetButtonWithBindingMeta(newBind.AsText());
+      btnAlreadyUsed?.SetMeta("Binding", "");
+    }
+
     if (PreviousBinding.Length == 0)
     {
       ProfileActive.Bindings[EditingInput].Add(newBind);
-      EditingButton.SetMeta("binding", newBind.AsText());
+      EditingButton.SetMeta("Binding", newBind.AsText());
     }
     else
       try
@@ -241,8 +253,7 @@ public partial class ProfilesSettingsContainer : ScrollContainer
           {
             int idx = ProfileActive.Bindings[EditingInput].FindIndex(b => b.AsText() == bind.AsText());
             ProfileActive.Bindings[EditingInput][idx] = newBind;
-
-            EditingButton.SetMeta("binding", newBind.AsText());
+            EditingButton.SetMeta("Binding", newBind.AsText());
           }
       }
       catch (Exception)
@@ -250,8 +261,30 @@ public partial class ProfilesSettingsContainer : ScrollContainer
 
     ReadingInputs = false;
     EditingButton = null;
+    PreviousBinding = "";
     PlayerProfileManager.SaveProfile(ProfileActive);
     PopulateInputButtons();
+  }
+
+  internal Button GetButtonWithBindingMeta (string binding)
+  {
+    foreach (Node child in MoveUp.GetChildren())
+      if (child is Button && (string)child.GetMeta("Binding") == binding)
+        return child as Button;
+
+    foreach (Node child in MoveDown.GetChildren())
+      if (child is Button && (string)child.GetMeta("Binding") == binding)
+        return child as Button;
+
+    foreach (Node child in MoveLeft.GetChildren())
+      if (child is Button && (string)child.GetMeta("Binding") == binding)
+        return child as Button;
+
+    foreach (Node child in MoveRight.GetChildren())
+      if (child is Button && (string)child.GetMeta("Binding") == binding)
+        return child as Button;
+
+    return null;
   }
 
   public override void _GuiInput (InputEvent evt)
