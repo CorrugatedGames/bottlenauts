@@ -1,3 +1,5 @@
+using static Godot.DisplayServer;
+
 public partial class Graphics : Node
 {
   public override void _Ready()
@@ -11,6 +13,16 @@ public partial class Graphics : Node
     Logger.Info("Graphics signals initialized!");
   }
 
+  internal void CenterWindow ()
+  {
+    Rect2I screenRect = ScreenGetUsableRect(WindowGetCurrentScreen());
+    Vector2I windowSize = new Vector2I(Settings.Graphics.Resolution.X, Settings.Graphics.Resolution.Y);
+    
+    int x = screenRect.Position.X + ((screenRect.Size.X - windowSize.X) >> 1);
+    int y = screenRect.Position.Y + ((screenRect.Size.Y - windowSize.Y) >> 1);
+    WindowSetPosition(new Vector2I(x, y));
+  }
+
   void OnResolutionChanged(int width, int height)
   {
 
@@ -18,6 +30,7 @@ public partial class Graphics : Node
     Settings.Graphics.SetResolution(new Vector2I(width, height));
 
     DisplayServer.WindowSetSize(new Vector2I(width, height));
+    CenterWindow();
 
     Settings.SaveData();
   }
