@@ -13,7 +13,7 @@ config_version=5
 config/name="Bottlenauts"
 run/main_scene="res://scenes/menus/titlescreen/TitleScreen.tscn"
 config/use_custom_user_dir=true
-config/features=PackedStringArray("4.0", "C#", "Forward Plus")
+config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
