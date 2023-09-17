@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba1q3fp578c67"]
+
+[ext_resource type="PackedScene" uid="uid://cwt0hslnfabyj" path="res://assets/models/LevelDecorativeOuter.glb" id="1_we3xm"]
+
+[node name="Obstacle" type="Node3D"]
+
+[node name="LevelDecorativeOuter" parent="." instance=ExtResource("1_we3xm")]
