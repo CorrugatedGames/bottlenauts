@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://j2ym3r5ysbar"]
+
+[resource]
+resource_name = "bricksDark(Clone).003"
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.356863, 0.321569, 0.843137, 0)
+metallic = 0.35

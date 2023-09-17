@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b6tdypxkt6ecn"]
+
+[resource]
+resource_name = "stone(Clone).001"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.357125, 0.321254, 0.841379, 1)
+metallic = 0.5
