@@ -1,75 +1,81 @@
 public partial class Level : Node
 {
-  // Called when the node enters the scene tree for the first time.
-  public override void _Ready()
+  [Export] LevelTheme Theme = null;
+
+
+  public Camera3D Camera { get; private set; }
+  public GridMap Map { get; private set; }
+
+  [ExportCategory("Level Fill Parameters")]
+  [Export(PropertyHint.Range, "0,1,0.01")] float DestructibleFillPercentage = 0.4f;
+  [Export(PropertyHint.Range, "0,1,0.01")] float ObstacleFillPercentage = 0.2f;
+
+  public override void _Ready ()
   {
-    GenerateLevel();
+    Map = GetNode("GridMap") as GridMap;
+    Camera = GetNode("Camera") as Camera3D;
+
+    GenerateHazards();
+    SetLevelTheme(Theme);
+    HideHelperCells();
   }
 
-  // Called every frame. 'delta' is the elapsed time since the previous frame.
-  public override void _Process(double delta)
+  public void SetLevelTheme (LevelTheme theme)
   {
+    if (theme == null)
+      return;
+
+    Theme = theme;
+    Map.MeshLibrary = Theme.MeshLibrary;
+    Camera.Environment = Theme.Environment;
+
+    // assign material overrides to all child nodes in group Characters
   }
 
-  private void GenerateLevel()
+  private void HideHelperCells ()
   {
-    HideSpawns();
-    GenerateObstacles();
-    GenerateDestructibles();
+    Material mat = Load("res://assets/textures/transparent.mat.tres") as Material;
+    
+    Mesh destru = Map.MeshLibrary.GetItemMesh((int)MetaCell.DESTRUCTIBLE);
+    for (int i = 0; i < destru.GetSurfaceCount(); i++)
+      destru.SurfaceSetMaterial(i, mat);
+    Map.MeshLibrary.SetItemMesh((int)MetaCell.DESTRUCTIBLE, destru);
+
+    Mesh obsta = Map.MeshLibrary.GetItemMesh((int)MetaCell.OBSTACLE);
+    for (int i = 0; i < obsta.GetSurfaceCount(); i++)
+      obsta.SurfaceSetMaterial(i, mat);
+    Map.MeshLibrary.SetItemMesh((int)MetaCell.OBSTACLE, destru);
   }
 
-  private int ValidPercentage(int percentage)
+  private IEnumerable<T> GetPercentageOfList <[MustBeVariant] T> (Godot.Collections.Array<T> list, float percentage)
   {
-    return Math.Clamp(percentage, 0, 100);
+    var copy = list.Duplicate();
+    copy.Shuffle();
+
+    return copy[..(int)(copy.Count * percentage)];
   }
 
-  private IEnumerable<T> PercentageOfList<[MustBeVariant] T>(Godot.Collections.Array<T> list, int percentage)
+  private void GenerateHazards ()
   {
-    var listCopy = list.Duplicate();
-    listCopy.Shuffle();
-
-    int takeItems = percentage * listCopy.Count / 100;
-    return listCopy.Slice(0, takeItems);
-  }
-
-  private void HideSpawns()
-  {
-    var spawns = GetNode<Node3D>("%Spawn");
-    var allChildren = spawns.GetChildren();
-
-    foreach (var item in allChildren)
+    var destruPotents = Map.GetUsedCellsByItem((int)MetaCell.DESTRUCTIBLE);
+    var destrus = GetPercentageOfList(destruPotents, DestructibleFillPercentage);
+    PackedScene destruScene = ResourceLoader.Load("res://scenes/hazards/Destructible.tscn") as PackedScene;
+    foreach (Vector3 loc in destrus)
     {
-      item.QueueFree();
+      var d = destruScene.Instantiate() as Node3D;
+      d.Position = loc + new Vector3(0.5f, 0f, 0.5f);
+      AddChild(d);
     }
-  }
 
-  private void GenerateObstacles()
-  {
-    int obstacleFillPercent = ValidPercentage((int)GetMeta("ObstacleFillPercent"));
-
-    var obstacles = GetNode<Node3D>("%RandomObstacle");
-    var allChildren = obstacles.GetChildren();
-
-    var hideChildren = PercentageOfList(allChildren, obstacleFillPercent);
-
-    foreach (var item in hideChildren)
+    var obstaPotents = Map.GetUsedCellsByItem((int)MetaCell.OBSTACLE);
+    var obstas = GetPercentageOfList(obstaPotents, ObstacleFillPercentage);
+    PackedScene obstaScene = ResourceLoader.Load("res://scenes/hazards/Obstacle.tscn") as PackedScene;
+    foreach (Vector3 loc in obstas)
     {
-      item.QueueFree();
+      var d = obstaScene.Instantiate() as Node3D;
+      d.Position = loc + new Vector3(0.5f, 0f, 0.5f);
+      AddChild(d);
     }
-  }
 
-  private void GenerateDestructibles()
-  {
-    int destructibleFillPercent = (int)GetMeta("DestructibleFillPercent");
-
-    var destructibles = GetNode<Node3D>("%RandomDestructible");
-    var allChildren = destructibles.GetChildren();
-
-    var hideChildren = PercentageOfList(allChildren, destructibleFillPercent);
-
-    foreach (var item in hideChildren)
-    {
-      item.QueueFree();
-    }
   }
 }
