@@ -44,7 +44,7 @@ public partial class Level : Node
     Mesh obsta = Map.MeshLibrary.GetItemMesh((int)MetaCell.OBSTACLE);
     for (int i = 0; i < obsta.GetSurfaceCount(); i++)
       obsta.SurfaceSetMaterial(i, mat);
-    Map.MeshLibrary.SetItemMesh((int)MetaCell.OBSTACLE, destru);
+    Map.MeshLibrary.SetItemMesh((int)MetaCell.OBSTACLE, obsta);
   }
 
   private IEnumerable<T> GetPercentageOfList <[MustBeVariant] T> (Godot.Collections.Array<T> list, float percentage)
