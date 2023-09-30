@@ -27,4 +27,22 @@ public static class PlayerProfileExt
 
     return "";
   }
+
+  public static Dictionary<string, List<InputEvent>> AsInputEvents (this Dictionary<string, List<ControlBinding>> bindings)
+  {
+    Dictionary<string, List<InputEvent>> events = new ();
+
+    foreach (string name in bindings.Keys)
+    {
+      List<ControlBinding> bindingsList = bindings[name];
+      List<InputEvent> eventsList = new ();
+
+      foreach (ControlBinding bind in bindingsList)
+        eventsList.Add(bind.AsInputEvent());
+        
+      events.Add(name, eventsList);
+    }
+
+    return events;
+  }
 }
