@@ -44,33 +44,33 @@ public partial class PlayerProfileManager : SingletonNode
       {
         "move_up",
         new List<ControlBinding> {
-          new ControlBinding { ControlType = typeof(InputEventKey), ControlIndex = (int)Key.W },
-          new ControlBinding { ControlType = typeof(InputEventJoypadMotion), ControlIndex = (int)JoyAxis.LeftY, ControlDirection = -1 },
-          new ControlBinding { ControlType = typeof(InputEventJoypadButton), ControlIndex = (int)JoyButton.DpadUp },
+          new () { ControlType = typeof(InputEventKey), ControlIndex = (int)Key.W },
+          new () { ControlType = typeof(InputEventJoypadMotion), ControlIndex = (int)JoyAxis.LeftY, ControlDirection = -1 },
+          new () { ControlType = typeof(InputEventJoypadButton), ControlIndex = (int)JoyButton.DpadUp },
         }
       },
       {
         "move_down",
         new List<ControlBinding> {
-          new ControlBinding { ControlType = typeof(InputEventKey), ControlIndex = (int)Key.S },
-          new ControlBinding { ControlType = typeof(InputEventJoypadMotion), ControlIndex = (int)JoyAxis.LeftY, ControlDirection = 1 },
-          new ControlBinding { ControlType = typeof(InputEventJoypadButton), ControlIndex = (int)JoyButton.DpadDown },
+          new () { ControlType = typeof(InputEventKey), ControlIndex = (int)Key.S },
+          new () { ControlType = typeof(InputEventJoypadMotion), ControlIndex = (int)JoyAxis.LeftY, ControlDirection = 1 },
+          new () { ControlType = typeof(InputEventJoypadButton), ControlIndex = (int)JoyButton.DpadDown },
         }
       },
       {
         "move_left",
         new List<ControlBinding> {
-          new ControlBinding { ControlType = typeof(InputEventKey), ControlIndex = (int)Key.A },
-          new ControlBinding { ControlType = typeof(InputEventJoypadMotion), ControlIndex = (int)JoyAxis.LeftX, ControlDirection = -1 },
-          new ControlBinding { ControlType = typeof(InputEventJoypadButton), ControlIndex = (int)JoyButton.DpadLeft },
+          new () { ControlType = typeof(InputEventKey), ControlIndex = (int)Key.A },
+          new () { ControlType = typeof(InputEventJoypadMotion), ControlIndex = (int)JoyAxis.LeftX, ControlDirection = -1 },
+          new () { ControlType = typeof(InputEventJoypadButton), ControlIndex = (int)JoyButton.DpadLeft },
         }
       },
       {
         "move_right",
         new List<ControlBinding> {
-          new ControlBinding { ControlType = typeof(InputEventKey), ControlIndex = (int)Key.D },
-          new ControlBinding { ControlType = typeof(InputEventJoypadMotion), ControlIndex = (int)JoyAxis.LeftX, ControlDirection = 1 },
-          new ControlBinding { ControlType = typeof(InputEventJoypadButton), ControlIndex = (int)JoyButton.DpadRight },
+          new () { ControlType = typeof(InputEventKey), ControlIndex = (int)Key.D },
+          new () { ControlType = typeof(InputEventJoypadMotion), ControlIndex = (int)JoyAxis.LeftX, ControlDirection = 1 },
+          new () { ControlType = typeof(InputEventJoypadButton), ControlIndex = (int)JoyButton.DpadRight },
         }
       }
     };
