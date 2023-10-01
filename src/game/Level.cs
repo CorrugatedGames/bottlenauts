@@ -19,7 +19,6 @@ public partial class Level : Node
     MatchSettingsState.GeneratePlayerBindings();
     GenerateHazards();
     SetLevelTheme(Theme);
-    HideHelperCells();
   }
 
   public void SetLevelTheme (LevelTheme theme)
@@ -105,22 +104,6 @@ public partial class Level : Node
         } break;
       }
     }
-  }
-
-  // this fn may be redundant
-  private void HideHelperCells ()
-  {
-    Material mat = Load("res://assets/textures/transparent.mat.tres") as Material;
-    
-    Mesh destru = Map.MeshLibrary.GetItemMesh((int)MetaCell.RANDOM_DESTRUCTIBLE);
-    for (int i = 0; i < destru.GetSurfaceCount(); i++)
-      destru.SurfaceSetMaterial(i, mat);
-    Map.MeshLibrary.SetItemMesh((int)MetaCell.RANDOM_DESTRUCTIBLE, destru);
-
-    Mesh obsta = Map.MeshLibrary.GetItemMesh((int)MetaCell.RANDOM_OBSTACLE);
-    for (int i = 0; i < obsta.GetSurfaceCount(); i++)
-      obsta.SurfaceSetMaterial(i, mat);
-    Map.MeshLibrary.SetItemMesh((int)MetaCell.RANDOM_OBSTACLE, obsta);
   }
 
   private IEnumerable<T> GetPercentageOfList <[MustBeVariant] T> (Godot.Collections.Array<T> list, float percentage)
