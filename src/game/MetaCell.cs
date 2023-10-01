@@ -1,5 +1,15 @@
 public enum MetaCell
 {
-  DESTRUCTIBLE = 0,
-  OBSTACLE = 1,
+  RANDOM_DESTRUCTIBLE = 0,
+  RANDOM_OBSTACLE = 1,
+
+  PERMA_DESTRUCTIBLE = 2,
+  PERMA_OBSTACLE = 3,
+
+  PILLAR = 4,
+  WALL = 5,
+  FLOOR = 6,
+  RAMP = 7,
+
+  CELL_COUNT,
 }
