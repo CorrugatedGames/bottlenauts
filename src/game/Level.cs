@@ -1,7 +1,8 @@
+using System.Linq;
+
 public partial class Level : Node
 {
   [Export] LevelTheme Theme = null;
-
 
   public Camera3D Camera { get; private set; }
   public GridMap Map { get; private set; }
@@ -15,6 +16,7 @@ public partial class Level : Node
     Map = GetNode("GridMap") as GridMap;
     Camera = GetNode("Camera") as Camera3D;
 
+    MatchSettingsState.GeneratePlayerBindings();
     GenerateHazards();
     SetLevelTheme(Theme);
     HideHelperCells();
@@ -26,25 +28,99 @@ public partial class Level : Node
       return;
 
     Theme = theme;
-    Map.MeshLibrary = Theme.MeshLibrary;
+    SetMeshLibrary(theme);
     Camera.Environment = Theme.Environment;
 
     // assign material overrides to all child nodes in group Characters
   }
 
+  void OverwriteGridMapCell (Vector3I cell, MeshLibrary meshlib, string cellType, int count)
+  {
+    int orientation = Map.GetCellItemOrientation(cell);
+    if (orientation == -1)
+    {
+      Logger.Warning($"GridMap cell at { cell.X } , { cell.Y } , { cell.Z } is empty, unable to overwrite");
+      return;
+    }
+
+    string name = $"{cellType}{(count > 1 ? new Random().Next(count) : 0)}";
+    int item = meshlib.FindItemByName(name);
+    if (item == -1)
+    {
+      Logger.Warning($"Mesh library {meshlib.ResourceName} does not contain item with name {name}, unable to overwrite");
+      return;
+    }
+
+    Map.SetCellItem(cell, item, orientation);
+  }
+
+  void SetMeshLibrary (LevelTheme theme)
+  { // todo(jam): make sure this fn is getting called lmao
+    MeshLibrary meshlib = theme.MeshLibrary;
+    int floorTileCount = theme.FloorTileCount;
+    int wallTileCount = theme.WallTileCount;
+    int pillarTileCount = theme.PillarTileCount;
+    int rampTileCount = theme.RampTileCount;
+
+    var allCells = new Godot.Collections.Array<Vector3I> [(int)MetaCell.CELL_COUNT];
+    for (int cellIdx = 0; cellIdx < (int)MetaCell.CELL_COUNT; cellIdx++)
+      allCells[cellIdx] = Map.GetUsedCellsByItem(cellIdx);
+
+    Map.MeshLibrary = meshlib;
+
+    for (int cellIdx = 0; cellIdx < (int)MetaCell.CELL_COUNT; cellIdx++)
+    {
+      var cells = allCells[cellIdx];
+
+      switch (cellIdx)
+      {
+        case (int)MetaCell.FLOOR:
+        {
+          foreach (var cell in cells)
+            OverwriteGridMapCell(cell, meshlib, "floor", floorTileCount);
+        } break;
+
+        case (int)MetaCell.WALL:
+        {
+          foreach (var cell in cells)
+            OverwriteGridMapCell(cell, meshlib, "wall", wallTileCount);
+        } break;
+
+        case (int)MetaCell.PILLAR:
+        {
+          foreach (var cell in cells)
+            OverwriteGridMapCell(cell, meshlib, "pillar", pillarTileCount);
+        } break;
+
+        case (int)MetaCell.RAMP:
+        {
+          foreach (var cell in cells)
+            OverwriteGridMapCell(cell, meshlib, "ramp", rampTileCount);
+        } break;
+
+        default:
+        {
+          foreach (var cell in cells)
+            Map.SetCellItem(cell, -1);
+        } break;
+      }
+    }
+  }
+
+  // this fn may be redundant
   private void HideHelperCells ()
   {
     Material mat = Load("res://assets/textures/transparent.mat.tres") as Material;
     
-    Mesh destru = Map.MeshLibrary.GetItemMesh((int)MetaCell.DESTRUCTIBLE);
+    Mesh destru = Map.MeshLibrary.GetItemMesh((int)MetaCell.RANDOM_DESTRUCTIBLE);
     for (int i = 0; i < destru.GetSurfaceCount(); i++)
       destru.SurfaceSetMaterial(i, mat);
-    Map.MeshLibrary.SetItemMesh((int)MetaCell.DESTRUCTIBLE, destru);
+    Map.MeshLibrary.SetItemMesh((int)MetaCell.RANDOM_DESTRUCTIBLE, destru);
 
-    Mesh obsta = Map.MeshLibrary.GetItemMesh((int)MetaCell.OBSTACLE);
+    Mesh obsta = Map.MeshLibrary.GetItemMesh((int)MetaCell.RANDOM_OBSTACLE);
     for (int i = 0; i < obsta.GetSurfaceCount(); i++)
       obsta.SurfaceSetMaterial(i, mat);
-    Map.MeshLibrary.SetItemMesh((int)MetaCell.OBSTACLE, obsta);
+    Map.MeshLibrary.SetItemMesh((int)MetaCell.RANDOM_OBSTACLE, obsta);
   }
 
   private IEnumerable<T> GetPercentageOfList <[MustBeVariant] T> (Godot.Collections.Array<T> list, float percentage)
@@ -57,25 +133,29 @@ public partial class Level : Node
 
   private void GenerateHazards ()
   {
-    var destruPotents = Map.GetUsedCellsByItem((int)MetaCell.DESTRUCTIBLE);
-    var destrus = GetPercentageOfList(destruPotents, DestructibleFillPercentage);
     PackedScene destruScene = ResourceLoader.Load("res://scenes/hazards/Destructible.tscn") as PackedScene;
+    PackedScene obstaScene = ResourceLoader.Load("res://scenes/hazards/Obstacle.tscn") as PackedScene;
+
+    var destruPotents = Map.GetUsedCellsByItem((int)MetaCell.RANDOM_DESTRUCTIBLE);
+    var destruPermas = Map.GetUsedCellsByItem((int)MetaCell.PERMA_DESTRUCTIBLE);
+    var destrus = destruPermas.Concat(GetPercentageOfList(destruPotents, DestructibleFillPercentage));
     foreach (Vector3 loc in destrus)
     {
       var d = destruScene.Instantiate() as Node3D;
+      d.AddToGroup("Destru");
       d.Position = loc + new Vector3(0.5f, 0f, 0.5f);
       AddChild(d);
     }
 
-    var obstaPotents = Map.GetUsedCellsByItem((int)MetaCell.OBSTACLE);
-    var obstas = GetPercentageOfList(obstaPotents, ObstacleFillPercentage);
-    PackedScene obstaScene = ResourceLoader.Load("res://scenes/hazards/Obstacle.tscn") as PackedScene;
+    var obstaPotents = Map.GetUsedCellsByItem((int)MetaCell.RANDOM_OBSTACLE);
+    var obstaPermas = Map.GetUsedCellsByItem((int)MetaCell.PERMA_OBSTACLE);
+    var obstas = obstaPermas.Concat(GetPercentageOfList(obstaPotents, ObstacleFillPercentage));
     foreach (Vector3 loc in obstas)
     {
-      var d = obstaScene.Instantiate() as Node3D;
-      d.Position = loc + new Vector3(0.5f, 0f, 0.5f);
-      AddChild(d);
+      var o = obstaScene.Instantiate() as Node3D;
+      o.AddToGroup("Obsta");
+      o.Position = loc + new Vector3(0.5f, 0f, 0.5f);
+      AddChild(o);
     }
-
   }
 }
