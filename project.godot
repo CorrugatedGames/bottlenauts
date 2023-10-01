@@ -24,6 +24,8 @@ Audio="*res://src/autoload/Audio.cs"
 Graphics="*res://src/autoload/Graphics.cs"
 MatchSettingsState="*res://src/autoload/MatchSettingsState.cs"
 PlayerProfileManager="*res://src/autoload/PlayerProfileManager.cs"
+MPInput="*res://addons/mp-input/MPInput.cs"
+MPInputMap="*res://addons/mp-input/MPInputMap.cs"
 
 [display]
 
@@ -34,6 +36,10 @@ window/size/resizable=false
 [dotnet]
 
 project/assembly_name="Bottlenauts"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/mp-input/plugin.cfg")
 
 [input]
 
