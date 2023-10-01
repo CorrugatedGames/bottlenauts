@@ -5,8 +5,9 @@ public partial class Graphics : Node
   public override void _Ready()
   {
     Logger.Info("Graphics signals initializing...");
-    Settings.Connect<int, int>(Settings.SignalName.ResolutionChanged, (width, height) => OnResolutionChanged(width, height));
-    Settings.Connect<int>(Settings.SignalName.DisplayChanged, (display) => OnDisplayChanged(display));
+
+    Settings.Instance.ResolutionChanged += (width, height) => OnResolutionChanged(width, height);
+    Settings.Instance.DisplayChanged += (display) => OnDisplayChanged(display);
 
     OnResolutionChanged(Settings.Graphics.Resolution.X, Settings.Graphics.Resolution.Y);
     OnDisplayChanged((int)Settings.Graphics.Display);

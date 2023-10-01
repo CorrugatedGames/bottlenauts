@@ -52,6 +52,6 @@ public partial class PauseLayer : ActiveCanvasLayer
 
   void OnExitButtonPressed ()
   {
-	  SignalBus.EmitSignal(SignalBus.SignalName.GameExit);
+	  SignalBus.Instance.EmitSignal(SignalBus.SignalName.GameExit);
   }
 }

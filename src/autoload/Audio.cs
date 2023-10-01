@@ -38,7 +38,8 @@ public partial class Audio : Node
       OnVolumeChanged(i, volume);
     }
 
-    Settings.Connect<int, int>(Settings.SignalName.VolumeChanged, (bus, volume) => OnVolumeChanged(bus, volume));
+    Settings.Instance.VolumeChanged += (bus, volume) =>  OnVolumeChanged(bus, volume);
+
     Logger.Info("Audio signals initialized!");
   }
 

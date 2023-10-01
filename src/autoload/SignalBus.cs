@@ -7,6 +7,8 @@ public partial class SignalBus : SingletonNode
 
   #endregion
 
+  public static SignalBus Instance => SelfNode.GetNode("/root/SignalBus") as SignalBus;
+
   public override void _EnterTree()
   {
     base._EnterTree();

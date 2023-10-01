@@ -21,18 +21,26 @@ public partial class GraphicsSettingsContainer : ScrollContainer
     Display.Select((int)Settings.Graphics.Display);
   }
 
-  public void _on_display_size_item_selected(int index)
+  public void _on_display_size_item_selected (int index)
   {
-    Settings.EmitSignal(
+    // Settings.Instance.EmitSignal(Settings.SignalName.ResolutionChanged, Settings.Instance.Graphics.Resolutions[index].X);
+
+    // Settings.EmitSignal(
+    //   Settings.SignalName.ResolutionChanged,
+    //   Settings.Graphics.Resolutions[index].X,
+    //   Settings.Graphics.Resolutions[index].Y
+    // );
+
+    Settings.Instance.EmitSignal(
       Settings.SignalName.ResolutionChanged,
       Settings.Graphics.Resolutions[index].X,
       Settings.Graphics.Resolutions[index].Y
     );
   }
 
-  public void _on_display_type_item_selected(int index)
+  public void _on_display_type_item_selected (int index)
   {
-    Settings.EmitSignal(
+    Settings.Instance.EmitSignal(
       Settings.SignalName.DisplayChanged,
       index
     );

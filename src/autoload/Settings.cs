@@ -68,4 +68,6 @@ public partial class Settings : SingletonNode
     cfg.Save(SETTINGS_FILE);
     Logger.Info("Saved config file!");
   }
+
+  public static Settings Instance = SelfNode.GetNode("/root/Settings") as Settings;
 }

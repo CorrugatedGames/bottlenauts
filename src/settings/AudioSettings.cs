@@ -16,8 +16,8 @@ public sealed class AudioSettings : ISettingsCategory
 
       int volume = (int)cfg.GetValue(category, prop.Name);
       int bus = AudioServer.GetBusIndex(prop.Name.Replace("Volume", ""));
-
-      Settings.EmitSignal(Settings.SignalName.VolumeChanged, bus, volume);
+      
+      Settings.Instance.EmitSignal(Settings.SignalName.VolumeChanged, bus, volume);
 
       switch (prop.Name)
       {

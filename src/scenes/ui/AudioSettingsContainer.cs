@@ -21,7 +21,8 @@ public partial class AudioSettingsContainer : ScrollContainer
     SFXVolume.Slider.ValueChanged += OnSFXVolumeChanged;
   }
 
-  void ChangeVolume (int volume, string bus) => Settings.EmitSignal(Settings.SignalName.VolumeChanged, AudioServer.GetBusIndex(bus), volume);
+  void ChangeVolume (int volume, string bus) =>
+    Settings.Instance.EmitSignal(Settings.SignalName.VolumeChanged, AudioServer.GetBusIndex(bus), volume);
 
   void OnMasterVolumeChanged (double volume) => ChangeVolume((int)volume, "Master");
   void OnMusicVolumeChanged (double volume) => ChangeVolume((int)volume, "BGM");
