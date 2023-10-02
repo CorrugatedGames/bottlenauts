@@ -17,13 +17,13 @@ public partial class JoinButton : Button
     MatchSettingsState settings = GetNode<MatchSettingsState>("/root/MatchSettingsState");
     int position = (int)GetMeta("Position");
 
-    var availableColors = settings.AllColors.Except(settings.AlchemistColorsNotEmpty).ToArray();
-    var newColor = availableColors.First();
+    // var availableColors = settings.AllColors.Except(settings.AlchemistColorsNotEmpty).ToArray();
+    // var newColor = availableColors.First();
 
-    settings.ChangePlayerColor(position, newColor);
+    // settings.ChangePlayerColor(position, newColor);
 
     GetNode($"%Player{position}").GetNode<CanvasItem>("ChoiceJoin").Hide();
     GetNode($"%Player{position}").GetNode<CanvasItem>("ChoiceVisible").Show();
-    GetNode<RichTextLabel>($"%CharName{position}").Text = newColor.AsAlchemist().Centered();
+    // GetNode<RichTextLabel>($"%CharName{position}").Text = newColor.AsAlchemist().Centered();
   }
 }

@@ -15,7 +15,7 @@ public partial class LeaveButton : Button
     MatchSettingsState settings = GetNode<MatchSettingsState>("/root/MatchSettingsState");
     int position = (int)GetMeta("Position");
 
-    settings.ChangePlayerColor(position, AlchemistColor.Empty);
+    // settings.ChangePlayerColor(position, AlchemistColor.Empty);
 
     GetNode("%Player" + position).GetNode<CanvasItem>("ChoiceVisible").Hide();
     GetNode("%Player" + position).GetNode<CanvasItem>("ChoiceJoin").Show();

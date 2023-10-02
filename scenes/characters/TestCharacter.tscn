@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dkrb7ysjs45yv"]
+[gd_scene load_steps=15 format=3 uid="uid://dkrb7ysjs45yv"]
 
 [ext_resource type="Script" path="res://src/Character.cs" id="1_fupgx"]
 
@@ -220,6 +220,18 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_fbl31")
 
+[sub_resource type="Shader" id="Shader_gam2l"]
+code = "shader_type spatial;
+
+void fragment() {
+	// Place fragment code here.
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7jnig"]
+render_priority = 0
+shader = SubResource("Shader_gam2l")
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vyo7c"]
 radius = 0.2
 height = 0.9
@@ -235,6 +247,7 @@ script = ExtResource("1_fupgx")
 [node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_0jup8")
 skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_7jnig")
 
 [node name="Shape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
