@@ -12,11 +12,11 @@ public enum GameMode
 
 public enum GameRounds
 {
-  One = 1,
-  Three = 3,
-  Five = 5,
-  Seven = 7,
-  Ten = 10
+  VeryShort = 1,
+  Short = 3,
+  Normal = 5,
+  Long = 7,
+  VeryLong = 10
 }
 
 public enum AlchemistColor
