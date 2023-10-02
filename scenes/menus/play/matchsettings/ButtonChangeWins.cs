@@ -2,11 +2,11 @@ public partial class ButtonChangeWins : Button
 {
 
   private GameRounds[] gameModes = new GameRounds[] {
-    GameRounds.One,
-    GameRounds.Three,
-    GameRounds.Five,
-    GameRounds.Seven,
-    GameRounds.Ten
+    GameRounds.VeryShort,
+    GameRounds.Short,
+    GameRounds.Normal,
+    GameRounds.Long,
+    GameRounds.VeryLong
   };
 
   // Called when the node enters the scene tree for the first time.
@@ -62,19 +62,19 @@ public partial class ButtonChangeWins : Button
 
     switch (settings.GameRounds)
     {
-      case GameRounds.One:
+      case GameRounds.VeryShort:
         Text = "Instant Match\n1 Point";
         break;
-      case GameRounds.Three:
+      case GameRounds.Short:
         Text = "Quick Match\n3 Points";
         break;
-      case GameRounds.Five:
+      case GameRounds.Normal:
         Text = "Normal Match\n5 Points";
         break;
-      case GameRounds.Seven:
+      case GameRounds.Long:
         Text = "Long Match\n7 Points";
         break;
-      case GameRounds.Ten:
+      case GameRounds.VeryLong:
         Text = "Epic Match\n10 Points";
         break;
     }

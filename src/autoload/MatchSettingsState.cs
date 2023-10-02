@@ -35,7 +35,7 @@ public enum GameRounds
 public partial class MatchSettingsState : SingletonNode
 {
   public GameMode GameMode { get; set; } = GameMode.LastManStanding;
-  public GameRounds GameRounds { get; set; } = GameRounds.Five;
+  public GameRounds GameRounds { get; set; } = GameRounds.Normal;
 
   const int MAX_PLAYER_COUNT = 8;
   public BNPlayer [] Players { get; private set; }
