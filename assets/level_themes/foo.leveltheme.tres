@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="LevelTheme" load_steps=8 format=3 uid="uid://c3r3oxv0gaaih"]
+
+[ext_resource type="MeshLibrary" uid="uid://bqnecwyxaaf5m" path="res://assets/foo.meshlib.tres" id="1_lq34g"]
+[ext_resource type="Script" path="res://src/game/LevelTheme.cs" id="2_fsu5q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fora7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gccxx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xjwn6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hfsvf"]
+
+[sub_resource type="Environment" id="Environment_c0nru"]
+
+[resource]
+script = ExtResource("2_fsu5q")
+Name = "Test"
+MeshLibrary = ExtResource("1_lq34g")
+FloorTileCount = 2
+WallTileCount = 3
+PillarTileCount = 1
+RampTileCount = 1
+Environment = SubResource("Environment_c0nru")
+CharacterMaterialOverrides = Array[ShaderMaterial]([SubResource("ShaderMaterial_fora7"), SubResource("ShaderMaterial_gccxx"), SubResource("ShaderMaterial_xjwn6"), SubResource("ShaderMaterial_hfsvf")])
