@@ -1,7 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://ba1q3fp578c67"]
+[gd_scene load_steps=3 format=3 uid="uid://ba1q3fp578c67"]
 
 [ext_resource type="PackedScene" uid="uid://cwt0hslnfabyj" path="res://assets/models/LevelDecorativeOuter.glb" id="1_we3xm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3xj12"]
 
 [node name="Obstacle" type="Node3D"]
 
 [node name="LevelDecorativeOuter" parent="." instance=ExtResource("1_we3xm")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelDecorativeOuter"]
+collision_layer = 65536
+collision_mask = 255
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelDecorativeOuter/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_3xj12")

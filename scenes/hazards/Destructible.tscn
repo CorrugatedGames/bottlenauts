@@ -1,7 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvw0j48q5vhu"]
+[gd_scene load_steps=3 format=3 uid="uid://bvw0j48q5vhu"]
 
 [ext_resource type="PackedScene" uid="uid://cx2tnwhclf1eb" path="res://assets/models/Explodable.glb" id="1_5fdji"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v8tmh"]
 
 [node name="Destructible" type="Node3D"]
 
 [node name="Explodable" parent="." instance=ExtResource("1_5fdji")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Explodable"]
+collision_layer = 65536
+collision_mask = 255
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Explodable/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_v8tmh")

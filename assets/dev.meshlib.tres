@@ -302,6 +302,7 @@ image = SubResource("Image_2rve4")
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_wa55s"]
 height = 1.0
+>>>>>>> bc696ebcc5ad8f9aef76a3cd1ad7378a153d5faf
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ais2"]
 resource_name = "Material.002"
@@ -380,6 +381,7 @@ data = {
 image = SubResource("Image_tsc0w")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iwj5g"]
+>>>>>>> bc696ebcc5ad8f9aef76a3cd1ad7378a153d5faf
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ysv5d"]
 resource_name = "Material.002"
@@ -499,6 +501,7 @@ image = SubResource("Image_hmq0b")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2s8u3"]
 points = PackedVector3Array(0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 0, -0.5, -0.5, 0, 0.5, -0.5, 1, 0.5, -0.5, 1, -0.5)
+>>>>>>> bc696ebcc5ad8f9aef76a3cd1ad7378a153d5faf
 
 [resource]
 item/0/name = "_DESTRUCTABLE_RANDOM"
