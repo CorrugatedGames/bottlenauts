@@ -1,13 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvmaftk0nfeg6"]
+[gd_scene load_steps=5 format=3 uid="uid://bvmaftk0nfeg6"]
 
 [ext_resource type="Script" path="res://src/game/Level.cs" id="1_p37mg"]
-
 [ext_resource type="Resource" uid="uid://c3r3oxv0gaaih" path="res://assets/level_themes/foo.leveltheme.tres" id="2_nb344"]
 [ext_resource type="PackedScene" uid="uid://dkrb7ysjs45yv" path="res://scenes/characters/TestCharacter.tscn" id="2_s7o5o"]
 [ext_resource type="MeshLibrary" uid="uid://d30ebksdxa3we" path="res://assets/dev.meshlib.tres" id="3_vpsve"]
 
 [node name="TestLevel4" type="Node3D"]
 script = ExtResource("1_p37mg")
+Theme = ExtResource("2_nb344")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 15, -7)
