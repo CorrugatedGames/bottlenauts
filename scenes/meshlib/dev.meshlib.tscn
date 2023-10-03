@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cy0t4tr7yml0y"]
+[gd_scene load_steps=27 format=3 uid="uid://cy0t4tr7yml0y"]
 
 [ext_resource type="Material" uid="uid://bdxi4yb3apdmh" path="res://assets/textures/dev/devDestruPerma.mat.res" id="1_d6my4"]
 [ext_resource type="ArrayMesh" uid="uid://46enel6qey5y" path="res://assets/meshes/dev/devCube.res" id="1_lfe4a"]
@@ -160,6 +160,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_kbs44")
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wa55s"]
+height = 1.0
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7ais2"]
 resource_name = "Material.002"
 cull_mode = 2
@@ -223,6 +226,8 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_py0pk")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iwj5g"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ysv5d"]
 resource_name = "Material.002"
@@ -288,6 +293,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_35iq7")
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2s8u3"]
+points = PackedVector3Array(0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 0, -0.5, -0.5, 0, 0.5, -0.5, 1, 0.5, -0.5, 1, -0.5)
+
 [node name="DevMeshLib" type="Node3D"]
 
 [node name="_DESTRUCTABLE_RANDOM" type="MeshInstance3D" parent="."]
@@ -310,14 +318,49 @@ mesh = SubResource("ArrayMesh_c8cer")
 transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 8, 0, 0)
 mesh = ExtResource("7_gf6ae")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Pillar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+collision_layer = 65536
+collision_mask = 458751
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pillar/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_wa55s")
+
 [node name="Wall" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 6, 0, 0)
 mesh = SubResource("ArrayMesh_5nkk8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+collision_layer = 65536
+collision_mask = 458751
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_iwj5g")
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 4, 0, 0)
 mesh = SubResource("ArrayMesh_1ltol")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+collision_layer = 65536
+collision_mask = 458751
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_iwj5g")
+
 [node name="Ramp" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 10, 0, 0)
 mesh = ExtResource("11_klih7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ramp"]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, -0.667, -0.167)
+collision_layer = 65536
+collision_mask = 458751
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ramp/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_2s8u3")
