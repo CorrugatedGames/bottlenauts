@@ -54,7 +54,7 @@ public partial class Level : Node
   }
 
   void SetMeshLibrary (LevelTheme theme)
-  { // todo(jam): make sure this fn is getting called lmao
+  {
     MeshLibrary meshlib = theme.MeshLibrary;
     int floorTileCount = theme.FloorTileCount;
     int wallTileCount = theme.WallTileCount;
