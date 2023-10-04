@@ -8,7 +8,7 @@
 [ext_resource type="Material" uid="uid://bhidby67w1q1q" path="res://assets/textures/dev/devObstaPerma.mat.res" id="6_1ggmv"]
 [ext_resource type="Texture2D" uid="uid://ckjb6ap3alo8f" path="res://assets/textures/dev/devWallFront.png" id="6_dxxnx"]
 [ext_resource type="ArrayMesh" uid="uid://46bpi33xo2w7" path="res://assets/meshes/dev/devCylinder.res" id="7_gf6ae"]
-[ext_resource type="ArrayMesh" uid="uid://mhqb1rmggfqn" path="res://assets/meshes/dev/devRamp.res" id="11_klih7"]
+[ext_resource type="ArrayMesh" uid="uid://c2xe6ouk5t5yh" path="res://assets/meshes/dev/devRamp.res" id="11_klih7"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_m8y0l"]
 _surfaces = [{
@@ -299,23 +299,23 @@ points = PackedVector3Array(0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 0, -0.5, -0.5, 0, 0
 [node name="DevMeshLib" type="Node3D"]
 
 [node name="_DESTRUCTABLE_RANDOM" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 0, 0, 0)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 0)
 mesh = ExtResource("1_lfe4a")
 
 [node name="_OBSTACLE_RANDOM" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 2, 0, 0)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 2, 0, 0)
 mesh = SubResource("ArrayMesh_qdh01")
 
 [node name="_DESTRUCTABLE_PERMA" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 0, 0, 2)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 2)
 mesh = SubResource("ArrayMesh_j2kx1")
 
 [node name="_OBSTACLE_PERMA" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 2, 0, 2)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 2, 0, 2)
 mesh = SubResource("ArrayMesh_c8cer")
 
 [node name="Pillar" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 8, 0, 0)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 8, 0, 0)
 mesh = ExtResource("7_gf6ae")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Pillar"]
@@ -328,7 +328,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CylinderShape3D_wa55s")
 
 [node name="Wall" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 6, 0, 0)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 6, 0, 0)
 mesh = SubResource("ArrayMesh_5nkk8")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Wall"]
@@ -341,7 +341,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_iwj5g")
 
 [node name="Floor" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 4, 0, 0)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 4, 0, 0)
 mesh = SubResource("ArrayMesh_1ltol")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
@@ -354,11 +354,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_iwj5g")
 
 [node name="Ramp" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 10, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
 mesh = ExtResource("11_klih7")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Ramp"]
-transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 0, -0.667, -0.167)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 collision_layer = 65536
 collision_mask = 458751
 
