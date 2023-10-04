@@ -9,32 +9,40 @@ public partial class Character : CharacterBody3D
     [Export]
     float Gravity = 9.8f;
 
-    Vector3 deltaVelocity = Vector3.Zero;
+    [Export(PropertyHint.Range, "1,8,1")]
+    int Team = 1;
 
-    PackedScene bombScene;
+    Vector3 DeltaVelocity = Vector3.Zero;
 
-    private DateTime placeBombCooldown = DateTime.Now;
+    PackedScene BombScene;
+
+    private DateTime PlaceBombCooldown = DateTime.Now;
+
+    private Vector3I CurrentPosition
+    {
+        get
+        {
+            return new Vector3I(
+                (int)Math.Floor(GlobalPosition.X),
+                (int)Math.Floor(GlobalPosition.Y),
+                (int)Math.Floor(GlobalPosition.Z)
+            );
+        }
+    }
 
     public override void _Ready()
     {
-        bombScene = ResourceLoader.Load("res://scenes/hazards/Bomb.tscn") as PackedScene;
+        BombScene = ResourceLoader.Load("res://scenes/hazards/Bomb.tscn") as PackedScene;
     }
 
     public override void _Input(InputEvent @event)
     {
         if (Input.IsActionPressed("place_bomb") && canPlaceBomb())
         {
-            PackedScene bombScene =
-                ResourceLoader.Load("res://scenes/hazards/Bomb.tscn") as PackedScene;
+            var d = BombScene.Instantiate() as Bomb;
+            d.team = Team;
 
-            var d = bombScene.Instantiate() as Node3D;
-
-            Vector3 loc = new Vector3(
-                (float)Math.Floor(GlobalPosition.X),
-                (float)Math.Floor(GlobalPosition.Y),
-                (float)Math.Floor(GlobalPosition.Z)
-            );
-            d.GlobalPosition = loc + new Vector3(0.5f, 0f, 0.5f);
+            d.GlobalPosition = CurrentPosition + new Vector3(0.5f, 0f, 0.5f);
             d.AddToGroup("Bomb");
             GetParent().GetNode("Bombs").AddChild(d);
 
@@ -44,33 +52,31 @@ public partial class Character : CharacterBody3D
 
     public override void _Process(double dt)
     {
-        deltaVelocity.X = deltaVelocity.Z = 0;
+        DeltaVelocity.X = DeltaVelocity.Z = 0;
 
         if (Input.IsActionPressed("move_up"))
-            deltaVelocity.X -= Input.GetActionStrength("move_up");
+            DeltaVelocity.X -= Input.GetActionStrength("move_up");
 
         if (Input.IsActionPressed("move_down"))
-            deltaVelocity.X += Input.GetActionStrength("move_down");
+            DeltaVelocity.X += Input.GetActionStrength("move_down");
 
         if (Input.IsActionPressed("move_right"))
-            deltaVelocity.Z -= Input.GetActionStrength("move_right");
+            DeltaVelocity.Z -= Input.GetActionStrength("move_right");
 
         if (Input.IsActionPressed("move_left"))
-            deltaVelocity.Z += Input.GetActionStrength("move_left");
+            DeltaVelocity.Z += Input.GetActionStrength("move_left");
     }
 
     public override void _PhysicsProcess(double dt)
     {
-        Vector3 updatedVelocity = Velocity;
-
         if (!IsOnFloor())
-            deltaVelocity.Y -= Gravity * (float)dt;
+            DeltaVelocity.Y -= Gravity * (float)dt;
         else
-            deltaVelocity.Y = 0;
+            DeltaVelocity.Y = 0;
 
         Vector2 deltaH =
-            new Vector2(deltaVelocity.X, deltaVelocity.Z).Normalized() * MaxHorizontalVelocity;
-        float deltaY = Mathf.Clamp(Velocity.Y + deltaVelocity.Y, -MaxVerticalVelocity, 0);
+            new Vector2(DeltaVelocity.X, DeltaVelocity.Z).Normalized() * MaxHorizontalVelocity;
+        float deltaY = Mathf.Clamp(Velocity.Y + DeltaVelocity.Y, -MaxVerticalVelocity, 0);
 
         Velocity = new Vector3(deltaH.X, deltaY, deltaH.Y);
 
@@ -79,11 +85,13 @@ public partial class Character : CharacterBody3D
 
     private bool canPlaceBomb()
     {
-        return DateTime.Now >= placeBombCooldown;
+        // TODO: Check if there is a bomb already placed at the current position, if so, bail
+
+        return DateTime.Now >= PlaceBombCooldown;
     }
 
     private void setBombCooldown()
     {
-        placeBombCooldown = DateTime.Now.AddSeconds(1);
+        PlaceBombCooldown = DateTime.Now.AddMilliseconds(500);
     }
 }

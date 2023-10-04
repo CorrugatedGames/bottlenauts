@@ -3,6 +3,8 @@ using System;
 
 public partial class Bomb : Node3D
 {
+    public int team { get; set; } = 1;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
