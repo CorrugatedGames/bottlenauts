@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/game/Level.cs" id="1_p37mg"]
 [ext_resource type="Resource" uid="uid://c3r3oxv0gaaih" path="res://assets/level_themes/foo.leveltheme.tres" id="2_nb344"]
 [ext_resource type="PackedScene" uid="uid://dkrb7ysjs45yv" path="res://scenes/characters/TestCharacter.tscn" id="2_s7o5o"]
-[ext_resource type="MeshLibrary" uid="uid://jdsn5fmmublq" path="res://assets/dev.meshlib.tres" id="3_vpsve"]
+[ext_resource type="MeshLibrary" uid="uid://d30ebksdxa3we" path="res://assets/dev.meshlib.tres" id="3_vpsve"]
 
 [node name="TestLevel4" type="Node3D"]
 script = ExtResource("1_p37mg")
@@ -31,3 +31,5 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 [node name="TestCharacter" parent="." instance=ExtResource("2_s7o5o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2, -5.5)
 collision_mask = 983294
+
+[node name="Bombs" type="Node" parent="."]
