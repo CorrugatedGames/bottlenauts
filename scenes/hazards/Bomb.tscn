@@ -10,10 +10,19 @@ script = ExtResource("1_amdi8")
 
 [node name="Model" parent="." instance=ExtResource("1_fundg")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Model"]
-collision_layer = 131072
-collision_mask = 255
+[node name="RigidBody3D" type="RigidBody3D" parent="Model"]
+collision_layer = 0
+collision_mask = 131327
+contact_monitor = true
+can_sleep = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Model/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Model/RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_v8tmh")
+
+[node name="Area3D" type="Area3D" parent="Model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Model/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_v8tmh")

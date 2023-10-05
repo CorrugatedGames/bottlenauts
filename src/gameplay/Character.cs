@@ -40,7 +40,7 @@ public partial class Character : CharacterBody3D
         if (Input.IsActionPressed("place_bomb") && canPlaceBomb())
         {
             var d = BombScene.Instantiate() as Bomb;
-            d.team = Team;
+            d.Team = Team;
 
             d.GlobalPosition = CurrentPosition + new Vector3(0.5f, 0f, 0.5f);
             d.AddToGroup("Bomb");
