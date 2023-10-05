@@ -15,6 +15,9 @@ public partial class Bomb : Node3D
     {
         area = GetNode<Node3D>("Model").GetNode<Area3D>("Area3D");
         physicsBody = GetNode<Node3D>("Model").GetNode<RigidBody3D>("RigidBody3D");
+
+        physicsBody.Freeze = true; // on bomb throw, set this to false so we can apply force to it
+
         prepareBoom();
     }
 
