@@ -17,9 +17,5 @@
 script = ExtResource("2_fsu5q")
 Name = "Test"
 MeshLibrary = ExtResource("1_lq34g")
-FloorTileCount = 2
-WallTileCount = 3
-PillarTileCount = 1
-RampTileCount = 1
 Environment = SubResource("Environment_c0nru")
 CharacterMaterialOverrides = Array[ShaderMaterial]([SubResource("ShaderMaterial_fora7"), SubResource("ShaderMaterial_gccxx"), SubResource("ShaderMaterial_xjwn6"), SubResource("ShaderMaterial_hfsvf")])
