@@ -1,6 +1,6 @@
 using System.Linq;
 
-public partial class Level : Node
+public partial class Level : Node3D
 {
   [Export] LevelTheme Theme = null;
 
