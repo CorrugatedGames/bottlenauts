@@ -39,7 +39,7 @@ project/assembly_name="Bottlenauts"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/bottlenauts-map-editor/plugin.cfg", "res://addons/mp-input/plugin.cfg")
+enabled=PackedStringArray("res://addons/mp-input/plugin.cfg")
 
 [input]
 
