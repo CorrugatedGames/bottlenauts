@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2pf65renxclk"]
+
+[ext_resource type="Script" path="res://src/gameplay/Explosion.cs" id="1_js8c4"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_g3h0r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7grg5"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.960784, 0.45098, 0, 0.501961)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v8tmh"]
+
+[node name="Explosion" type="Node3D"]
+script = ExtResource("1_js8c4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_g3h0r")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_7grg5")
+
+[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+collision_layer = 262144
+collision_mask = 655615
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_v8tmh")
+
+[connection signal="body_entered" from="MeshInstance3D/Area3D" to="." method="_on_area_3d_body_entered"]

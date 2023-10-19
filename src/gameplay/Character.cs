@@ -42,9 +42,10 @@ public partial class Character : CharacterBody3D
             var d = BombScene.Instantiate() as Bomb;
             d.Team = Team;
 
-            d.GlobalPosition = CurrentPosition + new Vector3(0.5f, 0f, 0.5f);
             d.AddToGroup("Bomb");
             GetParent().GetNode("Bombs").AddChild(d);
+
+            d.GlobalPosition = CurrentPosition + new Vector3(0.5f, 0f, 0.5f);
 
             setBombCooldown();
         }
@@ -93,5 +94,10 @@ public partial class Character : CharacterBody3D
     private void setBombCooldown()
     {
         PlaceBombCooldown = DateTime.Now.AddMilliseconds(500);
+    }
+
+    public void DieFromExplosion()
+    {
+        Print("I should be dead! Tee hee!");
     }
 }

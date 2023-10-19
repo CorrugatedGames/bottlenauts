@@ -13,8 +13,8 @@ public partial class Bomb : Node3D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        area = GetNode<Node3D>("Model").GetNode<Area3D>("Area3D");
-        physicsBody = GetNode<Node3D>("Model").GetNode<RigidBody3D>("RigidBody3D");
+        area = GetNode<Area3D>("Model/Area3D");
+        physicsBody = GetNode<RigidBody3D>("Model/RigidBody3D");
 
         physicsBody.Freeze = true; // on bomb throw, set this to false so we can apply force to it
 
@@ -50,7 +50,18 @@ public partial class Bomb : Node3D
 
     private void boom()
     {
-        Print("Boom!");
+        var ExplosionScene =
+            ResourceLoader.Load("res://scenes/hazards/Explosion.tscn") as PackedScene;
+        var explosion = ExplosionScene.Instantiate() as Explosion;
+        explosion.Team = Team;
+
+        explosion.AddToGroup("Explosion");
+        GetParent().GetParent().GetNode("Explosions").AddChild(explosion);
+
+        explosion.GlobalPosition = GlobalPosition;
+
         GetParent().RemoveChild(this);
+
+        QueueFree();
     }
 }

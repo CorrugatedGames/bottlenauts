@@ -1,17 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvw0j48q5vhu"]
+[gd_scene load_steps=4 format=3 uid="uid://bvw0j48q5vhu"]
 
 [ext_resource type="PackedScene" uid="uid://cx2tnwhclf1eb" path="res://assets/models/Explodable.glb" id="1_5fdji"]
+[ext_resource type="Script" path="res://src/gameplay/Destructible.cs" id="1_fodrs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v8tmh"]
 
-[node name="Destructible" type="Node3D"]
-
-[node name="Model" parent="." instance=ExtResource("1_5fdji")]
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Model"]
-collision_layer = 65536
+[node name="StaticBody3D" type="StaticBody3D"]
+collision_layer = 524288
 collision_mask = 255
+script = ExtResource("1_fodrs")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Model/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_v8tmh")
+
+[node name="Model" parent="." instance=ExtResource("1_5fdji")]

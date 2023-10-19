@@ -24,8 +24,8 @@ Audio="*res://src/autoload/Audio.cs"
 Graphics="*res://src/autoload/Graphics.cs"
 MatchSettingsState="*res://src/autoload/MatchSettingsState.cs"
 PlayerProfileManager="*res://src/autoload/PlayerProfileManager.cs"
-MPInputMap="*res://addons/mp-input/MPInputMap.cs"
 MPInput="*res://addons/mp-input/MPInput.cs"
+MPInputMap="*res://addons/mp-input/MPInputMap.cs"
 
 [display]
 
@@ -40,6 +40,10 @@ project/assembly_name="Bottlenauts"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/mp-input/plugin.cfg")
+
+[filesystem]
+
+import/fbx/enabled=false
 
 [input]
 
@@ -193,3 +197,4 @@ place_bomb={
 3d_physics/layer_17="Terrain"
 3d_physics/layer_18="Bombs"
 3d_physics/layer_19="Explosion"
+3d_physics/layer_20="Destructibles"
