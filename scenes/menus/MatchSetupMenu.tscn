@@ -1,0 +1,199 @@
+[gd_scene load_steps=3 format=3 uid="uid://hqpv6rq6jhnx"]
+
+[ext_resource type="PackedScene" uid="uid://dxotftlvnjgu8" path="res://scenes/menus/CharacterSelectPanel.tscn" id="1_8crna"]
+[ext_resource type="Script" path="res://src/menus/MatchSetupMenu.cs" id="1_lur22"]
+
+[node name="MatchSetup" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_lur22")
+
+[node name="CharacterSetup" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CharacterSetup"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 10.0
+mouse_filter = 2
+
+[node name="PlayerGridContainer1" type="GridContainer" parent="CharacterSetup/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+columns = 4
+
+[node name="0" parent="CharacterSetup/VBoxContainer/PlayerGridContainer1" instance=ExtResource("1_8crna")]
+layout_mode = 2
+
+[node name="1" parent="CharacterSetup/VBoxContainer/PlayerGridContainer1" instance=ExtResource("1_8crna")]
+layout_mode = 2
+
+[node name="2" parent="CharacterSetup/VBoxContainer/PlayerGridContainer1" instance=ExtResource("1_8crna")]
+layout_mode = 2
+
+[node name="3" parent="CharacterSetup/VBoxContainer/PlayerGridContainer1" instance=ExtResource("1_8crna")]
+layout_mode = 2
+
+[node name="PlayerGridContainer2" type="GridContainer" parent="CharacterSetup/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+columns = 4
+
+[node name="0" parent="CharacterSetup/VBoxContainer/PlayerGridContainer2" instance=ExtResource("1_8crna")]
+layout_mode = 2
+
+[node name="1" parent="CharacterSetup/VBoxContainer/PlayerGridContainer2" instance=ExtResource("1_8crna")]
+layout_mode = 2
+
+[node name="2" parent="CharacterSetup/VBoxContainer/PlayerGridContainer2" instance=ExtResource("1_8crna")]
+layout_mode = 2
+
+[node name="3" parent="CharacterSetup/VBoxContainer/PlayerGridContainer2" instance=ExtResource("1_8crna")]
+layout_mode = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="CharacterSetup"]
+layout_mode = 2
+size_flags_vertical = 6
+alignment = 1
+
+[node name="Container4" type="Container" parent="CharacterSetup/HFlowContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="MainMenuButton" type="Button" parent="CharacterSetup/HFlowContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "< Back to Main Menu"
+
+[node name="Container" type="Container" parent="CharacterSetup/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Container5" type="HBoxContainer" parent="CharacterSetup/HFlowContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CharacterSetup/HFlowContainer/Container5"]
+layout_mode = 2
+text = "How many players?   "
+
+[node name="PlayerCountSpinner" type="SpinBox" parent="CharacterSetup/HFlowContainer/Container5"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 2.0
+max_value = 8.0
+value = 4.0
+alignment = 1
+
+[node name="Container6" type="Container" parent="CharacterSetup/HFlowContainer"]
+custom_minimum_size = Vector2(44, 0)
+layout_mode = 2
+
+[node name="TeamToggleButton" type="CheckButton" parent="CharacterSetup/HFlowContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Team Battle?"
+
+[node name="Container2" type="Container" parent="CharacterSetup/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ToGameSetupButton" type="Button" parent="CharacterSetup/HFlowContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "To Game Setup >"
+
+[node name="Container3" type="Container" parent="CharacterSetup/HFlowContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="GameSetup" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 2.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GameSetup"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 10.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameSetup/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+
+[node name="GameModeSelectButton" type="OptionButton" parent="GameSetup/HBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LevelSelectButton" type="OptionButton" parent="GameSetup/HBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="ThemeSelectButton" type="OptionButton" parent="GameSetup/HBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GameSetup/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="ModifierListContainer" type="VBoxContainer" parent="GameSetup/HBoxContainer2/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HFlowContainer" type="HFlowContainer" parent="GameSetup"]
+layout_mode = 2
+size_flags_vertical = 6
+alignment = 1
+
+[node name="Container3" type="Container" parent="GameSetup/HFlowContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="ToCharacterSetupButton" type="Button" parent="GameSetup/HFlowContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "< Back to Character Setup"
+
+[node name="Container" type="Container" parent="GameSetup/HFlowContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="StartGameButton" type="Button" parent="GameSetup/HFlowContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Start Game!"
+
+[node name="Container4" type="Container" parent="GameSetup/HFlowContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2

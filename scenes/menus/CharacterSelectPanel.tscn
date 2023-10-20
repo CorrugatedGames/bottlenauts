@@ -1,0 +1,123 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxotftlvnjgu8"]
+
+[ext_resource type="Script" path="res://src/menus/CharacterSelectPanel.cs" id="1_j6c87"]
+
+[node name="CharacterSelectPanel" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_j6c87")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="PlayerNumberLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "PLAYER # "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NoPlayerControl" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="NoPlayerLabel" type="Label" parent="VBoxContainer/NoPlayerControl"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "No player yet!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InstructionsLabel" type="Label" parent="VBoxContainer/NoPlayerControl"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Press [Space] or (Xbox A) to join."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayerControl" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer2" type="HFlowContainer" parent="VBoxContainer/PlayerControl"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="PrevCharacterButton" type="Button" parent="VBoxContainer/PlayerControl/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = " < "
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PlayerControl/HBoxContainer2"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="InputLabel" type="Label" parent="VBoxContainer/PlayerControl/HBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CharacterLabel" type="Label" parent="VBoxContainer/PlayerControl/HBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Character: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TeamLabel" type="Label" parent="VBoxContainer/PlayerControl/HBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Team: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PlayerControl/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer/PlayerControl/HBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Profile:   "
+
+[node name="ProfileSelect" type="OptionButton" parent="VBoxContainer/PlayerControl/HBoxContainer2/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ReadyButton" type="CheckButton" parent="VBoxContainer/PlayerControl/HBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+text = "Ready?"
+
+[node name="Label" type="Label" parent="VBoxContainer/PlayerControl/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "press (Xbox X)
+to toggle ready"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextCharacterButton" type="Button" parent="VBoxContainer/PlayerControl/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = " > "
+
+[node name="Panel" type="Panel" parent="."]
+z_index = -1
+layout_mode = 2
+mouse_filter = 2
