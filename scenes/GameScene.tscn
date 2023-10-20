@@ -22,8 +22,6 @@ handle_input_locally = false
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
-[node name="GodCamera" type="Camera3D" parent="ViewportContainer/Viewport"]
-
 [node name="Audio" type="Node" parent="ViewportContainer/Viewport"]
 
 [node name="BGM" type="AudioStreamPlayer" parent="ViewportContainer/Viewport/Audio"]

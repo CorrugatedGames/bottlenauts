@@ -3,7 +3,6 @@ public partial class GameScene : Node
   #region Child nodes
 
   public SubViewport Viewport { get; private set; }
-  Camera3D GodCamera;
   AudioStreamPlayer PlayerBGM, PlayerSFX;
 
   #endregion
@@ -12,9 +11,13 @@ public partial class GameScene : Node
   {
     Viewport = GetNode("%Viewport") as SubViewport;
 
-    GodCamera = Viewport.GetNode("GodCamera") as Camera3D;
-
     PlayerBGM = Viewport.GetNode("Audio/BGM") as AudioStreamPlayer;
     PlayerSFX = Viewport.GetNode("Audio/SFX") as AudioStreamPlayer;
+
+    Level level = MatchSettingsState.Level;
+    level.Theme = MatchSettingsState.Theme;
+
+    Viewport.AddChild(level);
+    level.Camera.MakeCurrent();
   }
 }
