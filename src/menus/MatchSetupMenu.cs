@@ -30,9 +30,9 @@ public partial class MatchSetupMenu : Control
 
   public override void _EnterTree ()
   {
-    GetListFromDir(PlayerProfileManager.DIR_PATH, ref ProfileNames);
-    GetListFromDir("res://assets/levels/", ref LevelNames, true);
-    GetListFromDir("res://assets/level_themes/", ref LevelThemeNames, true);
+    GetListFromDir(PLAYER_PROFILE_DIRECTORY, ref ProfileNames);
+    GetListFromDir(LEVEL_DIRECTORY, ref LevelNames, true);
+    GetListFromDir(THEME_DIRECTORY, ref LevelThemeNames, true);
   }
 
   void GetListFromDir (string dirPath, ref List<string> list, bool allowRandom = false)
@@ -56,6 +56,7 @@ public partial class MatchSetupMenu : Control
     ToCharacterSetupButton = GetNode("%ToCharacterSetupButton") as Button;
     ToCharacterSetupButton.Pressed += () => SlideMenu(true);
     StartGameButton = GetNode("%StartGameButton") as Button;
+    StartGameButton.Pressed += StartGame;
 
     PlayerCountSpinner = GetNode("%PlayerCountSpinner") as SpinBox;
 
@@ -76,16 +77,19 @@ public partial class MatchSetupMenu : Control
     foreach (string gameModeName in Enum.GetNames(typeof(GameMode)))
       GameModeSelectButton.AddItem(gameModeName);
     GameModeSelectButton.Select(0);
+    GameModeSelectButton.ItemSelected += SelectGameMode;
 
     LevelSelectButton = GetNode("%LevelSelectButton") as OptionButton;
     foreach (string levelName in LevelNames)
       LevelSelectButton.AddItem(levelName); // todo(jam): eventually  add this is AddIconItem, with thumbnails!
     LevelSelectButton.Select(0);
+    LevelSelectButton.ItemSelected += SelectLevel;
 
     ThemeSelectButton = GetNode("%ThemeSelectButton") as OptionButton;
     foreach (string themeName in LevelThemeNames)
       ThemeSelectButton.AddItem(themeName); // todo(jam): eventually  add this is AddIconItem, with thumbnails!
     ThemeSelectButton.Select(0);
+    ThemeSelectButton.ItemSelected += SelectTheme;
 
     ModifierListContainer = GetNode("%ModifierListContainer") as VBoxContainer;
     foreach (string modifierName in Enum.GetNames(typeof(GameModifier)))
@@ -238,5 +242,23 @@ public partial class MatchSetupMenu : Control
       }
 
     ToGameSetupButton.Disabled = !playersReady;
+  }
+
+  void SelectGameMode (long idx) => MatchSettingsState.SetGameMode((GameMode)idx);
+  void SelectLevel (long idx) => MatchSettingsState.LevelName = LevelSelectButton.GetItemText((int)idx);
+  void SelectTheme (long idx) => MatchSettingsState.ThemeName = ThemeSelectButton.GetItemText((int)idx);
+
+  void StartGame ()
+  {
+    if (LevelSelectButton.Selected == 0) // if random
+      SelectLevel(new Random().NextInt64(1, LevelSelectButton.ItemCount));
+
+    if (ThemeSelectButton.Selected == 0)
+      SelectTheme(new Random().NextInt64(1, ThemeSelectButton.ItemCount));
+
+    MatchSettingsState.GeneratePlayerBindings();
+    MatchSettingsState.GenerateLevel();
+
+    GetTree().ChangeSceneToFile("res://scenes/GameScene.tscn");
   }
 }
