@@ -51,6 +51,7 @@ public partial class MatchSetupMenu : Control
     GameSetupContainer = GetNode("%GameSetup") as VBoxContainer;
 
     MainMenuButton = GetNode("%MainMenuButton") as Button;
+    MainMenuButton.Pressed += () => GetTree().ChangeSceneToFile("res://scenes/menus/TitleScreen.tscn");
     ToGameSetupButton = GetNode("%ToGameSetupButton") as Button;
     ToGameSetupButton.Pressed += () => SlideMenu(false);
     ToCharacterSetupButton = GetNode("%ToCharacterSetupButton") as Button;

@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://ligxtqfx5yww"]
+[gd_scene load_steps=2 format=3 uid="uid://cjo3m250veyp8"]
 
-[ext_resource type="Script" path="res://scenes/menus/titlescreen/TitleScreen.cs" id="3_vbtna"]
+[ext_resource type="Script" path="res://src/menus/TitleScreen.cs" id="1_vybec"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -9,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_vybec")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -59,11 +60,11 @@ size_flags_vertical = 3
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="play" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+[node name="LocalMultiplayer" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-text = "play the game. nerd."
-script = ExtResource("3_vbtna")
+text = "Local Multiplayer"
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -71,11 +72,11 @@ size_flags_vertical = 3
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="options" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2"]
+[node name="Options" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-text = "like, change your game options"
-script = ExtResource("3_vbtna")
+text = "Options"
 
 [node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -97,11 +98,11 @@ size_flags_vertical = 3
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="quit loser" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer4"]
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer4"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-text = "quit the game"
-script = ExtResource("3_vbtna")
+text = "Quit to Desktop"
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -137,7 +138,3 @@ the cooliest
 the coolieoliest
 
 this will just keep going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going and going"
-
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/play" to="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer/play" method="_on_pressed_play"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/options" to="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2/options" method="_on_pressed_options"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer4/quit loser" to="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer4/quit loser" method="_on_pressed_quit"]
