@@ -112,8 +112,8 @@ public partial class ProfilesSettingsContainer : ScrollContainer
     ProfileActive.Name = NameField.Text;
     ProfileActive.Deadzone = (float)LeftStickDeadzone.Value;
 
-    string testPath = $"{PlayerProfileManager.DIR_PATH}{ProfileActive.Name}.{PlayerProfileManager.FILE_EXTENSION}";
-    if (ProfileActive.Path != $"{PlayerProfileManager.DIR_PATH}{ProfileActive.Name}.{PlayerProfileManager.FILE_EXTENSION}")
+    string testPath = ProfileActive.Name.AsProfileFilePath();
+    if (ProfileActive.Path != ProfileActive.Name.AsProfileFilePath())
     {
       PlayerProfileManager.GetProfiles().Remove(oldName);
       DirAccess.RemoveAbsolute(ProfileActive.Path);
