@@ -2,7 +2,7 @@ using System.Linq;
 
 public partial class Level : Node3D
 {
-  [Export] LevelTheme Theme = null;
+  [Export] public LevelTheme Theme { get; set; } = null;
 
   public Camera3D Camera { get; private set; }
   public GridMap Map { get; private set; }
