@@ -30,7 +30,7 @@ public partial class PlayerProfileManager : SingletonNode
 
   internal bool HasDefaultProfiles ()
   {
-    for (int id = 1; id <= 4; id++)
+    for (int id = 1; id <= 8; id++)
       if (!FileAccess.FileExists($"{DIR_PATH}P{id}.{FILE_EXTENSION}"))
         return false;
 
@@ -72,6 +72,13 @@ public partial class PlayerProfileManager : SingletonNode
           new () { ControlType = typeof(InputEventJoypadMotion), ControlIndex = (int)JoyAxis.LeftX, ControlDirection = 1 },
           new () { ControlType = typeof(InputEventJoypadButton), ControlIndex = (int)JoyButton.DpadRight },
         }
+      },
+      {
+        "place_bomb",
+        new List<ControlBinding> {
+          new () { ControlType = typeof(InputEventKey), ControlIndex = (int)Key.Space },
+          new () { ControlType = typeof(InputEventJoypadButton), ControlIndex = (int)JoyButton.X },
+        }
       }
     };
 
@@ -80,7 +87,7 @@ public partial class PlayerProfileManager : SingletonNode
 
   public static void CreateDefaultProfiles ()
   {
-    for (int id = 1; id <= 4; id++)
+    for (int id = 1; id <= 8; id++)
     {
       if (FileAccess.FileExists($"{DIR_PATH}P{id}.{FILE_EXTENSION}"))
         continue;
@@ -133,12 +140,13 @@ public partial class PlayerProfileManager : SingletonNode
     if (file.Load(absolutePath) != Error.Ok)
       return;
 
-    PlayerProfile profile = new PlayerProfile();
+    PlayerProfile profile = new ()
+    {
+        Name = (string)file.GetValue("General", "Name"),
+        Path = absolutePath,
 
-    profile.Name = (string)file.GetValue("General", "Name");
-    profile.Path = absolutePath;
-
-    profile.Bindings = new Dictionary<string, List<ControlBinding>>();
+        Bindings = new Dictionary<string, List<ControlBinding>>()
+    };
     foreach (string controlsKey in file.GetSectionKeys("Controls"))
       switch (controlsKey)
       {
@@ -148,7 +156,7 @@ public partial class PlayerProfileManager : SingletonNode
 
         default:
           string [] codes = ((string)file.GetValue("Controls", controlsKey)).Split(";");
-          List<ControlBinding> bindings = new List<ControlBinding>();
+          List<ControlBinding> bindings = new ();
 
           foreach (string code in codes)
             bindings.Add(ControlBinding.FromText(code));
@@ -163,4 +171,5 @@ public partial class PlayerProfileManager : SingletonNode
   }
 
   public static Dictionary<string, PlayerProfile> GetProfiles () => Instance.Profiles;
+  public static PlayerProfile GetProfile (string key) => Instance.Profiles[key];
 }
