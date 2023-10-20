@@ -55,6 +55,11 @@ public partial class MatchSettingsState : SingletonNode
   public GameRounds GameRounds { get; set; } = GameRounds.Normal;
   public Dictionary<GameModifier, bool> GameModifiers { get; } = new ();
 
+  public static string LevelName { get; set; } = "";
+  public static Level Level { get; private set; }
+  public static string ThemeName { get; set; } = "";
+  public static LevelTheme Theme { get; private set; }
+
   const int MAX_PLAYER_COUNT = 8, MIN_PLAYER_COUNT = 2;
   public int PlayerCount { get; private set; }
   public BNPlayer [] Players { get; private set; }
@@ -116,12 +121,11 @@ public partial class MatchSettingsState : SingletonNode
       }
 
     Instance.Players = playerArray;
-    Logger.Trace($"MatchSettingsState.Players size set to {Instance.PlayerCount} : {Instance.PlayerCount == Instance.Players.Length}");
   }
 
   public static void GeneratePlayerBindings ()
   {
-    foreach (var player in Instance.Players)
+    foreach (BNPlayer player in Instance.Players)
     {
       if (player == null)
         continue;
@@ -139,10 +143,26 @@ public partial class MatchSettingsState : SingletonNode
           MPInputMap.EraseActionDeep(playerIndex, action);
 
         MPInputMap.AddAction(playerIndex, action, deadzone);
-        foreach (var binding in bindings)
+        foreach (InputEvent binding in bindings)
+        {
+          if (binding is InputEventKey keyEvent == player.IsGamepad)
+            continue;
+
+          if (player.IsGamepad)
+            binding.Device = player.DeviceIndex;
+
           MPInputMap.ActionAddEvent(playerIndex, action, binding);
+        }
       }
     }
+  }
+
+  public static void GenerateLevel ()
+  {
+    PackedScene levelScene = ResourceLoader.Load(LevelName.AsLevelFilePath()) as PackedScene;
+    Level = levelScene.Instantiate() as Level;
+    Theme = ResourceLoader.Load(ThemeName.AsThemeFilePath()) as LevelTheme;
+    Level.Theme = Theme;
   }
 
   public static void SetPlayerProfile (int playerIdx, PlayerProfile profile)
@@ -152,6 +172,8 @@ public partial class MatchSettingsState : SingletonNode
     
     Instance.Players[playerIdx].Profile = profile;
   }
+
+  public static void SetGameMode (GameMode mode) => Instance.GameMode = mode;
 
   public override void _EnterTree ()
   {
@@ -206,6 +228,7 @@ public partial class MatchSettingsState : SingletonNode
 
     return modifiers;
   }
+
   public static void PrintActiveGameModifiers ()
   {
     string printout = "[ ";
