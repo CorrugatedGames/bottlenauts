@@ -19,6 +19,9 @@ public partial class MPInputMap : Node
   public static float ActionGetDeadzone (int playerIndex, StringName action) =>
     InputMap.ActionGetDeadzone(PLAYER_ACTION(playerIndex, action));
 
+  public static Godot.Collections.Array<InputEvent> ActionGetEvents (int playerIndex, StringName action) =>
+    InputMap.ActionGetEvents(PLAYER_ACTION(playerIndex, action));
+
   public static void ActionSetDeadzone (int playerIndex, StringName action, float deadzone) =>
     InputMap.ActionSetDeadzone(PLAYER_ACTION(playerIndex, action), deadzone);
 
@@ -30,7 +33,7 @@ public partial class MPInputMap : Node
 
   public static bool HasAction (int playerIndex, StringName action) => InputMap.HasAction(PLAYER_ACTION(playerIndex, action));
 
-  public static void AddActionBindings (int playerIndex, StringName action, float deadzone, ref InputEvent [] events)
+  public static void AddActionBindings (int playerIndex, StringName action, float deadzone, InputEvent [] events)
   {
     AddAction(playerIndex, action, deadzone);
     foreach (var evt in events)
