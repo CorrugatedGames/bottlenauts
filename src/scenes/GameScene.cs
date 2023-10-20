@@ -2,7 +2,7 @@ public partial class GameScene : Node
 {
   #region Child nodes
 
-  SubViewport Viewport;
+  public SubViewport Viewport { get; private set; }
   Camera3D GodCamera;
   AudioStreamPlayer PlayerBGM, PlayerSFX;
 
@@ -10,7 +10,7 @@ public partial class GameScene : Node
 
   public override void _Ready ()
   {
-    Viewport = GetNode("ViewportContainer/Viewport") as SubViewport;
+    Viewport = GetNode("%Viewport") as SubViewport;
 
     GodCamera = Viewport.GetNode("GodCamera") as Camera3D;
 
