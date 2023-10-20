@@ -28,7 +28,7 @@ public partial class PlayerProfileManager : SingletonNode
   internal bool HasDefaultProfiles ()
   {
     for (int id = 1; id <= 8; id++)
-      if (!FileAccess.FileExists($"{PLAYER_PROFILE_DIRECTORY}P{id}{PLAYER_PROFILE_EXTENSION}"))
+      if (!FileAccess.FileExists($"P{id}".AsProfileFilePath()))
         return false;
 
     return true;
@@ -86,12 +86,12 @@ public partial class PlayerProfileManager : SingletonNode
   {
     for (int id = 1; id <= 8; id++)
     {
-      if (FileAccess.FileExists($"{PLAYER_PROFILE_DIRECTORY}P{id}{PLAYER_PROFILE_EXTENSION}"))
+      if (FileAccess.FileExists($"P{id}".AsProfileFilePath()))
         continue;
 
       SaveProfile(new PlayerProfile {
         Name = $"P{id}",
-        Path = $"{PLAYER_PROFILE_DIRECTORY}P{id}{PLAYER_PROFILE_EXTENSION}",
+        Path = $"P{id}".AsProfileFilePath(),
 
         Deadzone = 0.3f,
         Bindings = DEFAULT_BINDINGS(),
@@ -123,8 +123,8 @@ public partial class PlayerProfileManager : SingletonNode
       file.SetValue("Controls", action, codes.ToArray().Join(";"));
     }
 
-    Logger.Info($"Saved profile {profile.Name} to {PLAYER_PROFILE_DIRECTORY}{profile.Name}{PLAYER_PROFILE_EXTENSION}");
-    file.Save($"{PLAYER_PROFILE_DIRECTORY}{profile.Name}{PLAYER_PROFILE_EXTENSION}");
+    Logger.Info($"Saved profile {profile.Name} to {profile.Name.AsProfileFilePath()}");
+    file.Save(profile.Name.AsProfileFilePath());
 
     if (Instance.Profiles.ContainsKey(profile.Name))
       Instance.Profiles.Remove(profile.Name);
