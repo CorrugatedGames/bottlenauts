@@ -24,8 +24,8 @@ Audio="*res://src/autoload/Audio.cs"
 Graphics="*res://src/autoload/Graphics.cs"
 MatchSettingsState="*res://src/autoload/MatchSettingsState.cs"
 PlayerProfileManager="*res://src/autoload/PlayerProfileManager.cs"
-MPInput="*res://addons/mp-input/MPInput.cs"
 MPInputMap="*res://addons/mp-input/MPInputMap.cs"
+MPInput="*res://addons/mp-input/MPInput.cs"
 
 [display]
 
@@ -104,70 +104,6 @@ move_right={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":14,"pressure":0.0,"pressed":true,"script":null)
 , Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":0,"axis_value":1.0,"script":null)
 ]
-}
-player1_move_up={
-"deadzone": 0.5,
-"events": []
-}
-player1_move_down={
-"deadzone": 0.5,
-"events": []
-}
-player1_move_left={
-"deadzone": 0.5,
-"events": []
-}
-player1_move_right={
-"deadzone": 0.5,
-"events": []
-}
-player2_move_up={
-"deadzone": 0.5,
-"events": []
-}
-player2_move_down={
-"deadzone": 0.5,
-"events": []
-}
-player2_move_left={
-"deadzone": 0.5,
-"events": []
-}
-player2_move_right={
-"deadzone": 0.5,
-"events": []
-}
-player3_move_up={
-"deadzone": 0.5,
-"events": []
-}
-player3_move_down={
-"deadzone": 0.5,
-"events": []
-}
-player3_move_left={
-"deadzone": 0.5,
-"events": []
-}
-player3_move_right={
-"deadzone": 0.5,
-"events": []
-}
-player4_move_up={
-"deadzone": 0.5,
-"events": []
-}
-player4_move_down={
-"deadzone": 0.5,
-"events": []
-}
-player4_move_left={
-"deadzone": 0.5,
-"events": []
-}
-player4_move_right={
-"deadzone": 0.5,
-"events": []
 }
 place_bomb={
 "deadzone": 0.5,
