@@ -1,19 +1,16 @@
 public partial class PlayerProfileManager : SingletonNode
 {
-  public readonly static string DIR_PATH = "user://player_profiles/";
-  public readonly static string FILE_EXTENSION = "bpro";
-
   static PlayerProfileManager Instance = new PlayerProfileManager();
 
   public Dictionary<string, PlayerProfile> Profiles { get; } = new Dictionary<string, PlayerProfile>();
 
   public override void _EnterTree ()
   {
-    if (DirAccess.DirExistsAbsolute(DIR_PATH))
+    if (DirAccess.DirExistsAbsolute(PLAYER_PROFILE_DIRECTORY))
     {
-      string [] files = DirAccess.GetFilesAt(DIR_PATH);
+      string [] files = DirAccess.GetFilesAt(PLAYER_PROFILE_DIRECTORY);
       foreach (string file in files)
-        LoadProfile($"{DIR_PATH}{file}");
+        LoadProfile($"{PLAYER_PROFILE_DIRECTORY}{file}");
 
       if (!HasDefaultProfiles())
         CreateDefaultProfiles();
@@ -21,7 +18,7 @@ public partial class PlayerProfileManager : SingletonNode
     else
     {
       Logger.Info("No player_profiles/ directory found, creating one...");
-      DirAccess.MakeDirRecursiveAbsolute(DIR_PATH);
+      DirAccess.MakeDirRecursiveAbsolute(PLAYER_PROFILE_DIRECTORY);
 
       Logger.Info("Creating default player profile files...");
       CreateDefaultProfiles();
@@ -31,7 +28,7 @@ public partial class PlayerProfileManager : SingletonNode
   internal bool HasDefaultProfiles ()
   {
     for (int id = 1; id <= 8; id++)
-      if (!FileAccess.FileExists($"{DIR_PATH}P{id}.{FILE_EXTENSION}"))
+      if (!FileAccess.FileExists($"{PLAYER_PROFILE_DIRECTORY}P{id}{PLAYER_PROFILE_EXTENSION}"))
         return false;
 
     return true;
@@ -89,12 +86,12 @@ public partial class PlayerProfileManager : SingletonNode
   {
     for (int id = 1; id <= 8; id++)
     {
-      if (FileAccess.FileExists($"{DIR_PATH}P{id}.{FILE_EXTENSION}"))
+      if (FileAccess.FileExists($"{PLAYER_PROFILE_DIRECTORY}P{id}{PLAYER_PROFILE_EXTENSION}"))
         continue;
 
       SaveProfile(new PlayerProfile {
         Name = $"P{id}",
-        Path = $"{DIR_PATH}P{id}.{FILE_EXTENSION}",
+        Path = $"{PLAYER_PROFILE_DIRECTORY}P{id}{PLAYER_PROFILE_EXTENSION}",
 
         Deadzone = 0.3f,
         Bindings = DEFAULT_BINDINGS(),
@@ -126,8 +123,8 @@ public partial class PlayerProfileManager : SingletonNode
       file.SetValue("Controls", action, codes.ToArray().Join(";"));
     }
 
-    Logger.Info($"Saved profile {profile.Name} to {DIR_PATH}{profile.Name}.{FILE_EXTENSION}");
-    file.Save($"{DIR_PATH}{profile.Name}.{FILE_EXTENSION}");
+    Logger.Info($"Saved profile {profile.Name} to {PLAYER_PROFILE_DIRECTORY}{profile.Name}{PLAYER_PROFILE_EXTENSION}");
+    file.Save($"{PLAYER_PROFILE_DIRECTORY}{profile.Name}{PLAYER_PROFILE_EXTENSION}");
 
     if (Instance.Profiles.ContainsKey(profile.Name))
       Instance.Profiles.Remove(profile.Name);
