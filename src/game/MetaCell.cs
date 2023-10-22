@@ -2,9 +2,9 @@ public enum MetaCell
 {
   RANDOM_DESTRUCTIBLE = 0,
   RANDOM_OBSTACLE = 1,
-
   PERMA_DESTRUCTIBLE = 2,
-  PERMA_OBSTACLE = 3,
+
+  PLAYER_SPAWN = 3,
 
   PILLAR = 4,
   WALL = 5,

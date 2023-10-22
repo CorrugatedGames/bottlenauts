@@ -131,8 +131,7 @@ public partial class Level : Node3D
     }
 
     var obstaPotents = Map.GetUsedCellsByItem((int)MetaCell.RANDOM_OBSTACLE);
-    var obstaPermas = Map.GetUsedCellsByItem((int)MetaCell.PERMA_OBSTACLE);
-    var obstas = obstaPermas.Concat(GetPercentageOfList(obstaPotents, ObstacleFillPercentage));
+    var obstas = GetPercentageOfList(obstaPotents, ObstacleFillPercentage);
     foreach (Vector3 loc in obstas)
     {
       var o = obstaScene.Instantiate() as Node3D;

@@ -3,9 +3,9 @@
 [ext_resource type="Material" uid="uid://bdxi4yb3apdmh" path="res://assets/textures/dev/devDestruPerma.mat.res" id="1_d6my4"]
 [ext_resource type="ArrayMesh" uid="uid://46enel6qey5y" path="res://assets/meshes/dev/devCube.res" id="1_lfe4a"]
 [ext_resource type="Material" uid="uid://dqwfsbpm62ogm" path="res://assets/textures/dev/devObstaRandom.mat.res" id="3_rieew"]
+[ext_resource type="Material" uid="uid://cyv3l5hragbpy" path="res://assets/textures/dev/devSpawn.mat.res" id="4_u3y1d"]
 [ext_resource type="Texture2D" uid="uid://b3g12lxn3g2vk" path="res://assets/textures/dev/devFloor.png" id="4_x1yjj"]
 [ext_resource type="Texture2D" uid="uid://b1yj0nce6vood" path="res://assets/textures/dev/devWall.png" id="5_lewvc"]
-[ext_resource type="Material" uid="uid://bhidby67w1q1q" path="res://assets/textures/dev/devObstaPerma.mat.res" id="6_1ggmv"]
 [ext_resource type="Texture2D" uid="uid://ckjb6ap3alo8f" path="res://assets/textures/dev/devWallFront.png" id="6_dxxnx"]
 [ext_resource type="ArrayMesh" uid="uid://46bpi33xo2w7" path="res://assets/meshes/dev/devCylinder.res" id="7_gf6ae"]
 [ext_resource type="ArrayMesh" uid="uid://c2xe6ouk5t5yh" path="res://assets/meshes/dev/devRamp.res" id="11_klih7"]
@@ -140,7 +140,7 @@ _surfaces = [{
 "format": 4119,
 "index_count": 30,
 "index_data": PackedByteArray(3, 0, 0, 0, 6, 0, 19, 0, 17, 0, 12, 0, 13, 0, 11, 0, 2, 0, 16, 0, 7, 0, 1, 0, 9, 0, 18, 0, 14, 0, 3, 0, 6, 0, 8, 0, 19, 0, 12, 0, 15, 0, 13, 0, 2, 0, 4, 0, 16, 0, 1, 0, 10, 0, 9, 0, 14, 0, 5, 0),
-"material": ExtResource("6_1ggmv"),
+"material": ExtResource("4_u3y1d"),
 "name": "Material.004",
 "primitive": 3,
 "vertex_count": 20,
@@ -151,7 +151,7 @@ _surfaces = [{
 "format": 4119,
 "index_count": 6,
 "index_data": PackedByteArray(1, 0, 0, 0, 2, 0, 1, 0, 2, 0, 3, 0),
-"material": ExtResource("6_1ggmv"),
+"material": ExtResource("4_u3y1d"),
 "name": "Material.005",
 "primitive": 3,
 "vertex_count": 4,
@@ -310,7 +310,7 @@ mesh = SubResource("ArrayMesh_qdh01")
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 2)
 mesh = SubResource("ArrayMesh_j2kx1")
 
-[node name="_OBSTACLE_PERMA" type="MeshInstance3D" parent="."]
+[node name="_PLAYER_SPAWN" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 2, 0, 2)
 mesh = SubResource("ArrayMesh_c8cer")
 
