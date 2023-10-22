@@ -1,5 +1,6 @@
 public sealed class BNPlayer : IPlayer<PlayerProfile>
 {
+  public bool IsCPU { get; set; }
   public bool IsGamepad { get; set; }
   public int DeviceIndex { get; set; }
   public int PlayerIndex { get; set; }

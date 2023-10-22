@@ -257,6 +257,9 @@ public partial class MatchSetupMenu : Control
     if (ThemeSelectButton.Selected == 0)
       SelectTheme(new Random().NextInt64(1, ThemeSelectButton.ItemCount));
 
+    while (MatchSettingsState.PlayerCount > MatchSettingsState.CurrentPlayerCount)
+      MatchSettingsState.GenerateCPUPlayer();
+
     MatchSettingsState.GeneratePlayerBindings();
     MatchSettingsState.GenerateLevel();
 

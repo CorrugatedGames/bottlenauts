@@ -61,28 +61,29 @@ public partial class MatchSettingsState : SingletonNode
   public static LevelTheme Theme { get; private set; }
 
   const int MAX_PLAYER_COUNT = 8, MIN_PLAYER_COUNT = 2;
-  public int PlayerCount { get; private set; }
+  public static int PlayerCount { get; private set; }
   public BNPlayer [] Players { get; private set; }
   static readonly BNPlayer [] NullPlayers = { null };
   public static bool HasPlayer => Instance.Players.Except(NullPlayers).Any();
   public static bool HasKeyboardPlayer => HasPlayer && Instance.Players.Where(player => player != null && !player.IsGamepad).Any();
   public static bool HasGamepadPlayer (int deviceIndex) =>
     HasPlayer && Instance.Players.Where(player => player != null && player.IsGamepad && deviceIndex == player.DeviceIndex).Any();
-  public int CurrentPlayerCount => Mathf.Clamp(Players.Except(NullPlayers).Count(), 0, MAX_PLAYER_COUNT);
+  public static int CurrentPlayerCount => Mathf.Clamp(Instance.Players.Except(NullPlayers).Count(), 0, MAX_PLAYER_COUNT);
 
   public static MatchSettingsState Instance { get; set; }
 
   public static int AddPlayer (bool isGamepad, int deviceIndex)
   {
-    string profileName = $"P{Instance.CurrentPlayerCount + 1}";
+    string profileName = $"P{CurrentPlayerCount + 1}";
     return AddPlayer(isGamepad, deviceIndex, PlayerProfileManager.GetProfile(profileName));
   }
 
   public static int AddPlayer (bool isGamepad, int deviceIndex, PlayerProfile profile)
   {
-    int playerIndex = Instance.CurrentPlayerCount;
+    int playerIndex = CurrentPlayerCount;
 
     Instance.Players[playerIndex] = new BNPlayer {
+      IsCPU = false,
       IsGamepad = isGamepad,
       DeviceIndex = deviceIndex,
       PlayerIndex = playerIndex,
@@ -94,22 +95,37 @@ public partial class MatchSettingsState : SingletonNode
     return playerIndex;
   }
 
+  public static void GenerateCPUPlayer () => GenerateCPUPlayer(CurrentPlayerCount);
+  public static void GenerateCPUPlayer (int playerIndex)
+  {
+    CharacterColor color = (CharacterColor)new Random().Next(GetUnusedCharacterColors().Count);
+    Instance.Players[playerIndex] = new BNPlayer {
+      IsCPU = true,
+      IsGamepad = false,
+      DeviceIndex = -2,
+      PlayerIndex = playerIndex,
+
+      Profile = PlayerProfileManager.NEW_PROFILE(),
+      Color = color,
+    };
+  }
+
   public static void RemovePlayer (int playerIndex) => Instance.Players[playerIndex] = null;
   public static void RemovePlayer (PlayerProfile profile) =>
     Instance.Players[Array.FindIndex(Instance.Players, player => player.Profile.Name == profile.Name)] = null;
 
-  public static void RemovePlayers () => Instance.Players = new BNPlayer [Instance.PlayerCount];
+  public static void RemovePlayers () => Instance.Players = new BNPlayer [PlayerCount];
 
   public static BNPlayer GetPlayer (int playerNumber) => Instance.Players[playerNumber];
 
   public static void UpdatePlayerCount (int newCount)
   {
-    if (newCount > MAX_PLAYER_COUNT || newCount < MIN_PLAYER_COUNT || newCount == Instance.PlayerCount)
+    if (newCount > MAX_PLAYER_COUNT || newCount < MIN_PLAYER_COUNT || newCount == PlayerCount)
       return;
       
-    Instance.PlayerCount = newCount;
+    PlayerCount = newCount;
 
-    BNPlayer [] currentArray = Instance.Players, playerArray = new BNPlayer [Instance.PlayerCount];
+    BNPlayer [] currentArray = Instance.Players, playerArray = new BNPlayer [PlayerCount];
 
     if (currentArray != null)
       for (int i = 0; i < currentArray.Length; i++)
@@ -167,7 +183,7 @@ public partial class MatchSettingsState : SingletonNode
 
   public static void SetPlayerProfile (int playerIdx, PlayerProfile profile)
   {
-    if (playerIdx >= Instance.CurrentPlayerCount || playerIdx < 0 || Instance.Players[playerIdx] == null)
+    if (playerIdx >= CurrentPlayerCount || playerIdx < 0 || Instance.Players[playerIdx] == null)
       return;
     
     Instance.Players[playerIdx].Profile = profile;
