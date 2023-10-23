@@ -35,6 +35,7 @@ public partial class Level : Node3D
 
   void DEVStealPlayerOne (int deviceIdx)
   {
+#if DEBUG
     BNPlayer player = MatchSettingsState.GetPlayer(0);
     player.IsCPU = false;
     player.IsGamepad = deviceIdx > -1;
@@ -42,6 +43,7 @@ public partial class Level : Node3D
 
     MatchSettingsState.Instance.Players[0] = player;
     MatchSettingsState.GeneratePlayerBindings();
+#endif
   }
 
   public void SetLevelTheme (LevelTheme theme)
