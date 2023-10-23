@@ -5,24 +5,23 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v8tmh"]
 
-[node name="Bomb" type="Node3D"]
-script = ExtResource("1_amdi8")
-
-[node name="Model" parent="." instance=ExtResource("1_fundg")]
-
-[node name="RigidBody3D" type="RigidBody3D" parent="Model"]
+[node name="RigidBody3D" type="RigidBody3D"]
 collision_layer = 0
 collision_mask = 131327
 contact_monitor = true
 can_sleep = false
+script = ExtResource("1_amdi8")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Model/RigidBody3D"]
+[node name="Model" parent="." instance=ExtResource("1_fundg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_v8tmh")
 
-[node name="Area3D" type="Area3D" parent="Model"]
+[node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Model/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_v8tmh")

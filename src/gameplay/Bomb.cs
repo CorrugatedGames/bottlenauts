@@ -1,24 +1,24 @@
 using Godot;
 using System;
 
-public partial class Bomb : Node3D
+public partial class Bomb : RigidBody3D
 {
     public int Team { get; set; } = 1;
 
     private int Frame = 0;
 
     private Area3D area;
-    private RigidBody3D physicsBody;
+
+    private bool HasExploded = false;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        area = GetNode<Area3D>("Model/Area3D");
-        physicsBody = GetNode<RigidBody3D>("Model/RigidBody3D");
+        area = GetNode<Area3D>("Area3D");
 
-        physicsBody.Freeze = true; // on bomb throw, set this to false so we can apply force to it
+        Freeze = true; // on bomb throw, set this to false so we can apply force to it
 
-        prepareBoom();
+        PrepareBoom();
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,19 +37,24 @@ public partial class Bomb : Node3D
         // if none, set the physics bit
         if (area.GetOverlappingBodies().Count == 0)
         {
-            physicsBody.SetCollisionLayerValue((int)GameLayer.Bomb, true);
+            SetCollisionLayerValue((int)GameLayer.Bomb, true);
         }
     }
 
-    private async void prepareBoom()
+    private async void PrepareBoom()
     {
         await ToSignal(GetTree().CreateTimer(3.0f), SceneTreeTimer.SignalName.Timeout);
 
-        boom();
+        Boom();
     }
 
-    private void boom()
+    public void Boom()
     {
+        if (HasExploded)
+            return;
+
+        HasExploded = true;
+
         var ExplosionScene =
             ResourceLoader.Load("res://scenes/hazards/Explosion.tscn") as PackedScene;
         var explosion = ExplosionScene.Instantiate() as Explosion;
