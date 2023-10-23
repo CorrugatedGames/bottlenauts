@@ -22,6 +22,28 @@ public partial class Level : Node3D
     SetLevelTheme(Theme);
   }
 
+  public override void _Input (InputEvent evt)
+  {
+    if (evt is InputEventKey keyEvent)
+      if (keyEvent.Pressed && keyEvent.Keycode == Key.F6)
+        DEVStealPlayerOne(-1);
+
+    if (evt is InputEventJoypadButton buttonEvent)
+      if (buttonEvent.Pressed && buttonEvent.ButtonIndex == JoyButton.LeftStick)
+        DEVStealPlayerOne(buttonEvent.Device);
+  }
+
+  void DEVStealPlayerOne (int deviceIdx)
+  {
+    BNPlayer player = MatchSettingsState.GetPlayer(0);
+    player.IsCPU = false;
+    player.IsGamepad = deviceIdx > -1;
+    player.DeviceIndex = deviceIdx;
+
+    MatchSettingsState.Instance.Players[0] = player;
+    MatchSettingsState.GeneratePlayerBindings();
+  }
+
   public void SetLevelTheme (LevelTheme theme)
   {
     if (theme == null)
