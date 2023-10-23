@@ -4,7 +4,7 @@ public partial class Level : Node3D
 {
   [Export] public LevelTheme Theme { get; set; } = null;
 
-  public Camera3D Camera { get; private set; }
+  public LevelCamera Camera { get; private set; }
   public GridMap Map { get; private set; }
 
   [ExportCategory("Level Fill Parameters")]
@@ -14,7 +14,7 @@ public partial class Level : Node3D
   public override void _Ready ()
   {
     Map = GetNode("GridMap") as GridMap;
-    Camera = GetNode("Camera") as Camera3D;
+    Camera = GetNode("LevelCamera") as LevelCamera;
 
     MatchSettingsState.GeneratePlayerBindings();
     GenerateHazards();
