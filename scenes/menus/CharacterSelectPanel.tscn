@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxotftlvnjgu8"]
+[gd_scene load_steps=3 format=3 uid="uid://dxotftlvnjgu8"]
 
 [ext_resource type="Script" path="res://src/menus/CharacterSelectPanel.cs" id="1_j6c87"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e6poq"]
+resource_local_to_scene = true
+bg_color = Color(0.133333, 0.133333, 0.133333, 1)
 
 [node name="CharacterSelectPanel" type="MarginContainer"]
 anchors_preset = 15
@@ -113,3 +117,4 @@ text = " > "
 z_index = -1
 layout_mode = 2
 mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_e6poq")
