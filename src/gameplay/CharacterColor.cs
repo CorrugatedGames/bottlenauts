@@ -19,7 +19,7 @@ public static class CharacterColorExt
       case CharacterColor.RED: return new Color("#B22222");
       case CharacterColor.BLUE: return new Color("#0000CD");
       case CharacterColor.GREEN: return new Color("#008000");
-      case CharacterColor.YELLOW: return new Color("#FFFF00");
+      case CharacterColor.YELLOW: return new Color("#FFD700");
       case CharacterColor.PURPLE: return new Color("#800080");
       case CharacterColor.PINK: return new Color("#FF69B4");
       case CharacterColor.ORANGE: return new Color ("#FF8C00");
