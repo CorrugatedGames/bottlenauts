@@ -95,8 +95,8 @@ public partial class MatchSettingsState : SingletonNode
     return playerIndex;
   }
 
-  public static void GenerateCPUPlayer () => GenerateCPUPlayer(CurrentPlayerCount);
-  public static void GenerateCPUPlayer (int playerIndex)
+  public static int GenerateCPUPlayer () => GenerateCPUPlayer(CurrentPlayerCount);
+  public static int GenerateCPUPlayer (int playerIndex)
   {
     CharacterColor color = GetUnusedCharacterColors()[new Random().Next(GetUnusedCharacterColors().Count)];
     Instance.Players[playerIndex] = new BNPlayer {
@@ -108,6 +108,8 @@ public partial class MatchSettingsState : SingletonNode
       Profile = PlayerProfileManager.NEW_PROFILE(),
       Color = color,
     };
+
+    return playerIndex;
   }
 
   public static void RemovePlayer (int playerIndex) => Instance.Players[playerIndex] = null;
