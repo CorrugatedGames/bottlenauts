@@ -41,7 +41,8 @@ public partial class Character : CharacterBody3D
         Mesh = GetNode("Mesh") as MeshInstance3D;
 
       // until we move away from TestCharacter
-      BNPlayer player = MatchSettingsState.GetPlayer(PlayerNumber);
+      BNPlayer player = MatchSettingsState.GetPlayer(PlayerNumber) ??
+        MatchSettingsState.GetPlayer(MatchSettingsState.GenerateCPUPlayer());
       Mesh.SetSurfaceOverrideMaterial(0, new StandardMaterial3D() { AlbedoColor = player.Color.ToColor() });
     }
 
@@ -54,16 +55,16 @@ public partial class Character : CharacterBody3D
     {
         DeltaVelocity.X = DeltaVelocity.Z = 0;
 
-        if (Input.IsActionPressed("move_up"))
+        if (MPInput.IsActionPressed(PlayerNumber, "move_up"))
             DeltaVelocity.Z -= MPInput.GetActionStrength(PlayerNumber, "move_up");
 
-        if (Input.IsActionPressed("move_down"))
+        if (MPInput.IsActionPressed(PlayerNumber, "move_down"))
             DeltaVelocity.Z += MPInput.GetActionStrength(PlayerNumber, "move_down");
 
-        if (Input.IsActionPressed("move_right"))
+        if (MPInput.IsActionPressed(PlayerNumber, "move_right"))
             DeltaVelocity.X += MPInput.GetActionStrength(PlayerNumber, "move_right");
 
-        if (Input.IsActionPressed("move_left"))
+        if (MPInput.IsActionPressed(PlayerNumber, "move_left"))
             DeltaVelocity.X -= MPInput.GetActionStrength(PlayerNumber, "move_left");
             
         if (MPInput.IsActionPressed(PlayerNumber, "place_bomb") && canPlaceBomb())
