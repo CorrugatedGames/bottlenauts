@@ -12,8 +12,9 @@ public partial class CharacterSelectPanel : MarginContainer
 
   #region Child nodes
   VBoxContainer NoPlayerContainer, PlayerContainer;
+  Panel Panel;
 
-  Label InputLabel, PlayerNumberLabel, CharacterLabel, TeamLabel;
+  Label InputLabel, PlayerNumberLabel, TeamLabel;
   OptionButton ProfileSelectButton;
   Button PrevCharacterButton, NextCharacterButton;
   public Button ReadyButton { get; private set; }
@@ -26,9 +27,10 @@ public partial class CharacterSelectPanel : MarginContainer
     PlayerContainer = GetNode("%PlayerControl") as VBoxContainer;
     PlayerContainer.Visible = false;
 
+    Panel = GetNode("Panel") as Panel;
+
     InputLabel = GetNode("%InputLabel") as Label;
     PlayerNumberLabel = GetNode("%PlayerNumberLabel") as Label;
-    CharacterLabel = GetNode("%CharacterLabel") as Label;
     TeamLabel = GetNode("%TeamLabel") as Label;
 
     ProfileSelectButton = GetNode("%ProfileSelect") as OptionButton;
@@ -40,15 +42,6 @@ public partial class CharacterSelectPanel : MarginContainer
     NextCharacterButton.Pressed += () => { ChangeCharacter(true); };
     ReadyButton = GetNode("%ReadyButton") as Button;
     ReadyButton.Pressed += () => { EmitSignal(SignalName.PlayerReady); };
-  }
-
-  public override void _Process (double dt)
-  {
-    if (HasPlayer)
-    {
-      //todo(jam): replace this shit with a custom signal for queueing a redraw
-      CharacterLabel.Text = $"Character: {Player.Color}";
-    }
   }
 
   public override void _Input (InputEvent evt)
@@ -89,9 +82,9 @@ public partial class CharacterSelectPanel : MarginContainer
     PlayerContainer.Visible = true;
 
     InputLabel.Text = player.IsGamepad ? $"Gamepad - idx {player.DeviceIndex}" : "Keyboard";
-    CharacterLabel.Text = $"Character: {player.Color.ToString()}";
 
     SetPlayerNumber(number);
+    SetColor(player.Color.ToColor());
   }
 
   void RefreshPlayer () => SetPlayer(MatchSettingsState.GetPlayer(PlayerNumber), PlayerNumber);
@@ -102,7 +95,6 @@ public partial class CharacterSelectPanel : MarginContainer
     PlayerContainer.Visible = false;
 
     InputLabel.Text = "";
-    CharacterLabel.Text = "Character: ";
     TeamLabel.Text = "Team: ";
     for (int i = ProfileSelectButton.ItemCount - 1; i >= 0; i--)
       ProfileSelectButton.RemoveItem(i);
@@ -166,5 +158,14 @@ public partial class CharacterSelectPanel : MarginContainer
       idx = 0;
     
     Player.Color = colors[idx];
+    SetColor(colors[idx].ToColor());
+  }
+
+  void SetColor (Color color)
+  {
+    var stylebox = Panel.GetThemeStylebox("panel") as StyleBoxFlat;
+    stylebox.BgColor = color;
+
+    Panel.AddThemeStyleboxOverride("player_color", stylebox);
   }
 }
