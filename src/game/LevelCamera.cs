@@ -1,28 +1,25 @@
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 [GlobalClass]
 public partial class LevelCamera : Camera3D
 {
-  [Export] float XRotation = 70f;
+  const float MIN_XROTATION = 65f, MAX_XROTATION = 88f, MAX_MAPHEIGHT = 6f;
+
+  float XRotation = 70f;
   [Export] float Margin = 0.4f;
   [Export] NodePath MapPath;
   GridMap Map;
 
   public override void _Ready ()
   {
-    SetDefaultValues();
-
-    Map = (MapPath != null ? GetNode(MapPath) : GetParent().GetNode("GridMap")) as GridMap;
-    CalculatePosition();
-  }
-
-  void SetDefaultValues ()
-  {
     Fov = 90f;
     Near = 0.05f;
     Far = 100f;
 
-    GlobalRotationDegrees = new () { X = -XRotation };
+    Map = (MapPath != null ? GetNode(MapPath) : GetParent().GetNode("GridMap")) as GridMap;
+    CalculateRotation();
+    CalculatePosition();
   }
 
   (Vector3I, Vector3I) GetMapCorners ()
@@ -66,12 +63,18 @@ public partial class LevelCamera : Camera3D
     float magnitude = LevelMagnitude(cornerA, cornerB) * 0.5f;
     float hFov = GetCameraProjection().GetFov(); // godot handles camera fov oddly to allow for multiple aspect ratios
 
-    float cameraDistance = magnitude * 0.9f / Mathf.Sin(Mathf.DegToRad(hFov * 0.5f));
+    float cameraDistance = magnitude * (0.8f + Margin) / Mathf.Sin(Mathf.DegToRad(hFov * 0.5f));
 
     float x = CenterOfCoords(cornerA.X, cornerB.X);
     float y = cameraDistance * Mathf.Sin(Mathf.DegToRad(XRotation));
-    float z = cameraDistance * Mathf.Cos(Mathf.DegToRad(XRotation)) + CenterOfCoords(cornerA.Z, cornerB.Z) + 0.5f;
+    float z = cameraDistance * Mathf.Cos(Mathf.DegToRad(XRotation)) + CenterOfCoords(cornerA.Z, cornerB.Z) + 1;
     
     GlobalPosition = new Vector3(x, y, z);
+  }
+
+  void CalculateRotation () 
+  {
+    XRotation = Mathf.Min(MAX_XROTATION, MIN_XROTATION + (GetMapCorners().Item2.Y * (MAX_XROTATION - MIN_XROTATION) / MAX_MAPHEIGHT));
+    GlobalRotationDegrees = Vector3.Left * XRotation;
   }
 }
