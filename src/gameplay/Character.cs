@@ -1,5 +1,9 @@
 public partial class Character : CharacterBody3D
 {
+  #region Child nodes
+  MeshInstance3D Mesh;
+  #endregion
+
     [Export]
     float MaxHorizontalVelocity = 2.5f;
 
@@ -34,6 +38,11 @@ public partial class Character : CharacterBody3D
     public override void _Ready()
     {
         BombScene = ResourceLoader.Load("res://scenes/hazards/Bomb.tscn") as PackedScene;
+        Mesh = GetNode("Mesh") as MeshInstance3D;
+
+      // until we move away from TestCharacter
+      BNPlayer player = MatchSettingsState.GetPlayer(PlayerNumber);
+      Mesh.SetSurfaceOverrideMaterial(0, new StandardMaterial3D() { AlbedoColor = player.Color.ToColor() });
     }
 
     public override void _Input(InputEvent @event)
@@ -109,7 +118,5 @@ public partial class Character : CharacterBody3D
     {
       PlayerNumber = playerNumber;
       Team = teamNumber;
-
-      
     }
 }
