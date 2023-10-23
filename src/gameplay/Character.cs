@@ -11,6 +11,7 @@ public partial class Character : CharacterBody3D
 
     [Export(PropertyHint.Range, "1,8,1")]
     int Team = 1;
+    public int PlayerNumber { get; private set; }
 
     Vector3 DeltaVelocity = Vector3.Zero;
 
@@ -37,7 +38,26 @@ public partial class Character : CharacterBody3D
 
     public override void _Input(InputEvent @event)
     {
-        if (Input.IsActionPressed("place_bomb") && canPlaceBomb())
+        
+    }
+
+    public override void _Process(double dt)
+    {
+        DeltaVelocity.X = DeltaVelocity.Z = 0;
+
+        if (Input.IsActionPressed("move_up"))
+            DeltaVelocity.X -= MPInput.GetActionStrength(PlayerNumber, "move_up");
+
+        if (Input.IsActionPressed("move_down"))
+            DeltaVelocity.X += MPInput.GetActionStrength(PlayerNumber, "move_down");
+
+        if (Input.IsActionPressed("move_right"))
+            DeltaVelocity.Z -= MPInput.GetActionStrength(PlayerNumber, "move_right");
+
+        if (Input.IsActionPressed("move_left"))
+            DeltaVelocity.Z += MPInput.GetActionStrength(PlayerNumber, "move_left");
+            
+        if (MPInput.IsActionPressed(PlayerNumber, "place_bomb") && canPlaceBomb())
         {
             var d = BombScene.Instantiate() as Bomb;
             d.Team = Team;
@@ -49,23 +69,6 @@ public partial class Character : CharacterBody3D
 
             setBombCooldown();
         }
-    }
-
-    public override void _Process(double dt)
-    {
-        DeltaVelocity.X = DeltaVelocity.Z = 0;
-
-        if (Input.IsActionPressed("move_up"))
-            DeltaVelocity.X -= Input.GetActionStrength("move_up");
-
-        if (Input.IsActionPressed("move_down"))
-            DeltaVelocity.X += Input.GetActionStrength("move_down");
-
-        if (Input.IsActionPressed("move_right"))
-            DeltaVelocity.Z -= Input.GetActionStrength("move_right");
-
-        if (Input.IsActionPressed("move_left"))
-            DeltaVelocity.Z += Input.GetActionStrength("move_left");
     }
 
     public override void _PhysicsProcess(double dt)
@@ -99,5 +102,14 @@ public partial class Character : CharacterBody3D
     public void DieFromExplosion()
     {
         Print("I should be dead! Tee hee!");
+    }
+
+    public void SetPlayerNumber (int playerNumber) => SetPlayerNumber(playerNumber, playerNumber + 1);
+    public void SetPlayerNumber (int playerNumber, int teamNumber)
+    {
+      PlayerNumber = playerNumber;
+      Team = teamNumber;
+
+      
     }
 }
