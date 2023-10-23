@@ -18,6 +18,7 @@ public partial class Level : Node3D
 
     MatchSettingsState.GeneratePlayerBindings();
     GenerateHazards();
+    SetSpawns();
     SetLevelTheme(Theme);
   }
 
@@ -138,6 +139,25 @@ public partial class Level : Node3D
       o.AddToGroup("Obsta");
       o.Position = loc + new Vector3(0.5f, 0f, 0.5f);
       AddChild(o);
+    }
+  }
+
+  void SetSpawns ()
+  {
+    var spawns = Map.GetUsedCellsByItem((int)MetaCell.PLAYER_SPAWN);
+    var randomSpawns = GetPercentageOfList(spawns, (MatchSettingsState.PlayerCount + 0.5f) / spawns.Count);
+    for (int i = 0; i < MatchSettingsState.PlayerCount; i++)
+    {
+      BNPlayer player = MatchSettingsState.GetPlayer(i);
+      Vector3 spawn = randomSpawns.ElementAt(i) + new Vector3(0.5f, 0, 0.5f);
+      
+      // todo(jam): set visuals here based on player.Color
+      PackedScene characterScene = ResourceLoader.Load("res://scenes/characters/TestCharacter.tscn") as PackedScene;
+      Character character = characterScene.Instantiate() as Character;
+      character.AddToGroup("Character");
+      character.SetPlayerNumber(i);
+      AddChild(character);
+      character.GlobalPosition = spawn;
     }
   }
 }
