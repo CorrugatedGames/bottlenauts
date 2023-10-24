@@ -37,6 +37,12 @@ window/size/resizable=false
 
 project/assembly_name="Bottlenauts"
 
+[editor]
+
+naming/default_signal_callback_name="On{node_name}{signal_name}"
+naming/default_signal_callback_to_self_name="On{signal_name}"
+naming/scene_name_casing=1
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/mp-input/plugin.cfg")
