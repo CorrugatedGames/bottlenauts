@@ -24,10 +24,9 @@ public partial class Explosion : Node3D
 
     public void _on_area_3d_body_entered(Node3D node)
     {
-        Print(node);
         if (node is Character character)
         {
-            character.DieFromExplosion();
+            character.Die();
         }
         else if (node is Destructible destructible)
         {

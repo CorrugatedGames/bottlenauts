@@ -1,8 +1,8 @@
 public partial class Character : CharacterBody3D
 {
-  #region Child nodes
-  MeshInstance3D Mesh;
-  #endregion
+    #region Child nodes
+    MeshInstance3D Mesh;
+    #endregion
 
     [Export]
     float MaxHorizontalVelocity = 2.5f;
@@ -16,6 +16,8 @@ public partial class Character : CharacterBody3D
     [Export(PropertyHint.Range, "1,8,1")]
     int Team = 1;
     public int PlayerNumber { get; private set; }
+
+    private BNPlayer PlayerRef { get; set; }
 
     Vector3 DeltaVelocity = Vector3.Zero;
 
@@ -40,19 +42,23 @@ public partial class Character : CharacterBody3D
         BombScene = ResourceLoader.Load("res://scenes/hazards/Bomb.tscn") as PackedScene;
         Mesh = GetNode("Mesh") as MeshInstance3D;
 
-      // until we move away from TestCharacter
-      BNPlayer player = MatchSettingsState.GetPlayer(PlayerNumber) ??
-        MatchSettingsState.GetPlayer(MatchSettingsState.GenerateCPUPlayer());
-      Mesh.SetSurfaceOverrideMaterial(0, new StandardMaterial3D() { AlbedoColor = player.Color.ToColor() });
+        // until we move away from TestCharacter
+        PlayerRef =
+            MatchSettingsState.GetPlayer(PlayerNumber)
+            ?? MatchSettingsState.GetPlayer(MatchSettingsState.GenerateCPUPlayer());
+        Mesh.SetSurfaceOverrideMaterial(
+            0,
+            new StandardMaterial3D() { AlbedoColor = PlayerRef.Color.ToColor() }
+        );
     }
 
-    public override void _Input(InputEvent @event)
-    {
-        
-    }
+    public override void _Input(InputEvent @event) { }
 
     public override void _Process(double dt)
     {
+        if (PlayerRef.IsDead)
+            return;
+
         DeltaVelocity.X = DeltaVelocity.Z = 0;
 
         if (MPInput.IsActionPressed(PlayerNumber, "move_up"))
@@ -66,18 +72,10 @@ public partial class Character : CharacterBody3D
 
         if (MPInput.IsActionPressed(PlayerNumber, "move_left"))
             DeltaVelocity.X -= MPInput.GetActionStrength(PlayerNumber, "move_left");
-            
-        if (MPInput.IsActionPressed(PlayerNumber, "place_bomb") && canPlaceBomb())
+
+        if (MPInput.IsActionPressed(PlayerNumber, "place_bomb"))
         {
-            var d = BombScene.Instantiate() as Bomb;
-            d.Team = Team;
-
-            d.AddToGroup("Bomb");
-            GetParent().GetNode("Bombs").AddChild(d);
-
-            d.GlobalPosition = CurrentPosition + new Vector3(0.5f, 0f, 0.5f);
-
-            setBombCooldown();
+            CreateBomb();
         }
     }
 
@@ -97,27 +95,49 @@ public partial class Character : CharacterBody3D
         MoveAndSlide();
     }
 
-    private bool canPlaceBomb()
+    private bool CanPlaceBomb()
     {
         // TODO: Check if there is a bomb already placed at the current position, if so, bail
 
         return DateTime.Now >= PlaceBombCooldown;
     }
 
-    private void setBombCooldown()
+    private void CreateBomb()
+    {
+        if (!CanPlaceBomb())
+            return;
+
+        var d = BombScene.Instantiate() as Bomb;
+        d.Team = Team;
+
+        d.AddToGroup("Bomb");
+        GetParent().GetNode("Bombs").AddChild(d);
+
+        d.GlobalPosition = CurrentPosition + new Vector3(0.5f, 0f, 0.5f);
+
+        SetBombCooldown();
+    }
+
+    private void SetBombCooldown()
     {
         PlaceBombCooldown = DateTime.Now.AddMilliseconds(500);
     }
 
-    public void DieFromExplosion()
+    public void Die()
     {
-        Print("I should be dead! Tee hee!");
+        if (PlayerRef.IsDead)
+            return;
+
+        PlayerRef.IsDead = true;
+        Print("Player has died.");
     }
 
-    public void SetPlayerNumber (int playerNumber) => SetPlayerNumber(playerNumber, playerNumber + 1);
-    public void SetPlayerNumber (int playerNumber, int teamNumber)
+    public void SetPlayerNumber(int playerNumber) =>
+        SetPlayerNumber(playerNumber, playerNumber + 1);
+
+    public void SetPlayerNumber(int playerNumber, int teamNumber)
     {
-      PlayerNumber = playerNumber;
-      Team = teamNumber;
+        PlayerNumber = playerNumber;
+        Team = teamNumber;
     }
 }
