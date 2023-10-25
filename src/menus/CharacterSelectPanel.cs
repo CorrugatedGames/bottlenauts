@@ -1,5 +1,3 @@
-using System.Linq;
-
 public partial class CharacterSelectPanel : MarginContainer
 {
   [Signal] public delegate void PlayerReadyEventHandler ();
@@ -44,9 +42,9 @@ public partial class CharacterSelectPanel : MarginContainer
     ReadyButton.Pressed += () => { EmitSignal(SignalName.PlayerReady); };
   }
 
-  public override void _Input (InputEvent evt)
+  public override void _UnhandledInput (InputEvent evt)
   {
-    if (!HasPlayer)
+    if (!HasPlayer || !Visible)
       return;
 
     if (evt is InputEventKey keyEvent && !Player.IsGamepad)
@@ -158,7 +156,7 @@ public partial class CharacterSelectPanel : MarginContainer
       idx = 0;
     
     Player.Color = colors[idx];
-    SetColor(colors[idx].ToColor());
+    SetColor(Player.Color.ToColor());
   }
 
   void SetColor (Color color)

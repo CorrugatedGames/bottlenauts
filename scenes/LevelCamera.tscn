@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://src/game/LevelCamera.cs" id="1_d4wl0"]
 
 [node name="LevelCamera" type="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 cull_mask = 524287
 fov = 90.0
 size = 0.1
