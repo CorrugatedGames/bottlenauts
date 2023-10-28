@@ -84,6 +84,7 @@ public partial class MatchSettingsState : SingletonNode
 
     Instance.Players[playerIndex] = new BNPlayer {
       IsCPU = false,
+      IsDead = false,
       IsGamepad = isGamepad,
       DeviceIndex = deviceIndex,
       PlayerIndex = playerIndex,
@@ -101,6 +102,7 @@ public partial class MatchSettingsState : SingletonNode
     CharacterColor color = GetUnusedCharacterColors()[new Random().Next(GetUnusedCharacterColors().Count)];
     Instance.Players[playerIndex] = new BNPlayer {
       IsCPU = true,
+      IsDead = false,
       IsGamepad = true,
       DeviceIndex = -2,
       PlayerIndex = playerIndex,
