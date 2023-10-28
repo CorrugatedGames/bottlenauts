@@ -37,14 +37,11 @@ public partial class Character : CharacterBody3D
 
     private Vector3I CurrentPosition
     {
-        get
-        {
-            return new Vector3I(
-                (int)Math.Floor(GlobalPosition.X),
-                (int)Math.Floor(GlobalPosition.Y),
-                (int)Math.Floor(GlobalPosition.Z)
-            );
-        }
+        get => new (
+            Mathf.FloorToInt(GlobalPosition.X),
+            Mathf.FloorToInt(GlobalPosition.Y),
+            Mathf.FloorToInt(GlobalPosition.Z)
+        );
     }
 
     public override void _Ready()
