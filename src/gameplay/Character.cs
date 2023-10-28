@@ -8,6 +8,7 @@ public partial class Character : CharacterBody3D
 
     #region Child nodes
     MeshInstance3D Mesh;
+    Timer BombCooldownTimer;
     #endregion
 
     [Export]
@@ -23,13 +24,16 @@ public partial class Character : CharacterBody3D
     int Team = 1;
     public int PlayerNumber { get; private set; }
 
+
     private BNPlayer PlayerRef { get; set; }
 
     Vector3 DeltaVelocity = Vector3.Zero;
 
     PackedScene BombScene;
 
-    private DateTime PlaceBombCooldown = DateTime.Now;
+    // private DateTime PlaceBombCooldown = DateTime.Now;
+    [Export] int BombCooldownMs { get; set; } = 500;
+    bool IsBombCooldown = false;
 
     private Vector3I CurrentPosition
     {
@@ -45,8 +49,11 @@ public partial class Character : CharacterBody3D
 
     public override void _Ready()
     {
+
         BombScene = ResourceLoader.Load("res://scenes/hazards/Bomb.tscn") as PackedScene;
         Mesh = GetNode("Mesh") as MeshInstance3D;
+        BombCooldownTimer = GetNode("BombCooldownTimer") as Timer;
+        BombCooldownTimer.Timeout += OnBombCooldownTimerTimeout;
 
         // until we move away from TestCharacter
         PlayerRef =
@@ -103,11 +110,16 @@ public partial class Character : CharacterBody3D
         MoveAndSlide();
     }
 
+    private void OnBombCooldownTimerTimeout () => IsBombCooldown = false;
+
     private bool CanPlaceBomb()
     {
         // TODO: Check if there is a bomb already placed at the current position, if so, bail
+        bool alreadyBombAtLocation = false;
 
-        return DateTime.Now >= PlaceBombCooldown;
+        // return DateTime.Now >= PlaceBombCooldown;
+
+        return !IsBombCooldown && !alreadyBombAtLocation;
     }
 
     private void CreateBomb()
@@ -129,7 +141,9 @@ public partial class Character : CharacterBody3D
 
     private void SetBombCooldown()
     {
-        PlaceBombCooldown = DateTime.Now.AddMilliseconds(500);
+        // PlaceBombCooldown = DateTime.Now.AddMilliseconds(500);
+        BombCooldownTimer.WaitTime = BombCooldownMs / 1000f;
+        IsBombCooldown = true;
     }
 
     public void Die()

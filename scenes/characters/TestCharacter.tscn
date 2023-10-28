@@ -252,3 +252,5 @@ skeleton = NodePath("")
 [node name="Shape" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
 shape = SubResource("CapsuleShape3D_vyo7c")
+
+[node name="BombCooldownTimer" type="Timer" parent="."]
