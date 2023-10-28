@@ -1,5 +1,11 @@
 public partial class Character : CharacterBody3D
 {
+    #region Signals
+    [Signal] public delegate void InstancedEventHandler (int playerNumber, Vector3 position);
+    [Signal] public delegate void BombPlacedEventHandler (int playerNumber, Vector3 bombPosition);
+    [Signal] public delegate void DiedEventHandler (int playerNumber);
+    #endregion
+
     #region Child nodes
     MeshInstance3D Mesh;
     #endregion
@@ -50,6 +56,8 @@ public partial class Character : CharacterBody3D
             0,
             new StandardMaterial3D() { AlbedoColor = PlayerRef.Color.ToColor() }
         );
+
+        EmitSignal(SignalName.Instanced, PlayerNumber, GlobalPosition);
     }
 
     public override void _Input(InputEvent @event) { }
@@ -115,6 +123,7 @@ public partial class Character : CharacterBody3D
 
         d.GlobalPosition = CurrentPosition + new Vector3(0.5f, 0f, 0.5f);
 
+        EmitSignal(SignalName.BombPlaced, PlayerNumber, d.GlobalPosition);
         SetBombCooldown();
     }
 
@@ -129,6 +138,7 @@ public partial class Character : CharacterBody3D
             return;
 
         PlayerRef.IsDead = true;
+        EmitSignal(SignalName.Died, PlayerNumber);
         Print("Player has died.");
     }
 
