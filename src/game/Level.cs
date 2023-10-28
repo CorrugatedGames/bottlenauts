@@ -84,7 +84,7 @@ public partial class Level : Node3D
             return;
         }
 
-        string name = $"{cellType}{(count > 1 ? new Random().Next(count) : 0)}";
+        string name = $"{cellType}{(count > 1 ? (Randi() % count) : 0)}";
         int item = meshlib.FindItemByName(name);
         if (item == -1)
         {
