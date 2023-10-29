@@ -62,11 +62,11 @@ public partial class Bomb : RigidBody3D
             ResourceLoader.Load("res://scenes/hazards/Explosion.tscn") as PackedScene;
         var explosion = ExplosionScene.Instantiate() as Explosion;
         explosion.Team = Team;
-        explosion.GlobalPosition = GlobalPosition;
 
         explosion.AddToGroup("Explosion");
         GetParent().GetParent().GetNode("Explosions").AddChild(explosion);
 
+        explosion.GlobalPosition = GlobalPosition;
         EmitSignal(SignalName.Exploded, Team, GlobalPosition);
 
         GetParent().RemoveChild(this);
