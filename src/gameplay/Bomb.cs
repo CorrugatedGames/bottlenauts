@@ -17,9 +17,9 @@ public partial class Bomb : RigidBody3D
     float DetonationTime {
         get {
             float time = BaseDetonationTime;
-            if (MatchSettingsState.GetGameModifiers()[GameModifier.DelayedBombs])
+            if (MatchSettingsState.CheckGameModifier(GameModifier.DelayedBombs))
                 time *= 2f;
-            if (MatchSettingsState.GetGameModifiers()[GameModifier.FastBombs])
+            if (MatchSettingsState.CheckGameModifier(GameModifier.FastBombs))
                 time *= 0.5f;
 
             return time;

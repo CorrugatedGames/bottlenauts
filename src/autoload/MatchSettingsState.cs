@@ -253,6 +253,8 @@ public partial class MatchSettingsState : SingletonNode
     return modifiers;
   }
 
+  public static bool CheckGameModifier (GameModifier modifier) => Instance.GameModifiers[modifier];
+
   public static void PrintActiveGameModifiers ()
   {
     string printout = "[ ";
