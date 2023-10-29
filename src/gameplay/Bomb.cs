@@ -1,8 +1,10 @@
-using Godot;
-using System;
-
 public partial class Bomb : RigidBody3D
 {
+    #region Signals
+    [Signal] public delegate void InstancedEventHandler (int teamNumber, Vector3I position);
+    [Signal] public delegate void ExplodedEventHandler (int teamNumber, Vector3I position);
+    #endregion
+
     public int Team { get; set; } = 1;
 
     private int Frame = 0;
@@ -18,6 +20,7 @@ public partial class Bomb : RigidBody3D
 
         Freeze = true; // on bomb throw, set this to false so we can apply force to it
 
+        EmitSignal(SignalName.Instanced, Team, GlobalPosition);
         PrepareBoom();
     }
 
@@ -59,11 +62,12 @@ public partial class Bomb : RigidBody3D
             ResourceLoader.Load("res://scenes/hazards/Explosion.tscn") as PackedScene;
         var explosion = ExplosionScene.Instantiate() as Explosion;
         explosion.Team = Team;
+        explosion.GlobalPosition = GlobalPosition;
 
         explosion.AddToGroup("Explosion");
         GetParent().GetParent().GetNode("Explosions").AddChild(explosion);
 
-        explosion.GlobalPosition = GlobalPosition;
+        EmitSignal(SignalName.Exploded, Team, GlobalPosition);
 
         GetParent().RemoveChild(this);
 

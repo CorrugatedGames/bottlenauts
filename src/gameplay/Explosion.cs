@@ -1,8 +1,12 @@
-using Godot;
-using System;
-
 public partial class Explosion : Node3D
 {
+    #region Signals
+    [Signal] public delegate void CharacterHitEventHandler (Character character);
+    [Signal] public delegate void DestructibleHitEventHandler (Destructible destru);
+    [Signal] public delegate void BombHitEventHandler (Bomb bomb);
+    [Signal] public delegate void ExpansionFinishedEventHandler ();
+    #endregion
+
     public int Team { get; set; } = 1;
     private int Frame = 0;
     private int MaxFrames = 60;
@@ -26,14 +30,17 @@ public partial class Explosion : Node3D
     {
         if (node is Character character)
         {
+            EmitSignal(SignalName.CharacterHit, character);
             character.Die();
         }
         else if (node is Destructible destructible)
         {
+            EmitSignal(SignalName.DestructibleHit, destructible);
             destructible.GetBlownUp();
         }
         else if (node is Bomb bomb)
         {
+            EmitSignal(SignalName.BombHit, bomb);
             bomb.Boom();
         }
     }
@@ -50,6 +57,7 @@ public partial class Explosion : Node3D
 
     private void FinishExpanding()
     {
+        EmitSignal(SignalName.ExpansionFinished);
         GetParent().RemoveChild(this);
         QueueFree();
     }
