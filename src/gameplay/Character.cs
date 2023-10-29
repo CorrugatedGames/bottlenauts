@@ -139,7 +139,7 @@ public partial class Character : CharacterBody3D
     private void SetBombCooldown()
     {
         // PlaceBombCooldown = DateTime.Now.AddMilliseconds(500);
-        BombCooldownTimer.WaitTime = BombCooldownMs / 1000f;
+        BombCooldownTimer.Start(BombCooldownMs / 1000f);
         IsBombCooldown = true;
     }
 
@@ -149,6 +149,7 @@ public partial class Character : CharacterBody3D
             return;
 
         PlayerRef.IsDead = true;
+        DeltaVelocity = Vector3.Zero;
         EmitSignal(SignalName.Died, PlayerNumber);
         Print("Player has died.");
     }
