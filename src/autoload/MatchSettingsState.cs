@@ -99,7 +99,8 @@ public partial class MatchSettingsState : SingletonNode
   public static int GenerateCPUPlayer () => GenerateCPUPlayer(CurrentPlayerCount);
   public static int GenerateCPUPlayer (int playerIndex)
   {
-    CharacterColor color = GetUnusedCharacterColors()[(int)Randi() % GetUnusedCharacterColors().Count];
+    int colorIdx = Mathf.Clamp((int)Randi() % GetUnusedCharacterColors().Count, 0, GetUnusedCharacterColors().Count - 1);
+    CharacterColor color = GetUnusedCharacterColors()[colorIdx];
     Instance.Players[playerIndex] = new BNPlayer {
       IsCPU = true,
       IsDead = false,
