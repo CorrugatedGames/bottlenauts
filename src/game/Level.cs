@@ -229,7 +229,7 @@ public partial class Level : Node3D
 
     bool ShouldEndGame()
     {
-        return Range(4).Count(i => MatchSettingsState.GetPlayer(i).IsDead)
+        return Range(MatchSettingsState.PlayerCount).Count(i => MatchSettingsState.GetPlayer(i).IsDead)
             >= MatchSettingsState.PlayerCount - 1;
     }
 
