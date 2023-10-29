@@ -13,6 +13,19 @@ public partial class Bomb : RigidBody3D
 
     private bool HasExploded = false;
 
+    [Export] float BaseDetonationTime = 3f;
+    float DetonationTime {
+        get {
+            float time = BaseDetonationTime;
+            if (MatchSettingsState.GetGameModifiers()[GameModifier.DelayedBombs])
+                time *= 2f;
+            if (MatchSettingsState.GetGameModifiers()[GameModifier.FastBombs])
+                time *= 0.5f;
+
+            return time;
+        }
+    }
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -46,7 +59,7 @@ public partial class Bomb : RigidBody3D
 
     private async void PrepareBoom()
     {
-        await ToSignal(GetTree().CreateTimer(3.0f), SceneTreeTimer.SignalName.Timeout);
+        await ToSignal(GetTree().CreateTimer(DetonationTime), SceneTreeTimer.SignalName.Timeout);
 
         Boom();
     }

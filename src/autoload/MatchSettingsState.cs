@@ -38,6 +38,9 @@ public enum GameModifier
   DarkArena,
   SlowArena,
 
+  DelayedBombs,
+  FastBombs,
+
   ForceSprint,
   ForceSlow,
   Diarrhea,
