@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjo3m250veyp8"]
+[gd_scene load_steps=4 format=3 uid="uid://cjo3m250veyp8"]
 
 [ext_resource type="Script" path="res://src/menus/TitleScreen.cs" id="1_vybec"]
+[ext_resource type="PackedScene" uid="uid://b8oxsatdw55re" path="res://scenes/ui/SettingsLayer.tscn" id="2_5wupp"]
+[ext_resource type="Script" path="res://src/scenes/ui/ActiveCanvasLayer.cs" id="2_74sbu"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -11,8 +13,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vybec")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = 10
+script = ExtResource("2_74sbu")
+
+[node name="SettingsLayer" parent="CanvasLayer" instance=ExtResource("2_5wupp")]
+unique_name_in_owner = true
+visible = false
+_ParentLayer = NodePath("..")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -23,10 +34,10 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer/VBoxContainer"]
 clip_contents = false
 layout_direction = 1
 layout_mode = 2
@@ -44,73 +55,73 @@ text = "[center][i]Bottle[/i][b]nauts[/b][/center]"
 fit_content = true
 shortcut_keys_enabled = false
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 8.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.0
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="LocalMultiplayer" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer"]
+[node name="LocalMultiplayer" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 text = "Local Multiplayer"
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="Options" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2"]
+[node name="Options" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 text = "Options"
 
-[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="play2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer3"]
+[node name="play2" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer3"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 disabled = true
 text = "this button is small and disabled because lol suffer"
 
-[node name="MarginContainer4" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+[node name="MarginContainer4" type="MarginContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer4"]
+[node name="Quit" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer4"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 text = "Quit to Desktop"
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 1.1
 theme_override_constants/margin_left = 20
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "this game is under active development
