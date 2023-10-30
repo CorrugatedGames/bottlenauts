@@ -25,6 +25,7 @@ public static class Filepaths
 
 public static class MathHelpers
 {
-  public static Vector3 SnapToGrid (Vector3 currentPosition) =>
-    currentPosition + new Vector3(0.5f, 0f, 0.5f);
+  readonly static Vector3 GRID_OFFSET = new (0.5f, 0, 0.5f);
+  public static Vector3 SnapToGrid (this Vector3 vec) => vec + GRID_OFFSET;
+  public static Vector3 SnapToGrid (this Vector3I vec) => new Vector3(vec.X, vec.Y, vec.Z) + GRID_OFFSET;
 }
