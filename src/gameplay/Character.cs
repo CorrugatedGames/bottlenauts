@@ -1,9 +1,16 @@
+using System.Linq;
+
 public partial class Character : CharacterBody3D
 {
     #region Signals
-    [Signal] public delegate void InstancedEventHandler (int playerNumber, Vector3 position);
-    [Signal] public delegate void BombPlacedEventHandler (int playerNumber, Vector3 bombPosition);
-    [Signal] public delegate void DiedEventHandler (int playerNumber);
+    [Signal]
+    public delegate void InstancedEventHandler(int playerNumber, Vector3 position);
+
+    [Signal]
+    public delegate void BombPlacedEventHandler(int playerNumber, Vector3 bombPosition);
+
+    [Signal]
+    public delegate void DiedEventHandler(int playerNumber);
     #endregion
 
     #region Child nodes
@@ -24,7 +31,6 @@ public partial class Character : CharacterBody3D
     int Team = 1;
     public int PlayerNumber { get; private set; }
 
-
     private BNPlayer PlayerRef { get; set; }
 
     Vector3 DeltaVelocity = Vector3.Zero;
@@ -32,21 +38,22 @@ public partial class Character : CharacterBody3D
     PackedScene BombScene;
 
     // private DateTime PlaceBombCooldown = DateTime.Now;
-    [Export] int BombCooldownMs { get; set; } = 500;
+    [Export]
+    int BombCooldownMs { get; set; } = 500;
     bool IsBombCooldown = false;
 
     private Vector3I CurrentPosition
     {
-        get => new (
-            Mathf.FloorToInt(GlobalPosition.X),
-            Mathf.FloorToInt(GlobalPosition.Y),
-            Mathf.FloorToInt(GlobalPosition.Z)
-        );
+        get =>
+            new(
+                Mathf.FloorToInt(GlobalPosition.X),
+                Mathf.FloorToInt(GlobalPosition.Y),
+                Mathf.FloorToInt(GlobalPosition.Z)
+            );
     }
 
     public override void _Ready()
     {
-
         BombScene = ResourceLoader.Load("res://scenes/hazards/Bomb.tscn") as PackedScene;
         Mesh = GetNode("Mesh") as MeshInstance3D;
         BombCooldownTimer = GetNode("BombCooldownTimer") as Timer;
@@ -107,14 +114,20 @@ public partial class Character : CharacterBody3D
         MoveAndSlide();
     }
 
-    private void OnBombCooldownTimerTimeout () => IsBombCooldown = false;
+    private void OnBombCooldownTimerTimeout() => IsBombCooldown = false;
 
     private bool CanPlaceBomb()
     {
-        // TODO: Check if there is a bomb already placed at the current position, if so, bail
-        bool alreadyBombAtLocation = false;
+        bool alreadyBombAtLocation = GetParent()
+            .GetNode("Bombs")
+            .GetChildren()
+            .Any(
+                b =>
+                    b is Bomb
+                    && (b as Bomb).GlobalPosition == CurrentPosition + new Vector3(0.5f, 0f, 0.5f)
+            );
 
-        // return DateTime.Now >= PlaceBombCooldown;
+        Print(alreadyBombAtLocation, IsBombCooldown);
 
         return !IsBombCooldown && !alreadyBombAtLocation;
     }
