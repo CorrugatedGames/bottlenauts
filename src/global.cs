@@ -26,6 +26,9 @@ public static class Filepaths
 public static class MathHelpers
 {
   readonly static Vector3 GRID_OFFSET = new (0.5f, 0, 0.5f);
-  public static Vector3 SnapToGrid (this Vector3 vec) => vec + GRID_OFFSET;
-  public static Vector3 SnapToGrid (this Vector3I vec) => new Vector3(vec.X, vec.Y, vec.Z) + GRID_OFFSET;
+  public static void SnapToGrid (ref this Vector3 vec) => vec += GRID_OFFSET;
+  /// <summary>Does NOT mutate the Vector3 it's called on!</summary>
+  public static Vector3 SnappedToGrid (this Vector3 vec) => vec + GRID_OFFSET;
+  /// <summary>Does NOT mutate the Vector3I it's called on!</summary>
+  public static Vector3 SnappedToGrid (this Vector3I vec) => new Vector3(vec.X, vec.Y, vec.Z) + GRID_OFFSET;
 }

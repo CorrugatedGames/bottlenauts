@@ -124,7 +124,7 @@ public partial class Character : CharacterBody3D
             .Any(
                 b =>
                     b is Bomb
-                    && (b as Bomb).GlobalPosition.IsEqualApprox(CurrentPosition.SnapToGrid())
+                    && (b as Bomb).GlobalPosition.IsEqualApprox(CurrentPosition.SnappedToGrid())
             );
 
         return !IsBombCooldown && !alreadyBombAtLocation;
@@ -141,7 +141,7 @@ public partial class Character : CharacterBody3D
         d.AddToGroup("Bomb");
         GetParent().GetNode("Bombs").AddChild(d);
 
-        d.GlobalPosition = CurrentPosition.SnapToGrid();
+        d.GlobalPosition = CurrentPosition.SnappedToGrid();
 
         EmitSignal(SignalName.BombPlaced, PlayerNumber, d.GlobalPosition);
         SetBombCooldown();
