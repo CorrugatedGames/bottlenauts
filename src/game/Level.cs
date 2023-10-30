@@ -187,7 +187,7 @@ public partial class Level : Node3D
         {
             var d = destruScene.Instantiate() as Node3D;
             d.AddToGroup("Destru");
-            d.Position = loc + new Vector3(0.5f, 0f, 0.5f);
+            d.Position = PositionHelper.SnapToGrid(loc);
             AddChild(d);
         }
 
@@ -197,7 +197,7 @@ public partial class Level : Node3D
         {
             var o = obstaScene.Instantiate() as Node3D;
             o.AddToGroup("Obsta");
-            o.Position = loc + new Vector3(0.5f, 0f, 0.5f);
+            o.Position = PositionHelper.SnapToGrid(loc);
             AddChild(o);
         }
     }
@@ -212,7 +212,7 @@ public partial class Level : Node3D
         for (int i = 0; i < MatchSettingsState.PlayerCount; i++)
         {
             BNPlayer player = MatchSettingsState.GetPlayer(i);
-            Vector3 spawn = randomSpawns.ElementAt(i) + new Vector3(0.5f, 0, 0.5f);
+            Vector3 spawn = PositionHelper.SnapToGrid(randomSpawns.ElementAt(i));
 
             // todo(jam): set visuals here based on player.Color
             PackedScene characterScene =
@@ -229,7 +229,8 @@ public partial class Level : Node3D
 
     bool ShouldEndGame()
     {
-        return Range(MatchSettingsState.PlayerCount).Count(i => MatchSettingsState.GetPlayer(i).IsDead)
+        return Range(MatchSettingsState.PlayerCount)
+                .Count(i => MatchSettingsState.GetPlayer(i).IsDead)
             >= MatchSettingsState.PlayerCount - 1;
     }
 
