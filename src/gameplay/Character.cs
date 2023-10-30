@@ -127,8 +127,6 @@ public partial class Character : CharacterBody3D
                     && (b as Bomb).GlobalPosition == CurrentPosition + new Vector3(0.5f, 0f, 0.5f)
             );
 
-        Print(alreadyBombAtLocation, IsBombCooldown);
-
         return !IsBombCooldown && !alreadyBombAtLocation;
     }
 
