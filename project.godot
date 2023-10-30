@@ -26,7 +26,6 @@ MatchSettingsState="*res://src/autoload/MatchSettingsState.cs"
 PlayerProfileManager="*res://src/autoload/PlayerProfileManager.cs"
 MPInputMap="*res://addons/mp-input/MPInputMap.cs"
 MPInput="*res://addons/mp-input/MPInput.cs"
-Position="res://src/autoload/PositionHelper.cs"
 
 [display]
 
