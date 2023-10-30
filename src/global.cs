@@ -1,9 +1,11 @@
 global using Godot;
 global using static Godot.GD;
-global using static Filepaths;
 
 global using System;
 global using System.Collections.Generic;
+
+global using static Filepaths;
+global using static MathHelpers;
 
 public static class Filepaths
 {
@@ -19,4 +21,10 @@ public static class Filepaths
   public readonly static string THEME_DIRECTORY = "res://assets/level_themes/";
   public readonly static string THEME_EXTENSION = ".leveltheme.tres";
   public static string AsThemeFilePath (this string name) => $"{THEME_DIRECTORY}{name}{THEME_EXTENSION}";
+}
+
+public static class MathHelpers
+{
+  public static Vector3 SnapToGrid (Vector3 currentPosition) =>
+    currentPosition + new Vector3(0.5f, 0f, 0.5f);
 }
