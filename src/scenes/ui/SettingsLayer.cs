@@ -31,9 +31,9 @@ public partial class SettingsLayer : ActiveCanvasLayer
       SetActive(!Visible, false);
   }
 
-  public override void SetActive (bool active, bool allowCharacterProcess)
+  public override void SetActive (bool active, bool allowGameplayProcess)
   {
-    base.SetActive(active, allowCharacterProcess);
+    base.SetActive(active, allowGameplayProcess);
 
     if (!active)
     {

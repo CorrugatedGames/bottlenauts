@@ -30,9 +30,9 @@ public partial class PauseLayer : ActiveCanvasLayer
       SetActive(!Visible, Visible);
   }
 
-  public override void SetActive (bool active, bool allowCharacterProcess)
+  public override void SetActive (bool active, bool allowGameplayProcess)
   {
-    base.SetActive(active, allowCharacterProcess);
+    base.SetActive(active, allowGameplayProcess);
 
     if (active)
       BackButton.GrabFocus();
