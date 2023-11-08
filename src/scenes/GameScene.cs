@@ -1,3 +1,5 @@
+using System.Linq;
+
 public partial class GameScene : Node
 {
   #region Child nodes
@@ -22,7 +24,7 @@ public partial class GameScene : Node
     Viewport.AddChild(level);
     level.Camera.MakeCurrent();
 
-    foreach (Character character in GetTree().GetNodesInGroup("Character"))
+    foreach (Character character in GetTree().GetNodesInGroup(GROUP_CHARACTERS).Cast<Character>())
       Referee.ConnectCharacterSignals(character);
   }
 }

@@ -138,7 +138,7 @@ public partial class Character : CharacterBody3D
         var d = BombScene.Instantiate() as Bomb;
         d.Team = Team;
 
-        d.AddToGroup("Bomb");
+        d.AddToGroup(GROUP_BOMBS);
         GetParent().GetNode("Bombs").AddChild(d);
 
         d.GlobalPosition = CurrentPosition.SnappedToGrid();

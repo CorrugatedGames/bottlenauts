@@ -5,6 +5,7 @@ global using System;
 global using System.Collections.Generic;
 
 global using static Filepaths;
+global using static GroupNames;
 global using static MathHelpers;
 
 public static class Filepaths
@@ -21,6 +22,12 @@ public static class Filepaths
   public readonly static string THEME_DIRECTORY = "res://assets/level_themes/";
   public readonly static string THEME_EXTENSION = ".leveltheme.tres";
   public static string AsThemeFilePath (this string name) => $"{THEME_DIRECTORY}{name}{THEME_EXTENSION}";
+}
+
+public static class GroupNames
+{
+  public readonly static string GROUP_CHARACTERS = "Character";
+  public readonly static string GROUP_BOMBS = "Bomb";
 }
 
 public static class MathHelpers
