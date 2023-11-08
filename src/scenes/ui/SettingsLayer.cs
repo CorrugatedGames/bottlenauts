@@ -28,21 +28,21 @@ public partial class SettingsLayer : ActiveCanvasLayer
   public override void _Input (InputEvent evt)
   {
     if (evt.IsActionPressed("pause"))
-      SetActive(!Visible);
+      SetActive(!Visible, false);
   }
 
-  public override void SetActive (bool active)
+  public override void SetActive (bool active, bool allowCharacterProcess)
   {
-    base.SetActive(active);
+    base.SetActive(active, allowCharacterProcess);
 
     if (!active)
     {
       ParentLayer?.SetProcessInput(true);
-      ParentLayer?.SetActive(true);
+      ParentLayer?.SetActive(true, false);
     }
 
     SetProcessInput(active);
   }
 
-  void OnBackButtonPressed () => SetActive(false);
+  void OnBackButtonPressed () => SetActive(false, false);
 }

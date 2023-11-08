@@ -23,8 +23,8 @@ public partial class TitleScreen : Control
 
   void OnOptionsButtonPressed ()
   {
-    MenuLayer.SetActive(false);
+    MenuLayer.SetActive(false, true);
     MenuLayer.SetProcessInput(false);
-    SettingsLayer.SetActive(true);
+    SettingsLayer.SetActive(true, true);
   }
 }

@@ -27,24 +27,24 @@ public partial class PauseLayer : ActiveCanvasLayer
   public override void _Input (InputEvent evt)
   {
     if (evt.IsActionPressed("pause"))
-      SetActive(!Visible);
+      SetActive(!Visible, Visible);
   }
 
-  public override void SetActive (bool active)
+  public override void SetActive (bool active, bool allowCharacterProcess)
   {
-    base.SetActive(active);
+    base.SetActive(active, allowCharacterProcess);
 
     if (active)
       BackButton.GrabFocus();
   }
 
-  void OnBackButtonPressed () => SetActive(false);
+  void OnBackButtonPressed () => SetActive(false, true);
 
   void OnSettingsButtonPressed ()
   {
-    SetActive(false);
+    SetActive(false, false);
     SetProcessInput(false);
-    Settings.SetActive(true);
+    Settings.SetActive(true, false);
   }
 
   void OnMainMenuButtonPressed ()
