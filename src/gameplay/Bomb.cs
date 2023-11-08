@@ -76,7 +76,7 @@ public partial class Bomb : RigidBody3D
         var explosion = ExplosionScene.Instantiate() as Explosion;
         explosion.Team = Team;
 
-        explosion.AddToGroup("Explosion");
+        explosion.AddToGroup(GROUP_EXPLOSIONS);
         GetParent().GetParent().GetNode("Explosions").AddChild(explosion);
 
         explosion.GlobalPosition = GlobalPosition;
