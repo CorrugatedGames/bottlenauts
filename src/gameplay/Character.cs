@@ -139,6 +139,7 @@ public partial class Character : CharacterBody3D
         d.Team = Team;
 
         d.AddToGroup(GROUP_BOMBS);
+        d.AddToGroup(GROUP_GAMEPLAY);
         GetParent().GetNode("Bombs").AddChild(d);
 
         d.GlobalPosition = CurrentPosition.SnappedToGrid();

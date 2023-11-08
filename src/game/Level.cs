@@ -231,6 +231,7 @@ public partial class Level : Node3D
                 ResourceLoader.Load("res://scenes/characters/TestCharacter.tscn") as PackedScene;
             Character character = characterScene.Instantiate() as Character;
             character.AddToGroup(GROUP_CHARACTERS);
+            character.AddToGroup(GROUP_GAMEPLAY);
             character.SetPlayerNumber(i);
             AddChild(character);
             character.GlobalPosition = spawn;
