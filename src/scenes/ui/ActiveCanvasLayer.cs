@@ -1,5 +1,3 @@
-using System.Linq;
-
 public partial class ActiveCanvasLayer : CanvasLayer
 {
   public virtual void SetActive (bool active, bool allowGameplayProcess)
