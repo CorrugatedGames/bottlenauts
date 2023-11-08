@@ -13,6 +13,7 @@ public partial class Bomb : RigidBody3D
 
     private bool HasExploded = false;
 
+    Timer DetonationTimer { get; set; }
     [Export] float BaseDetonationTime = 3f;
     float DetonationTime {
         get {
@@ -30,6 +31,8 @@ public partial class Bomb : RigidBody3D
     public override void _Ready()
     {
         area = GetNode<Area3D>("Area3D");
+        DetonationTimer = GetNode("%DetonationTimer") as Timer;
+        DetonationTimer.AddToGroup(GROUP_GAMEPLAY);
 
         Freeze = true; // on bomb throw, set this to false so we can apply force to it
 
@@ -57,11 +60,10 @@ public partial class Bomb : RigidBody3D
         }
     }
 
-    private async void PrepareBoom()
+    private void PrepareBoom()
     {
-        await ToSignal(GetTree().CreateTimer(DetonationTime), SceneTreeTimer.SignalName.Timeout);
-
-        Boom();
+        DetonationTimer.Timeout += Boom;
+        DetonationTimer.Start(DetonationTime);
     }
 
     public void Boom()
@@ -77,6 +79,7 @@ public partial class Bomb : RigidBody3D
         explosion.Team = Team;
 
         explosion.AddToGroup(GROUP_EXPLOSIONS);
+        explosion.AddToGroup(GROUP_GAMEPLAY);
         GetParent().GetParent().GetNode("Explosions").AddChild(explosion);
 
         explosion.GlobalPosition = GlobalPosition;
