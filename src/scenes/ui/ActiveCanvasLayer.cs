@@ -2,17 +2,21 @@ using System.Linq;
 
 public partial class ActiveCanvasLayer : CanvasLayer
 {
-  public virtual void SetActive (bool active, bool allowCharacterProcess)
+  public virtual void SetActive (bool active, bool allowGameplayProcess)
   {
     Visible = active;
     SetProcess(active);
     SetProcessUnhandledInput(active);
 
-    foreach (Character character in GetTree().GetNodesInGroup(GROUP_CHARACTERS).Cast<Character>())
+    foreach (Node node in GetTree().GetNodesInGroup(GROUP_GAMEPLAY))
     {
-      character.SetProcess(allowCharacterProcess);
-      character.SetProcessInput(allowCharacterProcess);
-      character.SetPhysicsProcess(allowCharacterProcess);
+      node.SetProcess(allowGameplayProcess);
+      node.SetPhysicsProcess(allowGameplayProcess);
+      node.SetProcessInput(allowGameplayProcess);
+      node.SetProcessUnhandledInput(allowGameplayProcess);
+
+      if (node is Timer timer)
+        timer.Paused = !allowGameplayProcess;
     }
   }
 }
