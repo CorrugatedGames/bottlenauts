@@ -3,12 +3,12 @@ using System;
 
 public partial class CharacterHUD : MarginContainer
 {
-    RichTextLabel PlayerNumberLabel;
+    Label PlayerNumberLabel;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        PlayerNumberLabel = GetNode("%PlayerNumberLabel") as RichTextLabel;
+        PlayerNumberLabel = GetNode("%PlayerNumberLabel") as Label;
         int playerNumber = (int)GetMeta("PlayerNumber");
 
         var player = MatchSettingsState.GetPlayer(playerNumber);
@@ -19,8 +19,13 @@ public partial class CharacterHUD : MarginContainer
             return;
         }
 
-        Print(playerNumber);
-        PlayerNumberLabel.Text = $"PLAYER #{playerNumber + 1}";
+        Print(
+            playerNumber,
+            PlayerNumberLabel,
+            GetNode("VBoxContainer/PlayerNumberLabel") as RichTextLabel
+        );
+        PlayerNumberLabel.Text =
+            MatchSettingsState.GetPlayer(playerNumber).Color.ToColorString() + " Alchemist";
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
