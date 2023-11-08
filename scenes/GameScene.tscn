@@ -1,10 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://du4v5tcx5bltt"]
+[gd_scene load_steps=4 format=3 uid="uid://du4v5tcx5bltt"]
 
 [ext_resource type="Script" path="res://src/scenes/GameScene.cs" id="1_gtlnx"]
+[ext_resource type="Script" path="res://src/gameplay/Referee.cs" id="2_1x7ng"]
 [ext_resource type="PackedScene" uid="uid://cembimxaefdar" path="res://scenes/ui/PauseLayer.tscn" id="2_fvifq"]
 
 [node name="GameScene" type="Node"]
 script = ExtResource("1_gtlnx")
+
+[node name="Referee" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_1x7ng")
 
 [node name="ViewportContainer" type="SubViewportContainer" parent="."]
 process_mode = 1
