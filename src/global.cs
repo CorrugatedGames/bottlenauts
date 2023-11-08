@@ -29,6 +29,8 @@ public static class GroupNames
   public readonly static string GROUP_CHARACTERS = "Character";
   public readonly static string GROUP_BOMBS = "Bomb";
   public readonly static string GROUP_EXPLOSIONS = "Explosion";
+  
+  public readonly static string GROUP_GAMEPLAY = "GameplayPauseable";
 }
 
 public static class MathHelpers
