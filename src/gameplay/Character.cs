@@ -75,6 +75,9 @@ public partial class Character : CharacterBody3D
 
     public override void _Process(double dt)
     {
+        if (MatchSettingsState.LockInput)
+            return;
+
         if (PlayerRef.IsDead)
             return;
 
@@ -157,6 +160,9 @@ public partial class Character : CharacterBody3D
 
     public void Die()
     {
+        if (MatchSettingsState.LockInput)
+            return;
+
         if (PlayerRef.IsDead)
             return;
 

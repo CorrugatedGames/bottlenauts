@@ -275,6 +275,7 @@ public partial class Level : Node3D
 
     void EndSequence()
     {
+        MatchSettingsState.LockInput = true;
         string winnerString = "Tie!";
 
         if (NumPlayersAlive() == 1)
