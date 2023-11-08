@@ -43,35 +43,34 @@ bus = &"SFX"
 [node name="PauseLayer" parent="ViewportContainer/Unpausable" instance=ExtResource("2_fvifq")]
 visible = false
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="PlayerHUD" type="VBoxContainer" parent="ViewportContainer"]
+visibility_layer = 8
+layout_mode = 2
 
-[node name="PlayerHUD" type="VBoxContainer" parent="."]
-offset_left = 3.0
-offset_top = 907.0
-offset_right = 1917.0
-offset_bottom = 1077.0
-
-[node name="GridContainer" type="GridContainer" parent="PlayerHUD"]
+[node name="GridContainer" type="GridContainer" parent="ViewportContainer/PlayerHUD"]
 layout_mode = 2
 size_flags_vertical = 3
 columns = 4
 
-[node name="0" parent="PlayerHUD/GridContainer" instance=ExtResource("4_nf3ng")]
+[node name="0" parent="ViewportContainer/PlayerHUD/GridContainer" instance=ExtResource("4_nf3ng")]
 layout_mode = 2
 size_flags_horizontal = 3
 metadata/PlayerNumber = 0
 
-[node name="1" parent="PlayerHUD/GridContainer" instance=ExtResource("4_nf3ng")]
+[node name="1" parent="ViewportContainer/PlayerHUD/GridContainer" instance=ExtResource("4_nf3ng")]
 layout_mode = 2
 size_flags_horizontal = 3
 metadata/PlayerNumber = 1
 
-[node name="2" parent="PlayerHUD/GridContainer" instance=ExtResource("4_nf3ng")]
+[node name="2" parent="ViewportContainer/PlayerHUD/GridContainer" instance=ExtResource("4_nf3ng")]
 layout_mode = 2
 size_flags_horizontal = 3
 metadata/PlayerNumber = 2
 
-[node name="3" parent="PlayerHUD/GridContainer" instance=ExtResource("4_nf3ng")]
+[node name="3" parent="ViewportContainer/PlayerHUD/GridContainer" instance=ExtResource("4_nf3ng")]
 layout_mode = 2
 size_flags_horizontal = 3
 metadata/PlayerNumber = 3
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 5

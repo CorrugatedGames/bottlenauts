@@ -13,14 +13,14 @@ public partial class CharacterHUD : MarginContainer
 
         var player = MatchSettingsState.GetPlayer(playerNumber);
 
-        Print(playerNumber);
-        Print(player);
-
         if (player == null)
         {
             Visible = false;
             return;
         }
+
+        Print(playerNumber);
+        PlayerNumberLabel.Text = $"PLAYER #{playerNumber + 1}";
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
