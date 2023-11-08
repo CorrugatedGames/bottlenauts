@@ -32,8 +32,13 @@ public partial class Level : Node3D
     public override void _Input(InputEvent evt)
     {
         if (evt is InputEventKey keyEvent)
+        {
             if (keyEvent.Pressed && keyEvent.Keycode == Key.F6)
                 DEVStealPlayerOne(-1);
+
+            if (keyEvent.Pressed && keyEvent.Keycode == Key.F9)
+                DEVEndSequence();
+        }
 
         if (evt is InputEventJoypadButton buttonEvent)
             if (buttonEvent.Pressed && buttonEvent.ButtonIndex == JoyButton.LeftStick)
@@ -58,6 +63,13 @@ public partial class Level : Node3D
 
         MatchSettingsState.Instance.Players[0] = player;
         MatchSettingsState.GeneratePlayerBindings();
+#endif
+    }
+
+    void DEVEndSequence()
+    {
+#if DEBUG
+        EndSequence();
 #endif
     }
 
@@ -227,11 +239,24 @@ public partial class Level : Node3D
         }
     }
 
+    BNPlayer PlayerAlive()
+    {
+        return MatchSettingsState.GetPlayer(
+            Range(MatchSettingsState.PlayerCount)
+                .First(i => !MatchSettingsState.GetPlayer(i).IsDead)
+        );
+    }
+
+    int NumPlayersAlive()
+    {
+        return MatchSettingsState.PlayerCount
+            - Range(MatchSettingsState.PlayerCount)
+                .Count(i => MatchSettingsState.GetPlayer(i).IsDead);
+    }
+
     bool ShouldEndGame()
     {
-        return Range(MatchSettingsState.PlayerCount)
-                .Count(i => MatchSettingsState.GetPlayer(i).IsDead)
-            >= MatchSettingsState.PlayerCount - 1;
+        return NumPlayersAlive() <= 1;
     }
 
     async void BeginEndSequence()
@@ -249,6 +274,13 @@ public partial class Level : Node3D
 
     void EndSequence()
     {
-        Print("Game over man, game over!");
+        string winnerString = "Tie!";
+
+        if (NumPlayersAlive() == 1)
+        {
+            winnerString = PlayerAlive().Color.ToColorString() + " Alchemist Wins!";
+        }
+
+        Print(winnerString);
     }
 }

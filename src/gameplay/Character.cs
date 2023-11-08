@@ -162,7 +162,7 @@ public partial class Character : CharacterBody3D
         PlayerRef.IsDead = true;
         DeltaVelocity = Vector3.Zero;
         EmitSignal(SignalName.Died, PlayerNumber);
-        Print("Player has died.");
+        Print(PlayerRef.Color.ToColorString() + " Alchemist has died.");
     }
 
     public void SetPlayerNumber(int playerNumber) =>
