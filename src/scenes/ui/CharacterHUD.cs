@@ -19,11 +19,6 @@ public partial class CharacterHUD : MarginContainer
             return;
         }
 
-        Print(
-            playerNumber,
-            PlayerNumberLabel,
-            GetNode("VBoxContainer/PlayerNumberLabel") as RichTextLabel
-        );
         PlayerNumberLabel.Text =
             MatchSettingsState.GetPlayer(playerNumber).Color.ToColorString() + " Alchemist";
     }
