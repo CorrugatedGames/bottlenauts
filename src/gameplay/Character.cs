@@ -4,13 +4,13 @@ public partial class Character : CharacterBody3D
 {
     #region Signals
     [Signal]
-    public delegate void InstancedEventHandler(int playerNumber, Vector3 position);
+    public delegate void InstancedEventHandler(Vector3 position);
 
     [Signal]
-    public delegate void BombPlacedEventHandler(int playerNumber, Vector3 bombPosition);
+    public delegate void BombPlacedEventHandler(Vector3 bombPosition);
 
     [Signal]
-    public delegate void DiedEventHandler(int playerNumber);
+    public delegate void DiedEventHandler();
     #endregion
 
     #region Child nodes
@@ -68,7 +68,7 @@ public partial class Character : CharacterBody3D
             new StandardMaterial3D() { AlbedoColor = PlayerRef.Color.ToColor() }
         );
 
-        EmitSignal(SignalName.Instanced, PlayerNumber, GlobalPosition);
+        EmitSignal(SignalName.Instanced, GlobalPosition);
     }
 
     public override void _Input(InputEvent @event) { }
@@ -143,7 +143,7 @@ public partial class Character : CharacterBody3D
 
         d.GlobalPosition = CurrentPosition.SnappedToGrid();
 
-        EmitSignal(SignalName.BombPlaced, PlayerNumber, d.GlobalPosition);
+        EmitSignal(SignalName.BombPlaced, d.GlobalPosition);
         SetBombCooldown();
     }
 
@@ -161,7 +161,7 @@ public partial class Character : CharacterBody3D
 
         PlayerRef.IsDead = true;
         DeltaVelocity = Vector3.Zero;
-        EmitSignal(SignalName.Died, PlayerNumber);
+        EmitSignal(SignalName.Died);
         Print(PlayerRef.Color.ToColorString() + " Alchemist has died.");
     }
 
