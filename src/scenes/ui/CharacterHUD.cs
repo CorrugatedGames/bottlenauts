@@ -11,16 +11,16 @@ public partial class CharacterHUD : MarginContainer
         PlayerNumberLabel = GetNode("%PlayerNumberLabel") as Label;
         int playerNumber = (int)GetMeta("PlayerNumber");
 
-        var player = MatchSettingsState.GetPlayer(playerNumber);
-
-        if (player == null)
+        if (playerNumber >= MatchSettingsState.PlayerCount)
         {
             Visible = false;
+            PlayerNumberLabel.Visible = false;
+            PlayerNumberLabel.Text = "";
             return;
         }
 
-        PlayerNumberLabel.Text =
-            MatchSettingsState.GetPlayer(playerNumber).Color.ToColorString() + " Alchemist";
+        var player = MatchSettingsState.GetPlayer(playerNumber);
+        PlayerNumberLabel.Text = player.Color.ToColorString() + " Alchemist";
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.

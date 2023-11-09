@@ -143,7 +143,8 @@ public partial class MatchSettingsState : SingletonNode
 
     public static void RemovePlayers() => Instance.Players = new BNPlayer[PlayerCount];
 
-    public static BNPlayer GetPlayer(int playerNumber) => Instance.Players[playerNumber];
+    public static BNPlayer GetPlayer(int playerNumber) =>
+        playerNumber > PlayerCount ? null : Instance.Players[playerNumber];
 
     public static void UpdatePlayerCount(int newCount)
     {
