@@ -65,6 +65,20 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.0
 
+[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="play2" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+disabled = true
+text = "Single Player"
+
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -88,20 +102,6 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 text = "Options"
-
-[node name="MarginContainer3" type="MarginContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="play2" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/MarginContainer3"]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
-disabled = true
-text = "this button is small and disabled because lol suffer"
 
 [node name="MarginContainer4" type="MarginContainer" parent="CanvasLayer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
