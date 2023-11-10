@@ -1,8 +1,11 @@
 public partial class Bomb : RigidBody3D
 {
     #region Signals
-    [Signal] public delegate void InstancedEventHandler (int teamNumber, Vector3I position);
-    [Signal] public delegate void ExplodedEventHandler (int teamNumber, Vector3I position);
+    [Signal]
+    public delegate void InstancedEventHandler(int teamNumber, Vector3I position);
+
+    [Signal]
+    public delegate void ExplodedEventHandler(int teamNumber, Vector3I position);
     #endregion
 
     public int Team { get; set; } = 1;
@@ -14,9 +17,13 @@ public partial class Bomb : RigidBody3D
     private bool HasExploded = false;
 
     Timer DetonationTimer { get; set; }
-    [Export] float BaseDetonationTime = 3f;
-    float DetonationTime {
-        get {
+
+    [Export]
+    float BaseDetonationTime = 3f;
+    float DetonationTime
+    {
+        get
+        {
             float time = BaseDetonationTime;
             if (MatchSettingsState.CheckGameModifier(GameModifier.DelayedBombs))
                 time *= 2f;
@@ -74,7 +81,7 @@ public partial class Bomb : RigidBody3D
         HasExploded = true;
 
         var ExplosionScene =
-            ResourceLoader.Load("res://scenes/hazards/Explosion.tscn") as PackedScene;
+            ResourceLoader.Load("res://scenes/objects/hazards/Explosion.obj.tscn") as PackedScene;
         var explosion = ExplosionScene.Instantiate() as Explosion;
         explosion.Team = Team;
 

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://src/scenes/GameScene.cs" id="1_gtlnx"]
 [ext_resource type="Script" path="res://src/gameplay/Referee.cs" id="2_1x7ng"]
-[ext_resource type="PackedScene" uid="uid://cembimxaefdar" path="res://scenes/ui/PauseLayer.tscn" id="2_fvifq"]
-[ext_resource type="PackedScene" uid="uid://7uvofdjq585l" path="res://scenes/menus/CharacterHUD.tscn" id="4_nf3ng"]
+[ext_resource type="PackedScene" uid="uid://cembimxaefdar" path="res://scenes/ui/layers/Pause.layer.tscn" id="2_fvifq"]
+[ext_resource type="PackedScene" uid="uid://7uvofdjq585l" path="res://scenes/ui/ingame/Character.sub.tscn" id="4_nf3ng"]
 
 [node name="GameScene" type="Node"]
 script = ExtResource("1_gtlnx")

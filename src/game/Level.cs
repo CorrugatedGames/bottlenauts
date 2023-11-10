@@ -186,9 +186,10 @@ public partial class Level : Node3D
     private void GenerateHazards()
     {
         PackedScene destruScene =
-            ResourceLoader.Load("res://scenes/hazards/Destructible.tscn") as PackedScene;
+            ResourceLoader.Load("res://scenes/objects/hazards/Destructible.obj.tscn")
+            as PackedScene;
         PackedScene obstaScene =
-            ResourceLoader.Load("res://scenes/hazards/Obstacle.tscn") as PackedScene;
+            ResourceLoader.Load("res://scenes/objects/hazards/Obstacle.obj.tscn") as PackedScene;
 
         var destruPotents = Map.GetUsedCellsByItem((int)MetaCell.RANDOM_DESTRUCTIBLE);
         var destruPermas = Map.GetUsedCellsByItem((int)MetaCell.PERMA_DESTRUCTIBLE);
@@ -228,7 +229,8 @@ public partial class Level : Node3D
 
             // todo(jam): set visuals here based on player.Color
             PackedScene characterScene =
-                ResourceLoader.Load("res://scenes/characters/TestCharacter.tscn") as PackedScene;
+                ResourceLoader.Load("res://scenes/objects/characters/TestCharacter.obj.tscn")
+                as PackedScene;
             Character character = characterScene.Instantiate() as Character;
             character.AddToGroup(GROUP_CHARACTERS);
             character.AddToGroup(GROUP_GAMEPLAY);

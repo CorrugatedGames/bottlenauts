@@ -63,7 +63,7 @@ public partial class MatchSetupMenu : Control
 
         MainMenuButton = GetNode("%MainMenuButton") as Button;
         MainMenuButton.Pressed += () =>
-            GetTree().ChangeSceneToFile("res://scenes/menus/TitleScreen.tscn");
+            GetTree().ChangeSceneToFile("res://scenes/ui/mainmenu/Main.menu.tscn");
         ToGameSetupButton = GetNode("%ToGameSetupButton") as Button;
         ToGameSetupButton.Pressed += () => SlideMenu(false);
         ToCharacterSetupButton = GetNode("%ToCharacterSetupButton") as Button;
@@ -295,6 +295,6 @@ public partial class MatchSetupMenu : Control
 
         MatchSettingsState.Generate();
 
-        GetTree().ChangeSceneToFile("res://scenes/GameScene.tscn");
+        GetTree().ChangeSceneToFile("res://scenes/ui/ingame/GameScene.tscn");
     }
 }

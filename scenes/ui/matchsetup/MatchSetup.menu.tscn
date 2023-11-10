@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://hqpv6rq6jhnx"]
 
-[ext_resource type="PackedScene" uid="uid://dxotftlvnjgu8" path="res://scenes/menus/CharacterSelectPanel.tscn" id="1_8crna"]
+[ext_resource type="PackedScene" uid="uid://dxotftlvnjgu8" path="res://scenes/ui/matchsetup/CharacterSelectPanel.sub.tscn" id="1_8crna"]
 [ext_resource type="Script" path="res://src/menus/MatchSetupMenu.cs" id="1_lur22"]
 
 [node name="MatchSetup" type="Control"]

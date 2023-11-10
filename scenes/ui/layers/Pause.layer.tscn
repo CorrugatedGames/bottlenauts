@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cembimxaefdar"]
 
 [ext_resource type="Script" path="res://src/scenes/ui/PauseLayer.cs" id="1_13rnk"]
-[ext_resource type="PackedScene" uid="uid://b8oxsatdw55re" path="res://scenes/ui/SettingsLayer.tscn" id="2_fckaa"]
+[ext_resource type="PackedScene" uid="uid://b8oxsatdw55re" path="res://scenes/ui/layers/Settings.layer.tscn" id="2_fckaa"]
 
 [node name="PauseLayer" type="CanvasLayer"]
 layer = 9

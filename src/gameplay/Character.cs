@@ -54,7 +54,8 @@ public partial class Character : CharacterBody3D
 
     public override void _Ready()
     {
-        BombScene = ResourceLoader.Load("res://scenes/hazards/Bomb.tscn") as PackedScene;
+        BombScene =
+            ResourceLoader.Load("res://scenes/objects/hazards/Bomb.obj.tscn") as PackedScene;
         Mesh = GetNode("Mesh") as MeshInstance3D;
         BombCooldownTimer = GetNode("BombCooldownTimer") as Timer;
         BombCooldownTimer.Timeout += OnBombCooldownTimerTimeout;
