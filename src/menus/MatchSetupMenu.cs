@@ -14,6 +14,8 @@ public partial class MatchSetupMenu : Control
         ToCharacterSetupButton,
         StartGameButton;
     OptionButton GameModeSelectButton,
+        GameRoundsSelectButton,
+        ScoreValueSelectButton,
         LevelSelectButton,
         ThemeSelectButton;
 
@@ -88,10 +90,16 @@ public partial class MatchSetupMenu : Control
         PlayerCountSpinner.ValueChanged += SetPlayerGrids;
 
         GameModeSelectButton = GetNode("%GameModeSelectButton") as OptionButton;
-        foreach (string gameModeName in Enum.GetNames(typeof(GameMode)))
-            GameModeSelectButton.AddItem(gameModeName);
-        GameModeSelectButton.Select(0);
+        foreach (ListItem item in MatchSettingsState.GameModeTexts)
+            GameModeSelectButton.AddItem(item.Label);
+        GameModeSelectButton.Select(MatchSettingsState.DefaultGameMode);
         GameModeSelectButton.ItemSelected += SelectGameMode;
+
+        GameRoundsSelectButton = GetNode("%GameRoundsSelectButton") as OptionButton;
+        foreach (ListItem item in MatchSettingsState.GameRoundTexts)
+            GameRoundsSelectButton.AddItem(item.Label);
+        GameRoundsSelectButton.Select(MatchSettingsState.DefaultGameRounds);
+        GameRoundsSelectButton.ItemSelected += SelectGameRounds;
 
         LevelSelectButton = GetNode("%LevelSelectButton") as OptionButton;
         foreach (string levelName in LevelNames)
@@ -265,6 +273,8 @@ public partial class MatchSetupMenu : Control
     }
 
     void SelectGameMode(long idx) => MatchSettingsState.SetGameMode((GameMode)idx);
+
+    void SelectGameRounds(long idx) => MatchSettingsState.SetGameRounds((GameRounds)idx);
 
     void SelectLevel(long idx) =>
         MatchSettingsState.LevelName = LevelSelectButton.GetItemText((int)idx);

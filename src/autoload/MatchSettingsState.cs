@@ -1,9 +1,21 @@
 using System.Linq;
 
+public class ListItem
+{
+    public string Label { get; set; }
+    public int Value { get; set; }
+
+    public ListItem(string label, int value)
+    {
+        Label = label;
+        Value = value;
+    }
+}
+
 public enum GameMode
 {
-    LastManStanding,
-    Deathmatch,
+    LastManStanding = 0,
+    Deathmatch = 1,
 
     // TeamDeathmatch
     // CoinCollect
@@ -54,6 +66,24 @@ public enum GameModifier
 
 public partial class MatchSettingsState : SingletonNode
 {
+    public static readonly ListItem[] GameRoundTexts =
+    {
+        new("Very Short (1 win)", (int)GameRounds.VeryShort),
+        new("Short (3 wins)", (int)GameRounds.Short),
+        new("Normal (5 wins)", (int)GameRounds.Normal),
+        new("Long (7 wins)", (int)GameRounds.Long),
+        new("Very Long (10 wins)", (int)GameRounds.VeryLong),
+    };
+
+    public static readonly ListItem[] GameModeTexts =
+    {
+        new("Last Man Standing", (int)GameMode.LastManStanding),
+        new("Deathmatch", (int)GameMode.Deathmatch)
+    };
+
+    public static readonly int DefaultGameRounds = 2;
+    public static readonly int DefaultGameMode = 1;
+
     public GameMode GameMode { get; set; } = GameMode.LastManStanding;
     public GameRounds GameRounds { get; set; } = GameRounds.Normal;
     public Dictionary<GameModifier, bool> GameModifiers { get; } = new();
@@ -227,6 +257,8 @@ public partial class MatchSettingsState : SingletonNode
     }
 
     public static void SetGameMode(GameMode mode) => Instance.GameMode = mode;
+
+    public static void SetGameRounds(GameRounds rounds) => Instance.GameRounds = rounds;
 
     public override void _EnterTree()
     {
