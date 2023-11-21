@@ -22,6 +22,27 @@ public partial class TitleScreen : Control
 
         QuitButton = GetNode("%Quit") as Button;
         QuitButton.Pressed += () => GetTree().Quit();
+
+        var skipToTestLevel = OS.GetEnvironment("LOAD_TEST_LEVEL");
+        if (skipToTestLevel != null)
+        {
+            MatchSettingsState.ThemeName = "foo";
+            MatchSettingsState.LevelName = "Test";
+            while (MatchSettingsState.PlayerCount > MatchSettingsState.CurrentPlayerCount)
+                MatchSettingsState.GenerateCPUPlayer();
+
+            MatchSettingsState.Generate();
+
+            BNPlayer player = MatchSettingsState.GetPlayer(0);
+            player.IsCPU = false;
+            player.IsGamepad = false;
+            player.DeviceIndex = -1;
+
+            MatchSettingsState.Instance.Players[0] = player;
+            MatchSettingsState.GeneratePlayerBindings();
+
+            GetTree().ChangeSceneToFile("res://scenes/ui/ingame/GameScene.tscn");
+        }
     }
 
     void OnOptionsButtonPressed()

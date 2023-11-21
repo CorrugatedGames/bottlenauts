@@ -141,3 +141,8 @@ place_bomb={
 3d_physics/layer_18="Bombs"
 3d_physics/layer_19="Explosion"
 3d_physics/layer_20="Destructibles"
+
+[run_configs]
+
+data/configs=["{\"custom_scene\":\"\",\"environment_variables\":{\"LOAD_TEST_LEVEL\":\"1\"},\"name\":\"Skip To Test Level Load\",\"play_mode\":0}"]
+data/current=0
