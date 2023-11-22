@@ -2,6 +2,8 @@ using System.Linq;
 
 public partial class Level : Node3D
 {
+    [Signal] public delegate void SpawnsSetEventHandler ();
+
     [Export]
     public LevelTheme Theme { get; set; } = null;
 
@@ -27,6 +29,9 @@ public partial class Level : Node3D
         GenerateHazards();
         SetSpawns();
         SetLevelTheme(Theme);
+
+        if (OS.GetEnvironment(ENVIRON_DEBUGHACKLOAD) != "")
+            DEVStealPlayerOne(-1);
     }
 
     public override void _Input(InputEvent evt)
@@ -224,6 +229,9 @@ public partial class Level : Node3D
         );
         for (int i = 0; i < MatchSettingsState.PlayerCount; i++)
         {
+            if (MatchSettingsState.GetPlayer(i) == null)
+                MatchSettingsState.GenerateCPUPlayer(i);
+
             BNPlayer player = MatchSettingsState.GetPlayer(i);
             Vector3 spawn = randomSpawns.ElementAt(i).SnappedToGrid();
 
@@ -240,6 +248,8 @@ public partial class Level : Node3D
 
             Players.Add(player);
         }
+
+        EmitSignal(SignalName.SpawnsSet);
     }
 
     BNPlayer PlayerAlive()

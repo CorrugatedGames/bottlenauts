@@ -18,8 +18,11 @@ public partial class GameScene : Node
     PlayerBGM = Viewport.GetNode("Audio/BGM") as AudioStreamPlayer;
     PlayerSFX = Viewport.GetNode("Audio/SFX") as AudioStreamPlayer;
 
-    Level level = MatchSettingsState.Level;
-    level.Theme = MatchSettingsState.Theme;
+    Level level = (ResourceLoader.Load(OS.GetEnvironment(ENVIRON_LEVELNAME).AsLevelFilePath()) as PackedScene).Instantiate() as Level;
+    level.Theme = ResourceLoader.Load(OS.GetEnvironment(ENVIRON_THEMENAME).AsThemeFilePath()) as LevelTheme;
+
+    foreach (CharacterHUD hud in GetNode("%HUDContainer").GetChildren().Cast<CharacterHUD>())
+      level.SpawnsSet += hud.SetCharacterInfo;
 
     Viewport.AddChild(level);
     level.Camera.MakeCurrent();
