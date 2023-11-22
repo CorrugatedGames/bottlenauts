@@ -6,6 +6,7 @@ global using System.Collections.Generic;
 
 global using static Filepaths;
 global using static GroupNames;
+global using static EnvironmentVars;
 global using static MathHelpers;
 
 public static class Filepaths
@@ -31,6 +32,28 @@ public static class GroupNames
   public readonly static string GROUP_EXPLOSIONS = "Explosion";
   
   public readonly static string GROUP_GAMEPLAY = "GameplayPauseable";
+}
+
+public static class EnvironmentVars
+{
+  /// <summary>Should only be set if intending to load a local multiplayer match.</summary>
+  public readonly static string ENVIRON_LOCALMULTIPLAYER = "local";
+  /// <summary>Should only be set if intending to connect to a host's server.<br/>Requires "ENVIRON_SERVERIP" and "ENVIRON_SERVERPORT" to also be set!</summary>
+  public readonly static string ENVIRON_CLIENTMULTIPLAYER = "client";
+  /// <summary>Should only be set if intending to run a Bottlenauts process as a server.</summary>
+  public readonly static string ENVIRON_SERVERMULTIPLAYER = "server";
+  /// <summary>The IPv4 address of the server to connect to.</summary>
+  public readonly static string ENVIRON_SERVERIP = "ip";
+  /// <summary>The forwarded port of the provided IPv4 address to connect to.</summary>
+  public readonly static string ENVIRON_SERVERPORT = "port";
+
+  /// <summary>Name of the level file to load in GameScene._Ready().</summary>
+  public readonly static string ENVIRON_LEVELNAME = "level";
+  /// <summary>Name of the level theme file to load in GameScene._Ready().</summary>
+  public readonly static string ENVIRON_THEMENAME = "theme";
+
+  /// <summary>Should ONLY be set in run configs to trigger DEVStealPlayerOne()!</summary>
+  public readonly static string ENVIRON_DEBUGHACKLOAD = "DEVhackload";
 }
 
 public static class MathHelpers
