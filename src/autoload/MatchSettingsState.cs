@@ -89,9 +89,7 @@ public partial class MatchSettingsState : SingletonNode
     public Dictionary<GameModifier, bool> GameModifiers { get; } = new();
 
     public static string LevelName { get; set; } = "";
-    public static Level Level { get; private set; }
     public static string ThemeName { get; set; } = "";
-    public static LevelTheme Theme { get; private set; }
 
     const int MAX_PLAYER_COUNT = 8,
         MIN_PLAYER_COUNT = 2;
@@ -202,8 +200,10 @@ public partial class MatchSettingsState : SingletonNode
     {
         LockInput = false;
 
+        OS.SetEnvironment(ENVIRON_LEVELNAME, LevelName);
+        OS.SetEnvironment(ENVIRON_THEMENAME, ThemeName);
+
         GeneratePlayerBindings();
-        GenerateLevel();
     }
 
     public static void GeneratePlayerBindings()
@@ -238,14 +238,6 @@ public partial class MatchSettingsState : SingletonNode
                 }
             }
         }
-    }
-
-    public static void GenerateLevel()
-    {
-        PackedScene levelScene = ResourceLoader.Load(LevelName.AsLevelFilePath()) as PackedScene;
-        Level = levelScene.Instantiate() as Level;
-        Theme = ResourceLoader.Load(ThemeName.AsThemeFilePath()) as LevelTheme;
-        Level.Theme = Theme;
     }
 
     public static void SetPlayerProfile(int playerIdx, PlayerProfile profile)
