@@ -1,14 +1,14 @@
-using Godot;
-using System;
-
 public partial class CharacterHUD : MarginContainer
 {
     Label PlayerNumberLabel;
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         PlayerNumberLabel = GetNode("%PlayerNumberLabel") as Label;
+    }
+
+    public void SetCharacterInfo ()
+    {
         int playerNumber = (int)GetMeta("PlayerNumber");
 
         if (playerNumber >= MatchSettingsState.PlayerCount)
@@ -22,7 +22,4 @@ public partial class CharacterHUD : MarginContainer
         var player = MatchSettingsState.GetPlayer(playerNumber);
         PlayerNumberLabel.Text = player.Color.ToColorString() + " Alchemist";
     }
-
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta) { }
 }
