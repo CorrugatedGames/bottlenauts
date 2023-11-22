@@ -199,10 +199,6 @@ public partial class MatchSettingsState : SingletonNode
     public static void Generate()
     {
         LockInput = false;
-
-        OS.SetEnvironment(ENVIRON_LEVELNAME, LevelName);
-        OS.SetEnvironment(ENVIRON_THEMENAME, ThemeName);
-
         GeneratePlayerBindings();
     }
 
