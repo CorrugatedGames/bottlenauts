@@ -144,5 +144,5 @@ place_bomb={
 
 [run_configs]
 
-data/configs=["{\"custom_scene\":\"\",\"environment_variables\":{\"LOAD_TEST_LEVEL\":\"1\"},\"name\":\"Skip To Test Level Load\",\"play_mode\":0}"]
+data/configs=["{\"custom_scene\":\"res://scenes/ui/ingame/GameScene.tscn\",\"environment_variables\":{\"DEVhackload\":\"true\",\"level\":\"Test\",\"theme\":\"foo\"},\"name\":\"Skip To Test Level Load\",\"play_mode\":2}"]
 data/current=0
