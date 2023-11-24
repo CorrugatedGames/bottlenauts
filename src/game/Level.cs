@@ -22,6 +22,11 @@ public partial class Level : Node3D
     private bool HasWinnerBeenDeclared = false;
     private List<BNPlayer> Players = new List<BNPlayer>();
 
+    public GameScene GameScene
+    {
+        get { return GetTree().Root.GetNode("GameScene") as GameScene; }
+    }
+
     public override void _Ready()
     {
         Map = GetNode("GridMap") as GridMap;
@@ -317,6 +322,7 @@ public partial class Level : Node3D
             winnerString = PlayerAlive().Color.ToColorString() + " Alchemist Wins!";
         }
 
-        Print(winnerString);
+        MatchSettingsState.WinnerString = winnerString;
+        GameScene.ShowMatchEndLayer();
     }
 }

@@ -91,8 +91,8 @@ public partial class MatchSettingsState : SingletonNode
     public static string LevelName { get; set; } = "";
     public static string ThemeName { get; set; } = "";
 
-    const int MAX_PLAYER_COUNT = 8,
-        MIN_PLAYER_COUNT = 2;
+    const int MAX_PLAYER_COUNT = 8;
+    const int MIN_PLAYER_COUNT = 2;
     public static int PlayerCount { get; private set; }
     public BNPlayer[] Players { get; private set; }
     static readonly BNPlayer[] NullPlayers = { null };
@@ -110,7 +110,13 @@ public partial class MatchSettingsState : SingletonNode
 
     public static int CurrentPlayerCount =>
         Mathf.Clamp(Instance.Players.Except(NullPlayers).Count(), 0, MAX_PLAYER_COUNT);
+
+    #region Variables Per Match
+
     public static bool LockInput { get; set; } = false;
+    public static string WinnerString { get; set; } = "";
+
+    #endregion
 
     public static MatchSettingsState Instance { get; set; }
 
@@ -199,6 +205,7 @@ public partial class MatchSettingsState : SingletonNode
     public static void Generate()
     {
         LockInput = false;
+        WinnerString = "";
         GeneratePlayerBindings();
     }
 

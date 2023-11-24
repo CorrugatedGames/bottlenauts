@@ -2,35 +2,66 @@ using System.Linq;
 
 public partial class GameScene : Node
 {
-  #region Child nodes
+    #region Child nodes
 
-  public Referee Referee { get; private set; }
-  public SubViewport Viewport { get; private set; }
-  AudioStreamPlayer PlayerBGM, PlayerSFX;
+    public Referee Referee { get; private set; }
+    public SubViewport Viewport { get; private set; }
+    AudioStreamPlayer PlayerBGM,
+        PlayerSFX;
 
-  #endregion
+    #endregion
 
-  public override void _Ready ()
-  {
-    Referee = GetNode("%Referee") as Referee;
-    Viewport = GetNode("%Viewport") as SubViewport;
+    public override void _Ready()
+    {
+        Referee = GetNode("%Referee") as Referee;
+        Viewport = GetNode("%Viewport") as SubViewport;
 
-    PlayerBGM = Viewport.GetNode("Audio/BGM") as AudioStreamPlayer;
-    PlayerSFX = Viewport.GetNode("Audio/SFX") as AudioStreamPlayer;
+        PlayerBGM = Viewport.GetNode("Audio/BGM") as AudioStreamPlayer;
+        PlayerSFX = Viewport.GetNode("Audio/SFX") as AudioStreamPlayer;
 
-    string levelEnv = OS.GetEnvironment(ENVIRON_LEVELNAME);
-    Level level = (ResourceLoader.Load((levelEnv != "" ? levelEnv : MatchSettingsState.LevelName).AsLevelFilePath()) as PackedScene).Instantiate() as Level;
+        StartGame();
+    }
 
-    string themeEnv = OS.GetEnvironment(ENVIRON_THEMENAME);
-    level.Theme = ResourceLoader.Load((themeEnv != "" ? themeEnv : MatchSettingsState.ThemeName).AsThemeFilePath()) as LevelTheme;
+    public void StartGame()
+    {
+        HideMatchEndLayer();
+        MatchSettingsState.Generate();
 
-    foreach (CharacterHUD hud in GetNode("%HUDContainer").GetChildren().Cast<CharacterHUD>())
-      level.SpawnsSet += hud.SetCharacterInfo;
+        string levelEnv = OS.GetEnvironment(ENVIRON_LEVELNAME);
+        Level level =
+            (
+                ResourceLoader.Load(
+                    (levelEnv != "" ? levelEnv : MatchSettingsState.LevelName).AsLevelFilePath()
+                ) as PackedScene
+            ).Instantiate() as Level;
 
-    Viewport.AddChild(level);
-    level.Camera.MakeCurrent();
+        string themeEnv = OS.GetEnvironment(ENVIRON_THEMENAME);
+        level.Theme =
+            ResourceLoader.Load(
+                (themeEnv != "" ? themeEnv : MatchSettingsState.ThemeName).AsThemeFilePath()
+            ) as LevelTheme;
 
-    foreach (Character character in GetTree().GetNodesInGroup(GROUP_CHARACTERS).Cast<Character>())
-      Referee.ConnectCharacterSignals(character);
-  }
+        foreach (CharacterHUD hud in GetNode("%HUDContainer").GetChildren().Cast<CharacterHUD>())
+            level.SpawnsSet += hud.SetCharacterInfo;
+
+        Viewport.AddChild(level);
+        level.Camera.MakeCurrent();
+
+        foreach (
+            Character character in GetTree().GetNodesInGroup(GROUP_CHARACTERS).Cast<Character>()
+        )
+            Referee.ConnectCharacterSignals(character);
+    }
+
+    public void HideMatchEndLayer()
+    {
+        MPMatchEndLayer matchEndLayer = GetNode("MPMatchEndHUD") as MPMatchEndLayer;
+        matchEndLayer.SetActive(false, false);
+    }
+
+    public void ShowMatchEndLayer()
+    {
+        MPMatchEndLayer matchEndLayer = GetNode("MPMatchEndHUD") as MPMatchEndLayer;
+        matchEndLayer.SetActive(true, false);
+    }
 }

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://du4v5tcx5bltt"]
+[gd_scene load_steps=6 format=3 uid="uid://du4v5tcx5bltt"]
 
 [ext_resource type="Script" path="res://src/scenes/GameScene.cs" id="1_gtlnx"]
 [ext_resource type="Script" path="res://src/gameplay/Referee.cs" id="2_1x7ng"]
 [ext_resource type="PackedScene" uid="uid://cembimxaefdar" path="res://scenes/ui/layers/Pause.layer.tscn" id="2_fvifq"]
+[ext_resource type="PackedScene" uid="uid://dv5744h3b0a23" path="res://scenes/ui/layers/MPMatchEnd.layer.tscn" id="4_2xtyd"]
 [ext_resource type="PackedScene" uid="uid://7uvofdjq585l" path="res://scenes/ui/ingame/Character.sub.tscn" id="4_nf3ng"]
 
 [node name="GameScene" type="Node"]
@@ -43,8 +44,9 @@ bus = &"SFX"
 [node name="PauseLayer" parent="ViewportContainer/Unpausable" instance=ExtResource("2_fvifq")]
 visible = false
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 5
+[node name="MPMatchEndHUD" parent="." instance=ExtResource("4_2xtyd")]
+unique_name_in_owner = true
+visible = false
 
 [node name="PlayerHUD" type="VBoxContainer" parent="."]
 visibility_layer = 8
