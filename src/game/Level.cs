@@ -2,7 +2,8 @@ using System.Linq;
 
 public partial class Level : Node3D
 {
-    [Signal] public delegate void SpawnsSetEventHandler ();
+    [Signal]
+    public delegate void SpawnsSetEventHandler();
 
     [Export]
     public LevelTheme Theme { get; set; } = null;
@@ -18,6 +19,7 @@ public partial class Level : Node3D
     float ObstacleFillPercentage = 0.2f;
 
     private bool HasEndSequenceStarted = false;
+    private bool HasWinnerBeenDeclared = false;
     private List<BNPlayer> Players = new List<BNPlayer>();
 
     public override void _Ready()
@@ -42,6 +44,9 @@ public partial class Level : Node3D
                 DEVStealPlayerOne(-1);
 
             if (keyEvent.Pressed && keyEvent.Keycode == Key.F9)
+                DEVKillAllOtherPlayers();
+
+            if (keyEvent.Pressed && keyEvent.Keycode == Key.F10)
                 DEVEndSequence();
         }
 
@@ -68,6 +73,19 @@ public partial class Level : Node3D
 
         MatchSettingsState.Instance.Players[0] = player;
         MatchSettingsState.GeneratePlayerBindings();
+#endif
+    }
+
+    void DEVKillAllOtherPlayers()
+    {
+#if DEBUG
+        foreach (BNPlayer player in MatchSettingsState.Instance.Players)
+        {
+            if (player.PlayerIndex == 0)
+                continue;
+
+            player.IsDead = true;
+        }
 #endif
     }
 
@@ -287,6 +305,10 @@ public partial class Level : Node3D
 
     void EndSequence()
     {
+        if (HasWinnerBeenDeclared)
+            return;
+
+        HasWinnerBeenDeclared = true;
         MatchSettingsState.LockInput = true;
         string winnerString = "Tie!";
 
