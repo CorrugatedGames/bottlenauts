@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://1h5dwyfekj8d"]
+
+[ext_resource type="PackedScene" uid="uid://km2gj52mwt00" path="res://assets/models/powerups/PowerupStand.glb" id="1_iaah1"]
+[ext_resource type="PackedScene" uid="uid://byw50yurs1ar1" path="res://assets/models/powerups/PowerupTopStrength.glb" id="2_uk16h"]
+
+[node name="Powerup" type="Node3D"]
+
+[node name="PowerupStand" parent="." instance=ExtResource("1_iaah1")]
+
+[node name="PowerupTopStrength" parent="." instance=ExtResource("2_uk16h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
